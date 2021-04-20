@@ -18,7 +18,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="RU"/>
     <property name="sun.boot.library.path" value="c:\Program Files\Java\jdk-11\bin"/>
-    <property name="sun.java.command" value="C:\Users\Irisha\AppData\Local\Temp\surefire12959252146921852033\surefirebooter5632748090041159520.jar C:\Users\Irisha\AppData\Local\Temp\surefire12959252146921852033 2021-04-20T15-57-52_183-jvmRun1 surefire11836636658731823841tmp surefire_015564441397528852065tmp"/>
+    <property name="sun.java.command" value="C:\Users\Irisha\AppData\Local\Temp\surefire2406243526827332899\surefirebooter16870400081296608610.jar C:\Users\Irisha\AppData\Local\Temp\surefire2406243526827332899 2021-04-20T17-30-00_144-jvmRun1 surefire14771414895272505952tmp surefire_017711604172821137432tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="D:\Work University\Senla\Projects\RentOfScooters\entity\target\test-classes;D:\Work University\Senla\Projects\RentOfScooters\entity\target\classes;C:\Users\Irisha\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Irisha\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -34,7 +34,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\Users\Irisha\AppData\Local\Temp\surefire12959252146921852033\surefirebooter5632748090041159520.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Irisha\AppData\Local\Temp\surefire2406243526827332899\surefirebooter16870400081296608610.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11+28"/>
