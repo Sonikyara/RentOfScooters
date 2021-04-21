@@ -5,8 +5,14 @@
 .idea/
 *.iml
 *.iws
+*.log
 
 .DS_Store
 
 log/
 target/
+
+**/.idea
+**/out
+**/logs
+**/target
