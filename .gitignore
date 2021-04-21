@@ -1,7 +1,12 @@
-# Default ignored files
+.classpath
+.project
+.settings/
 
-.idea/**/workspace.xml
-.idea/**/tasks.xml
-.idea/**/usage.statistics.xml
-.idea/**/dictionaries
-.idea/**/shelf
+.idea/
+*.iml
+*.iws
+
+.DS_Store
+
+log/
+target/

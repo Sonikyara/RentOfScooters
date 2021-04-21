@@ -5,7 +5,7 @@
     
   <packaging>pom</packaging>
     
-  <groupId>Statkevich.projects</groupId>
+  <groupId>eu.senla.statkevich</groupId>
 
   <artifactId>scooters</artifactId>
 
