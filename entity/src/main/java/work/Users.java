@@ -6,11 +6,8 @@ import java.util.List;
 
 @Entity
 @Table(name="users")
-public class Users {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String name;
+public class Users extends AEntityWithName{
+
     @Column(name="phone_number")
     private String phoneNumber;
     private String pass;
@@ -28,17 +25,12 @@ public class Users {
     public Users() {}
 
     public Users(String name, String phoneNumber, String pass) {
-        this.name = name;
+        super(name);
         this.phoneNumber = phoneNumber;
         this.pass = pass;
         rent=new ArrayList<>();
         payment=new ArrayList<>();
     }
-
-    public int getId() {        return id;    }
-
-    public String getName() {        return name;    }
-    public void setName(String name) {        this.name = name;    }
 
     public String getPhoneNumber() {        return phoneNumber;    }
     public void setPhoneNumber(String phoneNumber) {        this.phoneNumber = phoneNumber;    }
@@ -58,8 +50,7 @@ public class Users {
     @Override
     public String toString() {
         return "User: "+
-                ", id= "+id+
-                ", name= "+name+
+                super.toString()+
                 ", phone number= "+phoneNumber+
                 ", pass= "+pass;
     }

@@ -7,11 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name="producer")
-public class Producer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String name;
+public class Producer extends AEntityWithName{
 
     @OneToMany(mappedBy = "producer",fetch = FetchType.LAZY)
     private List<TypesProducers> typesProducers;
@@ -19,22 +15,15 @@ public class Producer {
     public Producer() {}
 
     public Producer(String name) {
-        this.name = name;
+        super(name);
         typesProducers=new ArrayList<>();
     }
-
-    public int getId() {        return id;    }
-
-    public String getName() {        return name;    }
-    public void setName(String name) {        this.name = name;    }
-
     public List<TypesProducers> getTypesProducers() {        return typesProducers;    }
     public void setTypesProducers(List<TypesProducers> typesProducers) {        this.typesProducers = typesProducers;    }
 
     @Override
     public String toString() {
         return "Producer: "+
-                "id= "+id+
-                ", name= "+name;
+                super.toString();
     }
 }

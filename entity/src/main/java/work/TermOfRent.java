@@ -5,11 +5,8 @@ import java.util.List;
 
 @Entity
 @Table(name="term_of_rent")
-public class TermOfRent {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String title;
+public class TermOfRent extends AEntityWithTitle{
+
     @Column(name="count_of_days")
     private int countOfDays;
 
@@ -19,14 +16,9 @@ public class TermOfRent {
     public TermOfRent() {}
 
     public TermOfRent(String title, int countOfDays) {
-        this.title = title;
+        super(title);
         this.countOfDays = countOfDays;
     }
-
-    public int getId() {        return id;    }
-
-    public String getTitle() {        return title;    }
-    public void setTitle(String title) {        this.title = title;    }
 
     public int getCountOfDays() {        return countOfDays;    }
     public void setCountOfDays(int countOfDays) {        this.countOfDays = countOfDays;    }
@@ -37,8 +29,7 @@ public class TermOfRent {
     @Override
     public String toString() {
         return "Term of rent: "+
-                "id= "+id+
-                ", title= "+title+
+                super.toString()+
                 ", count of days= "+countOfDays;
     }
 }

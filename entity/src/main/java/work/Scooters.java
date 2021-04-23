@@ -1,17 +1,18 @@
 package work;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="type_producers")
+@Table(name="scooters")
 public class Scooters {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int number;
     private String model;
-    private int sum;
+    private BigDecimal sum;
 
     @ManyToOne
     @JoinColumn
@@ -29,7 +30,7 @@ public class Scooters {
 
     public Scooters() {}
 
-    public Scooters(String model, int sum, Sellers seller, TypesProducers typeProducer) {
+    public Scooters(String model, BigDecimal sum, Sellers seller, TypesProducers typeProducer) {
         this.model = model;
         this.sum = sum;
         this.seller = seller;
@@ -43,8 +44,8 @@ public class Scooters {
     public String getModel() {        return model;    }
     public void setModel(String model) {        this.model = model;    }
 
-    public int getSum() {        return sum;    }
-    public void setSum(int sum) {        this.sum = sum;    }
+    public BigDecimal getSum() {        return sum;    }
+    public void setSum(BigDecimal sum) {        this.sum = sum;    }
 
     public Sellers getSeller() {        return seller;    }
     public void setSeller(Sellers seller) {        this.seller = seller;    }

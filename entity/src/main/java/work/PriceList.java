@@ -1,6 +1,7 @@
 package work;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class PriceList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int price;
+    private BigDecimal price;
 
     @ManyToOne
     @JoinColumn
@@ -25,7 +26,7 @@ public class PriceList {
 
     public PriceList() {}
 
-    public PriceList(int price, Scooters scooter, TermOfRent termOfRent) {
+    public PriceList(BigDecimal price, Scooters scooter, TermOfRent termOfRent) {
         this.price = price;
         this.scooter = scooter;
         this.termOfRent = termOfRent;
@@ -37,8 +38,8 @@ public class PriceList {
     public Scooters getScooter() {        return scooter;    }
     public void setScooter(Scooters scooter) {        this.scooter = scooter;    }
 
-    public int getPrice() {        return price;    }
-    public void setPrice(int price) {        this.price = price;    }
+    public BigDecimal getPrice() {        return price;    }
+    public void setPrice(BigDecimal price) {        this.price = price;    }
 
     public TermOfRent getTermOfRent() {        return termOfRent;    }
     public void setTermOfRent(TermOfRent termOfRent) {        this.termOfRent = termOfRent;    }

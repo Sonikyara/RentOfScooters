@@ -6,11 +6,8 @@ import java.util.List;
 
 @Entity
 @Table(name="sellers")
-public class Sellers {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String name;
+public class Sellers extends AEntityWithName{
+
     private String adress;
 
     @OneToMany(mappedBy = "seller",fetch = FetchType.LAZY)
@@ -18,15 +15,10 @@ public class Sellers {
 
     public Sellers() {}
 
-    public Sellers(String title, String adress) {
-        this.name = title;
+    public Sellers(String name, String adress) {
+        super(name);
         this.adress = adress;
     }
-
-    public int getId() {        return id;    }
-
-    public String getName() {        return name;    }
-    public void setName(String name) {        this.name = name;    }
 
     public String getAdress() {        return adress;    }
     public void setAdress(String adress) {        this.adress = adress;    }
@@ -37,8 +29,7 @@ public class Sellers {
     @Override
     public String toString() {
         return "Seller: "+
-                "id= "+id+
-                ", name= "+name+
+                super.toString()+
                 ", adress= "+adress;
     }
 }

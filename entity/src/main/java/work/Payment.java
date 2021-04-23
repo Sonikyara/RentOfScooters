@@ -1,6 +1,7 @@
 package work;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name="payment")
@@ -8,7 +9,7 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int sum;
+    private BigDecimal sum;
 
     @ManyToOne
     @JoinColumn
@@ -20,7 +21,7 @@ public class Payment {
 
     public Payment() {}
 
-    public Payment(int sum, Users user, Rent rent) {
+    public Payment(BigDecimal sum, Users user, Rent rent) {
         this.sum = sum;
         this.user = user;
         this.rent = rent;
@@ -28,8 +29,8 @@ public class Payment {
 
     public int getId() {        return id;    }
 
-    public int getSum() {        return sum;    }
-    public void setSum(int sum) {        this.sum = sum;    }
+    public BigDecimal getSum() {        return sum;    }
+    public void setSum(BigDecimal sum) {        this.sum = sum;    }
 
     public Users getUser() {        return user;    }
     public void setUser(Users user) {        this.user = user;    }

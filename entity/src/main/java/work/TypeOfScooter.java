@@ -7,11 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name="type_of_scooter")
-public class TypeOfScooter {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String title;
+public class TypeOfScooter extends AEntityWithTitle{
 
     @OneToMany(mappedBy = "scootersType",fetch = FetchType.LAZY)
     private List<TypesProducers> typesProducers;
@@ -19,14 +15,9 @@ public class TypeOfScooter {
     public TypeOfScooter() {}
 
     public TypeOfScooter(String title) {
-        this.title = title;
+        super(title);
         typesProducers=new ArrayList<>();
     }
-
-    public int getId() {        return id;    }
-
-    public String getTitle() {        return title;    }
-    public void setTitle(String title) {        this.title = title;    }
 
     public List<TypesProducers> getTypesProducers() {        return typesProducers;    }
     public void setTypesProducers(List<TypesProducers> typesProducers) {        this.typesProducers = typesProducers;    }
@@ -34,7 +25,6 @@ public class TypeOfScooter {
     @Override
     public String toString() {
         return "Type of scooter: "+
-                "id= "+id+
-                ", title= "+title;
+                super.toString();
     }
 }
