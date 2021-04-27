@@ -1,4 +1,4 @@
-package work;
+package work.appConfiguration;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @ComponentScan("work")
 @PropertySource("classpath:application.properties")
 
-public class Config { //extends WebMvcConfigurerAdapter
+public class ControllerConfig { //extends WebMvcConfigurerAdapter
 
-    public Config() {    }
+    public ControllerConfig() {    }
 }

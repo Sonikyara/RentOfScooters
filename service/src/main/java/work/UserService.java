@@ -15,12 +15,11 @@ public class UserService { //может, имплементить общий и�
     }
 
     public UserDTO getUserById(int id) {
-
-        return ConverterToUserDTO.convertUserToUserDTO(userDAO.getUserByID(id));
+        return UserDTO.getUserDTO(userDAO.getUserByID(id));
     }
 
-    public void saveUserById(Users user) {
-        userDAO.saveUserByID(user);
+    public void saveUser(Users user) {
+        userDAO.saveUser(user);
     }
 
 }

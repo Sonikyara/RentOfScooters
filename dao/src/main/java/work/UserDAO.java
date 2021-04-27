@@ -11,13 +11,13 @@ import org.springframework.stereotype.Component;
 public class UserDAO {
 
     @Autowired
-    private static HibernateSessionFactoryUtil sessionUtil;
+    private HibernateSessionFactoryUtil sessionUtil;
 
     public Users getUserByID(int id){
         return sessionUtil.getSession().get(Users.class, id);
     }
 
-    public void saveUserByID(Users user) {
+    public void saveUser(Users user) {
         Session session = sessionUtil.getSession();
         Transaction transaction = session.beginTransaction();
         session.save(user);

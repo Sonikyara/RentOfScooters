@@ -12,14 +12,4 @@
         Welcome to Scooters
     </description>
 
-    <servlet>
-        <servlet-name>myServlet</servlet-name>
-        <servlet-class>work.HelloWorld</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>myServlet</servlet-name>
-        <url-pattern>/hello</url-pattern>
-    </servlet-mapping>
-
 </web-app>

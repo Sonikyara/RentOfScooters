@@ -20,6 +20,17 @@ public class HibernateSessionFactoryUtil {
             try {
                 Configuration configuration = new Configuration().configure();
                 configuration.addAnnotatedClass(Users.class);
+                configuration.addAnnotatedClass(Roles.class);
+                configuration.addAnnotatedClass(Sellers.class);
+                configuration.addAnnotatedClass(TypesProducers.class);
+                configuration.addAnnotatedClass(TypeOfScooter.class);
+                configuration.addAnnotatedClass(Scooters.class);
+                configuration.addAnnotatedClass(Payment.class);
+                configuration.addAnnotatedClass(TermOfRent.class);
+                configuration.addAnnotatedClass(Rent.class);
+                configuration.addAnnotatedClass(PriceList.class);
+                configuration.addAnnotatedClass(Producer.class);
+
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());
 

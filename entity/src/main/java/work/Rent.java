@@ -1,10 +1,7 @@
 package work;
 
-import org.graalvm.compiler.lir.LIRInstruction;
-
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name="rent")
