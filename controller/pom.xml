@@ -30,7 +30,6 @@
             <groupId>eu.senla.statkevich</groupId>
             <artifactId>service</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -38,8 +37,4 @@
             <version>2.11.0</version>
         </dependency>
     </dependencies>
-
-  <build>
-
-  </build>
 </project>
