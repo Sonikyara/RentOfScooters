@@ -4,14 +4,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Entity
 @Table(name="roles")
 public class Roles extends AEntityWithTitle {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
 
     @OneToMany(mappedBy = "role",fetch = FetchType.LAZY)
                 //,cascade = CascadeType.ALL ???

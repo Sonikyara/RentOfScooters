@@ -6,11 +6,11 @@ import javax.persistence.*;
 public abstract class AEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     public AEntity() {}
 
-    public int getId() {        return id;    }
+    public long getId() {        return id;    }
 
     @Override
     public String toString() {

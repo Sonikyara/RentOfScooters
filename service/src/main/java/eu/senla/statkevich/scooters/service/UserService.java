@@ -1,5 +1,6 @@
 package eu.senla.statkevich.scooters.service;
 
+import eu.senla.statkevich.scooters.dao.IGenericDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import eu.senla.statkevich.scooters.dao.UserDAO;
@@ -11,16 +12,17 @@ public class UserService { //может, имплементить общий и�
 
     @Autowired
     private UserDAO userDAO;
+    //private IGenericDao userDAO;  //for transaction
 
     public UserService() {
     }
 
-    public UserDTO getUserById(int id) {
-        return UserDTO.getUserDTO(userDAO.getUserByID(id));
+    public UserDTO getUserById(long id) {
+        return UserDTO.getUserDTO((Users) userDAO.read(id));
     }
 
     public void saveUser(Users user) {
-        userDAO.saveUser(user);
+        userDAO.create(user);
     }
 
 }
