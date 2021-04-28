@@ -10,7 +10,7 @@ import java.util.List;
 public class PriceList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private BigDecimal price;
 
     @ManyToOne
@@ -33,7 +33,7 @@ public class PriceList {
         rent=new ArrayList<>();
     }
 
-    public int getId() {        return id;    }
+    public Long getId() {        return id;    }
 
     public Scooters getScooter() {        return scooter;    }
     public void setScooter(Scooters scooter) {        this.scooter = scooter;    }

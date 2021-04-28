@@ -8,7 +8,7 @@ import java.util.Date;
 public class Rent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name="date_start")
     private Date dateStart;
@@ -32,7 +32,7 @@ public class Rent {
 
     public Rent() {}
 
-    public int getId() {        return id;    }
+    public Long getId() {        return id;    }
 
     public Date getDateStart() {        return dateStart;    }
     public void setDateStart(Date dateStart) {        this.dateStart = dateStart;    }

@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private BigDecimal sum;
 
     @ManyToOne
@@ -27,7 +27,7 @@ public class Payment {
         this.rent = rent;
     }
 
-    public int getId() {        return id;    }
+    public Long getId() {        return id;    }
 
     public BigDecimal getSum() {        return sum;    }
     public void setSum(BigDecimal sum) {        this.sum = sum;    }

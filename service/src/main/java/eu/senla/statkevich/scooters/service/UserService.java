@@ -1,28 +1,24 @@
 package eu.senla.statkevich.scooters.service;
 
-import eu.senla.statkevich.scooters.dao.IGenericDao;
+import eu.senla.statkevich.scooters.dao.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import eu.senla.statkevich.scooters.dao.UserDAO;
 import eu.senla.statkevich.scooters.dto.UserDTO;
 import eu.senla.statkevich.scooters.entity.Users;
 
 @Service
-public class UserService { //может, имплементить общий интерфейс?
+public class UserService implements UsersService{
 
     @Autowired
-    private UserDAO userDAO;
-    //private IGenericDao userDAO;  //for transaction
+    private UsersRepository usersRepository;
 
-    public UserService() {
+    @Override
+    public UserDTO read(long id) {
+        return UserDTO.getUserDTO(usersRepository.findById(id).orElse(new Users()));
     }
 
-    public UserDTO getUserById(long id) {
-        return UserDTO.getUserDTO((Users) userDAO.read(id));
-    }
+    @Override
+    public void create(Users user) {
 
-    public void saveUser(Users user) {
-        userDAO.create(user);
     }
-
 }

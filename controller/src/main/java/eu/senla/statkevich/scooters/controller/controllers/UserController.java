@@ -16,9 +16,9 @@ public class UserController {
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
-	protected UserDTO getUserFromDB(@PathVariable("id")long id){
+	protected UserDTO getUser(@PathVariable("id")long id){
 		//output???
-		return userService.getUserById(id);
+		return userService.read(id);
 	}
 
 //public User getUserFromDB(@RequestParam(required = false) int id, @RequestParam String name) {

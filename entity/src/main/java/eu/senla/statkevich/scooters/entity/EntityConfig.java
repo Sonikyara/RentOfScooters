@@ -1,13 +1,12 @@
-package eu.senla.statkevich.scooters.dao;
+package eu.senla.statkevich.scooters.entity;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-
 @Configuration
 @ComponentScan
-public class DAOConfig {
+public class EntityConfig {
 
-    public DAOConfig() {    }
+    public EntityConfig() {    }
 
 }

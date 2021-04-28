@@ -1,5 +1,6 @@
 package eu.senla.statkevich.scooters.controller.appConfiguration;
 
+import eu.senla.statkevich.scooters.dao.JPAConfig;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -16,7 +17,8 @@ public class SpringWebAppInitializer implements WebApplicationInitializer {
         AnnotationConfigWebApplicationContext appContext=new AnnotationConfigWebApplicationContext();
         appContext.register(ControllerConfig.class);
         appContext.register(ServiceConfig.class);
-        appContext.register(DAOConfig.class);
+        //appContext.register(DAOConfig.class);
+        appContext.register(JPAConfig.class);
 
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet("SpringDispatcher",
                 new DispatcherServlet(appContext));

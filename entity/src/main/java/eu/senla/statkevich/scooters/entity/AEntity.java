@@ -6,7 +6,7 @@ import javax.persistence.*;
 public abstract class AEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     public AEntity() {}
 
