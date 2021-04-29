@@ -4,9 +4,9 @@ import eu.senla.statkevich.scooters.dto.UserDTO;
 import eu.senla.statkevich.scooters.entity.Users;
 
 public interface UsersService  {
-    UserDTO read(final long id);
+    UserDTO read(final Long id);
 
-    void create(Users user);
+    Users create(UserDTO userDTO);
 
 //    List<T> readAll();
 //
