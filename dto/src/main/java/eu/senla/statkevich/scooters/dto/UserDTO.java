@@ -40,7 +40,7 @@ public class UserDTO{
 //    public RoleDTO getRoleDTO() {        return roleDTO;    }
 //    public void setRoleDTO(RoleDTO roleDTO) {        this.roleDTO = roleDTO;    }
 
-    public void setRoleTitle(String roleTitle) {        this.role = roleTitle;    }
+    //public void setRoleTitle(String roleTitle) {        this.role = roleTitle;    }
 
     @Override
     public String toString() {
@@ -53,23 +53,23 @@ public class UserDTO{
                 ", pass= "+pass;
     }
 
-    public static UserDTO getUserDTO(Users user){
-        UserDTO userDTO=new UserDTO();
-
-        userDTO.setId(user.getId());
-        userDTO.setName(user.getName());
-        userDTO.setPass(user.getPass());
-        userDTO.setPhoneNumber(user.getPhoneNumber());
-
-//        RoleDTO roleDTO=new RoleDTO();
-//        roleDTO.setId(user.getRole().getId());
-//        roleDTO.setTitle(user.getRole().getTitle());
-//        userDTO.setRoleDTO(roleDTO);
-        Roles role=user.getRole();
-        userDTO.setRoleTitle(role.getTitle());
-
-        //userDTO.setRoleTitle(role.getId()+"-"+role.getTitle());
-
-        return userDTO;
-    }
+//    public static UserDTO getUserDTO(Users user){
+//        UserDTO userDTO=new UserDTO();
+//
+//        userDTO.setId(user.getId());
+//        userDTO.setName(user.getName());
+//        userDTO.setPass(user.getPass());
+//        userDTO.setPhoneNumber(user.getPhoneNumber());
+//
+////        RoleDTO roleDTO=new RoleDTO();
+////        roleDTO.setId(user.getRole().getId());
+////        roleDTO.setTitle(user.getRole().getTitle());
+////        userDTO.setRoleDTO(roleDTO);
+//        Roles role=user.getRole();
+//        userDTO.setRoleTitle(role.getTitle());
+//
+//        //userDTO.setRoleTitle(role.getId()+"-"+role.getTitle());
+//
+//        return userDTO;
+//    }
 }

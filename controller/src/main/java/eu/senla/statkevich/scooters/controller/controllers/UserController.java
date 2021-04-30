@@ -1,10 +1,10 @@
 package eu.senla.statkevich.scooters.controller.controllers;
 
 import eu.senla.statkevich.scooters.entity.Users;
-import eu.senla.statkevich.scooters.service.UserServiceImpl;
+import eu.senla.statkevich.scooters.service.RolesService;
+import eu.senla.statkevich.scooters.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import eu.senla.statkevich.scooters.dto.UserDTO;
 
@@ -12,14 +12,13 @@ import eu.senla.statkevich.scooters.dto.UserDTO;
 public class UserController {
 
 	@Autowired
-	public UserServiceImpl userService;
+	public UsersService userService;
 
-	@RequestMapping(value = "/user/{id}", 	//getUser/id
+	@RequestMapping(value = "/user/{id}",
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
-	protected UserDTO getUser(@PathVariable("id")long id){
-		//output???
+	protected UserDTO getUser(@PathVariable("id")Long id){
 		return userService.read(id);
 	}
 
@@ -31,17 +30,15 @@ public class UserController {
 			produces = {MediaType.APPLICATION_JSON_VALUE})
  	@ResponseBody
 	public Users saveUser(@RequestBody UserDTO userDTO) {
-
 		return userService.create(userDTO);
-
 		//return ResponseEntity.ok(userDTO.toString());
 	}
 
 	//TEST
-	@RequestMapping ( "/helloWorld" )
+	@RequestMapping ( "/helloUser" )
 	@ResponseBody
 	public String helloWorld () {
-		return "helloWorld";
+		return "helloUser";
 	}
 
 }

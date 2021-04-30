@@ -6,8 +6,11 @@ import eu.senla.statkevich.scooters.entity.Roles;
 import eu.senla.statkevich.scooters.entity.Users;
 
 public interface RolesService {
+    //RoleDTO readByTitle(final String title);
+    RoleDTO readByTitle(final String title);
+
     RoleDTO read(final Long id);
 
-    Roles create(RoleDTO roleDTO);
+    Roles create(String title);
 
 }

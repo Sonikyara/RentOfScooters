@@ -5,4 +5,5 @@ import eu.senla.statkevich.scooters.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RolesRepository extends JpaRepository<Roles,Long> {
+
 }

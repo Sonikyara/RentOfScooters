@@ -24,7 +24,7 @@ import java.util.Properties;
 //@ComponentScan(basePackages ="eu.senla.statkevich.scooters.entity")
 //@EntityScan- для бута???
 @Import(EntityConfig.class)
-@EnableJpaRepositories("eu.senla.statkevich.scooters.dao.repository")
+@EnableJpaRepositories("eu.senla.statkevich.scooters.dao") //dao.repository
 public class JPAConfig {
 
     @Bean
