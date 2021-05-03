@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UsersService, UserDetailsService {
+public class UserServiceImpl implements UsersService{
 
 //    @Autowired
 //    private UsersRepository usersRepository;
@@ -58,12 +58,6 @@ public class UserServiceImpl implements UsersService, UserDetailsService {
         user.setPass(passwordEncoder.encode(userDTO.getPass()));
 
         return (userDAO.create(user)).toString();
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        Users user=userDAO.readByName(name);
-        return new User(user.getName(), user.getPass(), new ArrayList<>());
     }
 
     //    @Override

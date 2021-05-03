@@ -35,11 +35,11 @@ public class UserController {
 		//return ResponseEntity.ok(userDTO.toString());
 	}
 
-	@RequestMapping(value = "/user/{name}",
+	@RequestMapping(value = "/userByName/{name}",
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
-	protected UserDTO getRoleByTitle(@PathVariable("user")String name){
+	protected UserDTO getRoleByTitle(@PathVariable("name")String name){
 		return userService.readByName(name);
 	}
 
