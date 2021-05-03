@@ -1,5 +1,6 @@
 package eu.senla.statkevich.scooters.service;
 
+import eu.senla.statkevich.scooters.dto.RoleDTO;
 import eu.senla.statkevich.scooters.dto.UserDTO;
 import eu.senla.statkevich.scooters.entity.Users;
 
@@ -7,7 +8,9 @@ public interface UsersService  {
 
     UserDTO read(final Long id);
 
-    Users create(UserDTO userDTO);
+    UserDTO readByName(final String name);
+
+    String create(UserDTO userDTO);
 
 //    List<T> readAll();
 //

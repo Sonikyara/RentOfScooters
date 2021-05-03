@@ -28,7 +28,7 @@ public class RoleDAO implements IRoleDao{
     }
 
     @Override
-    @Transactional
+    //@Transactional
     public Roles create(Roles role) {
         entityManager.persist(role);
         return role;

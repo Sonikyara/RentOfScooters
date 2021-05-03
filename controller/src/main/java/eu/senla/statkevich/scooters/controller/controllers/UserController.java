@@ -1,5 +1,6 @@
 package eu.senla.statkevich.scooters.controller.controllers;
 
+import eu.senla.statkevich.scooters.dto.RoleDTO;
 import eu.senla.statkevich.scooters.entity.Users;
 import eu.senla.statkevich.scooters.service.RolesService;
 import eu.senla.statkevich.scooters.service.UsersService;
@@ -29,9 +30,17 @@ public class UserController {
 	        consumes = { "application/json" },
 			produces = {MediaType.APPLICATION_JSON_VALUE})
  	@ResponseBody
-	public Users saveUser(@RequestBody UserDTO userDTO) {
+	public String saveUser(@RequestBody UserDTO userDTO) {
 		return userService.create(userDTO);
 		//return ResponseEntity.ok(userDTO.toString());
+	}
+
+	@RequestMapping(value = "/user/{name}",
+			method = RequestMethod.GET,
+			produces = {MediaType.APPLICATION_JSON_VALUE})
+	@ResponseBody
+	protected UserDTO getRoleByTitle(@PathVariable("user")String name){
+		return userService.readByName(name);
 	}
 
 	//TEST

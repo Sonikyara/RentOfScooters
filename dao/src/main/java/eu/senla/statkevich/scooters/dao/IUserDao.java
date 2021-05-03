@@ -9,4 +9,6 @@ public interface IUserDao {
 
     Users create(final Users entity);
 
+    Users readByName(final String name);
+
 }

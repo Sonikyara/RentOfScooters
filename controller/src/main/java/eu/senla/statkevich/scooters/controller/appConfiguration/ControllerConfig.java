@@ -9,8 +9,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "eu.senla.statkevich.scooters.controller")
-@PropertySource("classpath:application.properties")
-
 public class ControllerConfig { //extends WebMvcConfigurerAdapter
 
     public ControllerConfig() {    }

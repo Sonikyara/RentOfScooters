@@ -16,21 +16,11 @@ public interface IUserMapper{
 
     IUserMapper INSTANCE = Mappers.getMapper(IUserMapper.class);
 
-//    @Mapping(target = "role", source = "roleToRoleDto")
-    @Mapping(target = "role", source = "role.title")
+    @Mapping(target = "role", source = "role.title")//,
     UserDTO userToUserDto(final Users  user);
 
     // defaultExpression = "java()")
-    //@Mapping(target = "role", source = "roleTitleToRole")
-    @Mapping(target = "role", source = "role")
+    @Mapping(target = "role", expression = "java(null)")//,
     Users userDtoToUser(final UserDTO userDTO);
 
-//    //@Mapping(target="title", source="role.title")
-//    Roles roleDtoToRole(final RoleDTO roleDTO);
-//
-////    @Mapping(target="title", source="title")
-//    RoleDTO roleToRoleDto(final Roles role);
-//
-//    // как тут поискть из существующих
-//    Roles roleTitleToRole(final String title);
 }

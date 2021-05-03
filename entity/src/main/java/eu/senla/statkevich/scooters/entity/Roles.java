@@ -8,7 +8,7 @@ import java.util.List;
 @Table(name="roles")
 public class Roles extends AEntityWithTitle {
 
-    @OneToMany(mappedBy = "role",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "role",fetch = FetchType.LAZY)//fetch = FetchType.EAGER
                 //,cascade = CascadeType.ALL ???
     private List<Users> users;
 

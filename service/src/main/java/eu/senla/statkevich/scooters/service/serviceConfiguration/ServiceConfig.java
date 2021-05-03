@@ -1,13 +1,14 @@
-package eu.senla.statkevich.scooters.service;
+package eu.senla.statkevich.scooters.service.serviceConfiguration;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@ComponentScan
+@ComponentScan(basePackages = "eu.senla.statkevich.scooters.controller")
+//@ComponentScan
 //@EnableTransactionManagement//(proxyTargetClass = true)
 public class ServiceConfig {
 
     public ServiceConfig() {    }
+
 }

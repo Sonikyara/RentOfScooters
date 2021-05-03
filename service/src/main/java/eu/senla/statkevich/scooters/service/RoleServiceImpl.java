@@ -12,7 +12,10 @@ import eu.senla.statkevich.scooters.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
+@Transactional
 public class RoleServiceImpl implements RolesService{
 
     @Autowired
@@ -32,12 +35,14 @@ public class RoleServiceImpl implements RolesService{
 
     @Override
     public RoleDTO readByTitle(String title) {
+
         return roleMapper.roleToRoleDto(roleDAO.readByTitle(title));
     }
 
     @Override
     public Roles create(String title) {
-        return roleDAO.create(roleMapper.roleTitleToRole(title));
+        //return roleDAO.create(roleMapper.roleTitleToRole(title));
+        return null;
     }
 
 
