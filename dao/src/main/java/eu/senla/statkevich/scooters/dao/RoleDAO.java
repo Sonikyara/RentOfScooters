@@ -4,9 +4,11 @@ import eu.senla.statkevich.scooters.entity.Roles;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
@@ -22,13 +24,19 @@ public class RoleDAO implements IRoleDao{
     }
 
     public Roles readByTitle(final String title) {
-//        List<Roles> rolesList=entityManager.createQuery("Select * from roles where title=?1").setParameter(1,title).getResultList();
-//        return rolesList.iterator().hasNext()?rolesList.iterator().next():null;
-        return (Roles) entityManager.createQuery("Select r from Roles r where r.title=?1").setParameter(1,title).getSingleResult();
+
+        CriteriaBuilder cb=entityManager.getCriteriaBuilder();
+        CriteriaQuery<Roles> cq=cb.createQuery(Roles.class);//тип возвращаемых данных
+        Root<Roles> role = cq.from(Roles.class);//корневой объект, от которого производится обход дерева свойств при накладывании
+                                                // ограничений или указании что выбирать.
+        Predicate roleByTitle = cb.equal(role.get("title"), title);
+        cq.where(roleByTitle);
+
+        return entityManager.createQuery(cq).getSingleResult();
+        //return (Roles) entityManager.createQuery("Select r from Roles r where r.title=?1").setParameter(1,title).getSingleResult();
     }
 
     @Override
-    //@Transactional
     public Roles create(Roles role) {
         entityManager.persist(role);
         return role;

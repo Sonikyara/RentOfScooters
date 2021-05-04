@@ -2,6 +2,7 @@ package eu.senla.statkevich.scooters.controller.appConfiguration;
 
 import eu.senla.statkevich.scooters.dao.JPAConfig;
 import eu.senla.statkevich.scooters.service.SecurityConfig;
+import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -12,6 +13,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
 
 public class SpringWebAppInitializer implements WebApplicationInitializer {
+//public class SpringWebAppInitializer extends AbstractSecurityWebApplicationInitializer {
 
     @Override
     public void onStartup(ServletContext servletContext){
