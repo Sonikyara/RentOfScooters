@@ -1,13 +1,15 @@
 package eu.senla.statkevich.scooters.controller.controllers;
 
-import eu.senla.statkevich.scooters.dto.RoleDTO;
-import eu.senla.statkevich.scooters.entity.Users;
-import eu.senla.statkevich.scooters.service.RolesService;
 import eu.senla.statkevich.scooters.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import eu.senla.statkevich.scooters.dto.UserDTO;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.annotation.security.RolesAllowed;
 
 @RestController
 public class UserController {
@@ -15,6 +17,7 @@ public class UserController {
 	@Autowired
 	public UsersService userService;
 
+	//@RolesAllowed(value={"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping(value = "/user/{id}",
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -49,5 +52,24 @@ public class UserController {
 	public String helloWorld () {
 		return "helloUser";
 	}
+
+	@GetMapping("/user")
+	@ResponseBody
+	public String user() {
+
+		return "user";
+	}
+
+//	@GetMapping("/userAuth")
+//	public String user(Authentication authentication) {
+//
+//		return authentication.getPrincipal().toString();
+//	}
+
+//	@RequestMapping ( "/login" )
+//	@ResponseBody
+//	public ModelAndView loginPage () {
+//		return new ModelAndView("Login page");
+//	}
 
 }

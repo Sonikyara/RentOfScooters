@@ -51,7 +51,7 @@ public class UserServiceImpl implements UsersService{
 
     @Override
     public String create(UserDTO userDTO) {
-        Roles role  = roleDAO.readByTitle("user");
+        Roles role  = roleDAO.readByTitle("USER");
         Users user=userMapper.userDtoToUser(userDTO);
         user.setRole(role);
 
