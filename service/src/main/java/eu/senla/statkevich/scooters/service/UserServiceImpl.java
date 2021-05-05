@@ -17,7 +17,7 @@ import eu.senla.statkevich.scooters.dto.UserDTO;
 import eu.senla.statkevich.scooters.entity.Users;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
+
 
 @Service
 @Transactional
@@ -35,10 +35,7 @@ public class UserServiceImpl implements UsersService{
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-//---for security ?
-//    @Autowired
-//    AuthenticationManagerBuilder auth;
-//-----
+
     @Override
     public UserDTO read(Long id) {
         return userMapper.userToUserDto(userDAO.read(id));
@@ -51,6 +48,7 @@ public class UserServiceImpl implements UsersService{
 
     @Override
     public String create(UserDTO userDTO) {
+        //Roles role  = roleDAO.readByNameTitle("USER");
         Roles role  = roleDAO.readByTitle("USER");
 
         Users user=userMapper.userDtoToUser(userDTO);

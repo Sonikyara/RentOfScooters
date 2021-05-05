@@ -1,4 +1,4 @@
-package eu.senla.statkevich.scooters.service;
+package eu.senla.statkevich.scooters.service.securityConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -47,26 +47,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()//отключено для браузера
                 .authorizeRequests()
-                    .antMatchers("/user/**","/userByName/**").hasAnyRole("USER", "ADMIN")
-                     .antMatchers("/helloUser","/saveUser").permitAll()
+                    //.antMatchers("/roleSave").hasAnyRole( "ADMIN")
+                    .antMatchers("/helloUser","/user/registration").permitAll()
+                    .antMatchers("/user/**","/role/**").hasAnyRole("USER", "ADMIN")
 
-                 .and().formLogin()
+                .and()
+                .formLogin()
          .loginProcessingUrl("/user")
-
-        //                .anyRequest()  //каждый запрос-
-//                .authenticated() //должен быть аутентифицирован
-        //.loginPage("/login").permitAll()
-        //.and().httpBasic();//как именно передается пароль и пользователь, в заголовке или в теле
-        // .and().logout().logoutSuccessUrl("/login").permitAll();
-        // .and().exceptionHandling().accessDeniedPage("/Access_Denied")
         ;
     }
 
-//назначим разрешенных пользователей, пока один
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication().withUser("Ira").password(encoder().encode("56kle5")).roles("user");
         auth.authenticationProvider(authProvider());
     }
-//------------
 }

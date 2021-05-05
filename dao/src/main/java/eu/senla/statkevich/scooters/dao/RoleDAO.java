@@ -9,21 +9,26 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import java.util.List;
 
 @Repository
-//public class RoleDAO implements IGenericDao<Roles>{
-public class RoleDAO implements IRoleDao{
+//public class RoleDAO  implements IRoleDao{
 
-    @PersistenceContext
-    private EntityManager entityManager;
+//public class RoleDAO implements IGenericDao<Roles>{
+public class RoleDAO extends GenericDaoImpl<Roles>  implements IRoleDao{ //
+
+//    @PersistenceContext
+//    private EntityManager entityManager;
 
     @Override
     public Roles read(final Long id) {
+        //super.getEntityManager()
+
         return entityManager.find(Roles.class, id);
     }
 
+    @Override
     public Roles readByTitle(final String title) {
+    //public Roles readByTitle(final String title) {
 
         CriteriaBuilder cb=entityManager.getCriteriaBuilder();
         CriteriaQuery<Roles> cq=cb.createQuery(Roles.class);//тип возвращаемых данных

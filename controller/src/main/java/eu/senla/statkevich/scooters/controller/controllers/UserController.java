@@ -1,15 +1,16 @@
 package eu.senla.statkevich.scooters.controller.controllers;
 
+import eu.senla.statkevich.scooters.service.ServiceException;
 import eu.senla.statkevich.scooters.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import eu.senla.statkevich.scooters.dto.UserDTO;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.security.RolesAllowed;
+import javax.validation.Valid;
+
 
 @RestController
 public class UserController {
@@ -17,7 +18,6 @@ public class UserController {
 	@Autowired
 	public UsersService userService;
 
-	//@RolesAllowed(value={"ROLE_USER", "ROLE_ADMIN"})
 	@RequestMapping(value = "/user/{id}",
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -27,18 +27,25 @@ public class UserController {
 	}
 
 //public User getUserFromDB(@RequestParam(required = false) int id, @RequestParam String name) {
-
-	@RequestMapping(value = "/saveUser",
+	@RequestMapping(value = "/user/registration",
 			method = {RequestMethod.POST,RequestMethod.GET},
 	        consumes = { "application/json" },
 			produces = {MediaType.APPLICATION_JSON_VALUE})
  	@ResponseBody
-	public String saveUser(@RequestBody UserDTO userDTO) {
+	public String saveUser(@Valid @RequestBody  UserDTO userDTO, BindingResult result) {
+		if (result.hasErrors()){
+			String allErrors = "Wrong fields:";
+			for (FieldError err:result.getFieldErrors()) {
+				allErrors+=err.getField()+",";
+			}
+			throw new ServiceException(allErrors);
+		}
 		return userService.create(userDTO);
+
 		//return ResponseEntity.ok(userDTO.toString());
 	}
 
-	@RequestMapping(value = "/userByName/{name}",
+	@RequestMapping(value = "/user/ByName/{name}",
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
@@ -53,12 +60,6 @@ public class UserController {
 		return "helloUser";
 	}
 
-	@GetMapping("/user")
-	@ResponseBody
-	public String user() {
-
-		return "user";
-	}
 
 //	@GetMapping("/userAuth")
 //	public String user(Authentication authentication) {

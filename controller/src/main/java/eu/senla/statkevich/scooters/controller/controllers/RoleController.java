@@ -13,7 +13,7 @@ public class RoleController {
 	@Autowired
 	public RolesService roleService;
 
-	@RequestMapping(value = "/roleById/{id}",
+	@RequestMapping(value = "/role/{id}",
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
@@ -21,7 +21,7 @@ public class RoleController {
 		return roleService.read(id);
 	}
 
-	@RequestMapping(value = "/role/{title}",
+	@RequestMapping(value = "/role/ByTitle/{title}",
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
@@ -29,18 +29,17 @@ public class RoleController {
 		return roleService.readByTitle(title);
 	}
 
-	@RequestMapping(value = "/saveRole",
-			method = {RequestMethod.POST,RequestMethod.GET},
-			consumes = { "application/json" },
-			produces = {MediaType.APPLICATION_JSON_VALUE})
-	@ResponseBody
-	public Roles saveRole(@RequestBody RoleDTO roleDTO) {
-
-		return roleService.create(roleDTO.getTitle());
-
-	}
+//	@RequestMapping(value = "/roleSave",
+//			method = {RequestMethod.POST,RequestMethod.GET},
+//			consumes = { "application/json" },
+//			produces = {MediaType.APPLICATION_JSON_VALUE})
+//	@ResponseBody
+//	public Roles saveRole(@RequestBody RoleDTO roleDTO) {
+//		return roleService.create(roleDTO.getTitle());
+//	}
 
 	//TEST
+	//@PermitAll
 	@RequestMapping ( "/helloRole" )
 	@ResponseBody
 	public String helloWorld () {

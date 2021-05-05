@@ -13,17 +13,20 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 @Repository
-public class UserDAO implements IUserDao{//implements IGenericDao<Users>{
+//public class UserDAO implements IUserDao{
 
-    @PersistenceContext
-    private EntityManager entityManager;
+//public class UserDAO implements IGenericDao<Users>{
+public class UserDAO extends GenericDaoImpl<Users> implements IUserDao {
+
+//    @PersistenceContext
+//    private EntityManager entityManager;
 
     @Override
     public Users read(final Long id) {
         return entityManager.find(Users.class, id);
     }
 
-    @Override
+    //@Override
     public Users readByName(final String name) {
         CriteriaBuilder cb=entityManager.getCriteriaBuilder();
         CriteriaQuery<Users> cq=cb.createQuery(Users.class);

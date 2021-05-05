@@ -1,16 +1,17 @@
 package eu.senla.statkevich.scooters.dto;
 
-import eu.senla.statkevich.scooters.entity.Roles;
-import eu.senla.statkevich.scooters.entity.Users;
+import javax.validation.constraints.NotBlank;
 
 public class UserDTO{
 
     private Long id;
-    //@NotNull
+
+    @NotBlank
     private String name;
     private String phoneNumber;
+    @NotBlank
     private String pass;
-    //private RoleDTO roleDTO;
+
     private String role;
 
     public Long getId() {        return id;    }

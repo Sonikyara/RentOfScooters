@@ -1,5 +1,6 @@
 package eu.senla.statkevich.scooters.service;
 
+import eu.senla.statkevich.scooters.dao.IGenericDao;
 import eu.senla.statkevich.scooters.dao.IRoleDao;
 import eu.senla.statkevich.scooters.dao.RoleDAO;
 import eu.senla.statkevich.scooters.dao.UserDAO;
@@ -20,7 +21,7 @@ public class RoleServiceImpl implements RolesService{
 
     @Autowired
     private IRoleDao roleDAO;
-    //private RoleDAO roleDAO;
+    //private IGenericDao<Roles> roleDAO;
 
 //    @Autowired
 //    private IUserMapper userMapper;
@@ -33,9 +34,9 @@ public class RoleServiceImpl implements RolesService{
         return roleMapper.roleToRoleDto(roleDAO.read(id));
     };
 
-    @Override
-    public RoleDTO readByTitle(String title) {
 
+    public RoleDTO readByTitle(String title) {
+        //return roleMapper.roleToRoleDto(roleDAO.readByNameTitle(title));
         return roleMapper.roleToRoleDto(roleDAO.readByTitle(title));
     }
 
