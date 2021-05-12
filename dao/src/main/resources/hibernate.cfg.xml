@@ -10,6 +10,6 @@
         <property name="hibernate.connection.username">postgres</property>
 
         <property name="hbm2ddl.auto">update</property>
-        <property name="hibernate.connection.pool_size">1</property>
+        <property name="hibernate.connection.pool_size">10</property>
     </session-factory>
 </hibernate-configuration>

@@ -11,15 +11,11 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.List;
 
 @Repository
 //public class UserDAO implements IUserDao{
-
-//public class UserDAO implements IGenericDao<Users>{
 public class UserDAO extends GenericDaoImpl<Users> implements IUserDao {
-
-//    @PersistenceContext
-//    private EntityManager entityManager;
 
     @Override
     public Users read(final Long id) {
@@ -43,6 +39,13 @@ public class UserDAO extends GenericDaoImpl<Users> implements IUserDao {
     public Users create(Users user) {
         entityManager.persist(user);
         return user;
+    }
+
+    @Override
+    public List<Users> readAll() {
+        //entityManager.createQuery("Select rs from Scooters s").getResultList();
+
+        return null;
     }
 
 }

@@ -9,6 +9,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.List;
 
 @Repository
 //public class RoleDAO  implements IRoleDao{
@@ -28,7 +29,6 @@ public class RoleDAO extends GenericDaoImpl<Roles>  implements IRoleDao{ //
 
     @Override
     public Roles readByTitle(final String title) {
-    //public Roles readByTitle(final String title) {
 
         CriteriaBuilder cb=entityManager.getCriteriaBuilder();
         CriteriaQuery<Roles> cq=cb.createQuery(Roles.class);//тип возвращаемых данных
@@ -47,4 +47,8 @@ public class RoleDAO extends GenericDaoImpl<Roles>  implements IRoleDao{ //
         return role;
     }
 
+    @Override
+    public List<Roles> readAll() {
+        return null;
+    }
 }

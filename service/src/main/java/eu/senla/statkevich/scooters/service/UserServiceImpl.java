@@ -2,26 +2,22 @@ package eu.senla.statkevich.scooters.service;
 
 import eu.senla.statkevich.scooters.dao.IRoleDao;
 import eu.senla.statkevich.scooters.dao.IUserDao;
-import eu.senla.statkevich.scooters.dao.UserDAO;
-import eu.senla.statkevich.scooters.dao.repository.UsersRepository;
 import eu.senla.statkevich.scooters.entity.Roles;
+import eu.senla.statkevich.scooters.service.IServices.UsersService;
+import eu.senla.statkevich.scooters.service.mappers.IUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import eu.senla.statkevich.scooters.dto.UserDTO;
 import eu.senla.statkevich.scooters.entity.Users;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 
 @Service
 @Transactional
-public class UserServiceImpl implements UsersService{
+public class UserServiceImpl implements UsersService {
 
 //    @Autowired
 //    private UsersRepository usersRepository;
@@ -57,6 +53,11 @@ public class UserServiceImpl implements UsersService{
         user.setPass(passwordEncoder.encode(userDTO.getPass()));
 
         return (userDAO.create(user)).toString();
+    }
+
+    @Override
+    public List<UserDTO> readAll() {
+        return null;
     }
 
     //    @Override

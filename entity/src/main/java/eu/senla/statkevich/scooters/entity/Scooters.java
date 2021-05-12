@@ -10,7 +10,7 @@ import java.util.List;
 public class Scooters {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int number;
+    private Long number;
     private String model;
     private BigDecimal sum;
 
@@ -39,7 +39,7 @@ public class Scooters {
         rent = new ArrayList<>();
     }
 
-    public int getNumber() {        return number;    }
+    public Long getNumber() {        return number;    }
 
     public String getModel() {        return model;    }
     public void setModel(String model) {        this.model = model;    }

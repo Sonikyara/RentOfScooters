@@ -1,7 +1,8 @@
 package eu.senla.statkevich.scooters.controller.controllers;
 
 import eu.senla.statkevich.scooters.service.ServiceException;
-import eu.senla.statkevich.scooters.service.UsersService;
+import eu.senla.statkevich.scooters.service.IServices.UsersService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
@@ -14,6 +15,8 @@ import javax.validation.Valid;
 
 @RestController
 public class UserController {
+
+	private static final Logger logger = Logger.getLogger(UserController.class);
 
 	@Autowired
 	public UsersService userService;
@@ -34,22 +37,25 @@ public class UserController {
  	@ResponseBody
 	public String saveUser(@Valid @RequestBody  UserDTO userDTO, BindingResult result) {
 		if (result.hasErrors()){
-			String allErrors = "Wrong fields:";
+
+			String allErrors = "Wrong data in the fields:";
 			for (FieldError err:result.getFieldErrors()) {
 				allErrors+=err.getField()+",";
 			}
+			logger.info(allErrors);
 			throw new ServiceException(allErrors);
 		}
 		return userService.create(userDTO);
-
-		//return ResponseEntity.ok(userDTO.toString());
 	}
 
 	@RequestMapping(value = "/user/ByName/{name}",
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
-	protected UserDTO getRoleByTitle(@PathVariable("name")String name){
+	protected UserDTO getUserByName(@PathVariable("name")String name){
+
+		logger.info("Get user: "+name);
+
 		return userService.readByName(name);
 	}
 

@@ -1,8 +1,7 @@
 package eu.senla.statkevich.scooters.controller.controllers;
 
 import eu.senla.statkevich.scooters.dto.RoleDTO;
-import eu.senla.statkevich.scooters.entity.Roles;
-import eu.senla.statkevich.scooters.service.RolesService;
+import eu.senla.statkevich.scooters.service.IServices.RolesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

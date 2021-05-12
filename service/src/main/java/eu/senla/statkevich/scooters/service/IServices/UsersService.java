@@ -1,19 +1,14 @@
-package eu.senla.statkevich.scooters.service;
+package eu.senla.statkevich.scooters.service.IServices;
 
-import eu.senla.statkevich.scooters.dto.RoleDTO;
 import eu.senla.statkevich.scooters.dto.UserDTO;
-import eu.senla.statkevich.scooters.entity.Users;
+import eu.senla.statkevich.scooters.service.IServices.IGenericService;
 
-public interface UsersService  {
-
-    UserDTO read(final Long id);
+public interface UsersService  extends IGenericService<UserDTO> {
 
     UserDTO readByName(final String name);
-
     String create(UserDTO userDTO);
 
-//    List<T> readAll();
-//
+    //
 //    T update(final T entity);
 //
 //    void delete(final T entity);
