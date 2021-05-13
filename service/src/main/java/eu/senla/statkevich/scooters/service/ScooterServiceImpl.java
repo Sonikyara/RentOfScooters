@@ -27,9 +27,9 @@ public class ScooterServiceImpl implements ScootersService {
 
 
     @Override
-    public ScooterDTO read(Long id) {
-        //return scooterMapper.scooterToScooterDto(scootersDAO.readAll());
-        return  null;
+    public ScooterDTO read(Long number) {
+        return scooterMapper.scooterToScooterDto(scootersDAO.read(number));
+        //return  null;
     }
 
     @Override
@@ -40,8 +40,6 @@ public class ScooterServiceImpl implements ScootersService {
     @Override
     public ScooterDTO readByModel(String model) {
         Scooters scooter=scootersDAO.readByModel(model);
-        logger.info("AAAAAAA");
-        logger.info(scooter.toString());
         return scooterMapper.scooterToScooterDto(scootersDAO.readByModel(model));
     }
 

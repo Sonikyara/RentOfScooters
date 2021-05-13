@@ -44,7 +44,7 @@ public class JPAConfig {
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/scooters");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/scooters1");
         dataSource.setUsername( "postgres" );
         dataSource.setPassword( "123" );
         return dataSource;
@@ -65,7 +65,7 @@ public class JPAConfig {
 
     Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "update");
+        properties.setProperty("hibernate.hbm2ddl.auto", "none");
         //properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
 
         return properties;

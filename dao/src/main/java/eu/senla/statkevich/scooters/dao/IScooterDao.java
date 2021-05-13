@@ -8,7 +8,7 @@ public interface IScooterDao {
 
     Scooters readByModel(final String model);
 
-    //Scooters read(final Long number);
+    Scooters read(final Long number);
 
     List<Scooters> readAll();
 }

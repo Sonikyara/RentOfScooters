@@ -10,7 +10,7 @@ public class ScooterDTO {
     private String model;
     private BigDecimal sum;
     private String seller;
-    private String typeProducer;
+    private Long typeProducer;
 
     public int getNumber() {        return number;    }
     public void setNumber(int number) {        this.number = number;    }
@@ -24,7 +24,6 @@ public class ScooterDTO {
     public String getSeller() {        return seller;    }
     public void setSeller(String seller) {        this.seller = seller;    }
 
-    public String getTypeProducer() {        return typeProducer;    }
-    public void setTypeProducer(String typeProducer) {        this.typeProducer = typeProducer;    }
-
+    public Long getTypeProducer() {        return typeProducer;    }
+    public void setTypeProducer(Long typeProducer) {        this.typeProducer = typeProducer;    }
 }

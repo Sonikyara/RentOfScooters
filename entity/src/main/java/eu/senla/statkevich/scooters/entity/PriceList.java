@@ -14,11 +14,11 @@ public class PriceList {
     private BigDecimal price;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "scooter_number")
     private Scooters scooter;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "term_id")
     private TermOfRent termOfRent;
 
     @OneToMany(mappedBy = "price",fetch = FetchType.LAZY)

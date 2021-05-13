@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name= "eu/senla/statkevich/scooters/entity")
+@Table(name= "scooters")
 public class Scooters {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,11 +15,11 @@ public class Scooters {
     private BigDecimal sum;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn//(name = "seller_id")
     private Sellers seller;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "types_producers_id")
     private TypesProducers typeProducer;
 
     @OneToMany(mappedBy = "scooter",fetch = FetchType.LAZY)
@@ -65,7 +65,7 @@ public class Scooters {
                 "number= "+number+
                 ", model= "+model+
                 ", seller= "+seller.getName()+
-                ", id type-producer= "+typeProducer.getId()+
+                ", id type-producer= "+typeProducer.toString()+
                 " ,сумма= "+sum;
     }
 }

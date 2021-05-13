@@ -4,18 +4,18 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="type_producers")
+@Table(name="types_producers")
 public class TypesProducers {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "producer_id")
     private Producer producer;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "type_of_scooter_id")
     private TypeOfScooter scootersType;
 
     @OneToMany(mappedBy = "seller",fetch = FetchType.LAZY)
@@ -23,7 +23,7 @@ public class TypesProducers {
 
     public TypesProducers() {}
 
-    public int getId() {        return id;    }
+    public Long getId() {        return id;    }
 
     public Producer getProducer() {        return producer;    }
     public void setProducer(Producer producer) {        this.producer = producer;    }
