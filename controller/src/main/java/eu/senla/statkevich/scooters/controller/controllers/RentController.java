@@ -45,8 +45,6 @@ public class RentController {
 		return priceListService.readAll();
 	}
 
-
-
 //about scooters
 	@RequestMapping(value = "/scooters/byNumber/{number}",
 			method = RequestMethod.GET,
