@@ -2,10 +2,10 @@ package eu.senla.statkevich.scooters.dao;
 
 import eu.senla.statkevich.scooters.entity.EntityConfig;
 import liquibase.integration.spring.SpringLiquibase;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.*;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -22,11 +22,26 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan
-//@ComponentScan(basePackages ="eu.senla.statkevich.scooters.entity")
-//@EntityScan- для бута???
+@PropertySource("classpath:application.properties")
 @Import(EntityConfig.class)
 @EnableJpaRepositories("eu.senla.statkevich.scooters.dao") //dao.repository
 public class JPAConfig {
+
+    @Value("${db.driverClassName}")
+    private String dbDriverClass;
+    @Value("${db.url}")
+    private String dbUrl;
+    @Value("${db.username}")
+    private String dbUser;
+    @Value("${db.password}")
+    private String dbPwd;
+
+    private final static Logger logger=Logger.getLogger(JPAConfig.class);
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -52,10 +67,10 @@ public class JPAConfig {
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/scootersLinq");
-        dataSource.setUsername( "postgres" );
-        dataSource.setPassword( "123" );
+        dataSource.setDriverClassName(dbDriverClass);
+        dataSource.setUrl(dbUrl);
+        dataSource.setUsername(dbUser);
+        dataSource.setPassword(dbPwd);
         return dataSource;
     }
 

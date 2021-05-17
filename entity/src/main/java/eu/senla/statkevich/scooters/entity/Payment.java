@@ -11,6 +11,8 @@ public class Payment {
     private Long id;
     private BigDecimal sum;
 
+    private String testFolder;
+
     @ManyToOne
     @JoinColumn
     private Users user;
@@ -25,6 +27,14 @@ public class Payment {
         this.sum = sum;
         this.user = user;
         this.rent = rent;
+    }
+
+    public String getTestFolder() {
+        return testFolder;
+    }
+
+    public void setTestFolder(String testFolder) {
+        this.testFolder = testFolder;
     }
 
     public Long getId() {        return id;    }

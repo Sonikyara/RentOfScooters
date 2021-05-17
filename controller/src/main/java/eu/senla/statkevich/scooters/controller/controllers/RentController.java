@@ -19,7 +19,6 @@ public class RentController {
 //посмотреть список самокатов (свободных ?)
 //арендовать конкретный самокат
 //мои аренды
-//прайс
 
 //вернуть самокат
 	@Autowired
@@ -31,7 +30,6 @@ public class RentController {
 	@RequestMapping(value = "/rent",
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
-	@ResponseBody
 	public List<Rent> getAll(){ //DTO
 		return null;
 	}
@@ -40,7 +38,6 @@ public class RentController {
 	@RequestMapping(value = "/price",
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
-	@ResponseBody
 	public List<PriceListDTO> getAllPrice(){
 		return priceListService.readAll();
 	}
@@ -49,7 +46,6 @@ public class RentController {
 	@RequestMapping(value = "/scooters/byNumber/{number}",
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
-	@ResponseBody
 	protected ScooterDTO getScooter(@PathVariable("number")Long number){
 		return scooterService.read(number);
 	}
@@ -57,7 +53,6 @@ public class RentController {
 	@RequestMapping(value = "/scooters/states",
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
-	@ResponseBody
 	public List<ScooterDTO> getScooters(Principal principal){
 		//(authentication.isAuthenticated())?((UserPrincipal) authentication.getPrincipal()).getName():"Нет такого юзера"
 		//return principal.getName();
@@ -67,7 +62,6 @@ public class RentController {
 	@RequestMapping(value = "/scooters/{model}",
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
-	@ResponseBody
 	protected ScooterDTO getByModel(@PathVariable("model")String model){
 		//(authentication.isAuthenticated())?((UserPrincipal) authentication.getPrincipal()).getName():"Нет такого юзера"
 		//return principal.getName();
@@ -77,7 +71,6 @@ public class RentController {
 	//TEST
 	//@PermitAll
 	@RequestMapping ( "/helloRent" )
-	@ResponseBody
 	public String helloWorld () {
 		return "helloRent";
 	}

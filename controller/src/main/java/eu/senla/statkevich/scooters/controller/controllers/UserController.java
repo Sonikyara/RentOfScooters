@@ -24,7 +24,6 @@ public class UserController {
 	@RequestMapping(value = "/user/{id}",
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
-	@ResponseBody
 	protected UserDTO getUser(@PathVariable("id")Long id){
 		return userService.read(id);
 	}
@@ -34,7 +33,6 @@ public class UserController {
 			method = {RequestMethod.POST,RequestMethod.GET},
 	        consumes = { "application/json" },
 			produces = {MediaType.APPLICATION_JSON_VALUE})
- 	@ResponseBody
 	public String saveUser(@Valid @RequestBody  UserDTO userDTO, BindingResult result) {
 		if (result.hasErrors()){
 
@@ -51,7 +49,6 @@ public class UserController {
 	@RequestMapping(value = "/user/ByName/{name}",
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
-	@ResponseBody
 	protected UserDTO getUserByName(@PathVariable("name")String name){
 
 		logger.info("Get user: "+name);
@@ -61,7 +58,6 @@ public class UserController {
 
 	//TEST
 	@RequestMapping ( "/helloUser" )
-	@ResponseBody
 	public String helloWorld () {
 		return "helloUser";
 	}
@@ -69,7 +65,6 @@ public class UserController {
 
 //	@GetMapping("/userAuth")
 //	public String user(Authentication authentication) {
-//
 //		return authentication.getPrincipal().toString();
 //	}
 

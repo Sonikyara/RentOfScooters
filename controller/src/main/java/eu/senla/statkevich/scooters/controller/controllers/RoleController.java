@@ -15,7 +15,6 @@ public class RoleController {
 	@RequestMapping(value = "/role/{id}",
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
-	@ResponseBody
 	protected RoleDTO getRoleById(@PathVariable("id")Long id){
 		return roleService.read(id);
 	}
@@ -23,7 +22,6 @@ public class RoleController {
 	@RequestMapping(value = "/role/ByTitle/{title}",
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
-	@ResponseBody
 	protected RoleDTO getRoleByTitle(@PathVariable("title")String title){
 		return roleService.readByTitle(title);
 	}
@@ -40,7 +38,6 @@ public class RoleController {
 	//TEST
 	//@PermitAll
 	@RequestMapping ( "/helloRole" )
-	@ResponseBody
 	public String helloWorld () {
 		return "helloRole";
 	}
