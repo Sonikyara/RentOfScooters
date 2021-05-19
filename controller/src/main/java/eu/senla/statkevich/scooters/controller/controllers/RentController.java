@@ -1,11 +1,13 @@
 package eu.senla.statkevich.scooters.controller.controllers;
 
 import eu.senla.statkevich.scooters.dto.PriceListDTO;
+import eu.senla.statkevich.scooters.dto.RentDTO;
 import eu.senla.statkevich.scooters.dto.ScooterDTO;
 import eu.senla.statkevich.scooters.dto.UserDTO;
 import eu.senla.statkevich.scooters.entity.PriceList;
 import eu.senla.statkevich.scooters.entity.Rent;
 import eu.senla.statkevich.scooters.service.IServices.PriceListService;
+import eu.senla.statkevich.scooters.service.IServices.RentService;
 import eu.senla.statkevich.scooters.service.IServices.ScootersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -17,21 +19,39 @@ import java.util.List;
 @RestController
 public class RentController {
 //посмотреть список самокатов (свободных ?)
-//арендовать конкретный самокат
 //мои аренды
-
 //вернуть самокат
 	@Autowired
 	public ScootersService scooterService;
+
 	@Autowired
 	public PriceListService priceListService;
 
+	@Autowired
+	public RentService rentService;
+
 //rent a scooter
-	@RequestMapping(value = "/rent",
+	@RequestMapping(value = "/rent/scooter",
+			method = RequestMethod.POST,
+			consumes = { "application/json" },
+			produces = {MediaType.APPLICATION_JSON_VALUE})
+	public String rentTheScooter(@RequestBody RentDTO rentDTO,Principal principal){
+		rentDTO.setUser_name(principal.getName());
+		return rentService.create(rentDTO);
+	}
+
+	@RequestMapping(value = "/rent/All",
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
-	public List<Rent> getAll(){ //DTO
-		return null;
+	public List<RentDTO> getAll(){
+		return rentService.readAll();
+	}
+
+	@RequestMapping(value = "/rent/my",
+			method = RequestMethod.GET,
+			produces = {MediaType.APPLICATION_JSON_VALUE})
+	public List<RentDTO> getByUser(Principal principal){
+		return rentService.getByUserName(principal.getName());
 	}
 
 //price
@@ -40,6 +60,14 @@ public class RentController {
 			produces = {MediaType.APPLICATION_JSON_VALUE})
 	public List<PriceListDTO> getAllPrice(){
 		return priceListService.readAll();
+	}
+
+	@RequestMapping(value = "/price/scooterAndTerm",
+			method = RequestMethod.GET,
+			produces = {MediaType.APPLICATION_JSON_VALUE})
+	public PriceListDTO getPriceByTermAndScootersModel(@RequestParam(name = "term",required = true) String term,
+													   @RequestParam(name = "scooter",required = true) String scooter){
+		return priceListService.readByTermAndScooter(term,scooter);
 	}
 
 //about scooters
@@ -63,8 +91,6 @@ public class RentController {
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
 	protected ScooterDTO getByModel(@PathVariable("model")String model){
-		//(authentication.isAuthenticated())?((UserPrincipal) authentication.getPrincipal()).getName():"Нет такого юзера"
-		//return principal.getName();
 		return scooterService.readByModel(model);
 	}
 

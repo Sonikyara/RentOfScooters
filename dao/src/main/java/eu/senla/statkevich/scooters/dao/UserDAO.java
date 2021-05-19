@@ -1,6 +1,5 @@
 package eu.senla.statkevich.scooters.dao;
 
-import eu.senla.statkevich.scooters.entity.Roles;
 import eu.senla.statkevich.scooters.entity.Users;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;

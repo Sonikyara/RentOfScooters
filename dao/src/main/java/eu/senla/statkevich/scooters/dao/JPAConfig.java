@@ -59,7 +59,7 @@ public class JPAConfig {
     @Bean
     public SpringLiquibase liquibase() {
         SpringLiquibase liquibase = new SpringLiquibase();
-        liquibase.setChangeLog("classpath:db/changelog/db.changelog-master.yaml");
+        liquibase.setChangeLog("classpath:db/changelog/db.changelog-master.yaml");//startChangeLog777
         liquibase.setDataSource(dataSource());
         return liquibase;
     }
@@ -90,7 +90,8 @@ public class JPAConfig {
     Properties additionalProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "none");
-        //properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+        //logger.info(properties.getProperty("hibernate.dialect"));
+        //properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
 
         return properties;
     }

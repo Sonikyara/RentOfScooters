@@ -24,6 +24,8 @@ public class Users extends AEntityWithName{
 
     public Users() {}
 
+    public Users(String name) {super(name);}
+
     public Users(String name, String phoneNumber, String pass) {
         super(name);
         this.phoneNumber = phoneNumber;

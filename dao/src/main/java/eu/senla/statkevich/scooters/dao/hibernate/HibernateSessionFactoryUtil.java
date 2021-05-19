@@ -32,7 +32,7 @@ public class HibernateSessionFactoryUtil {
 
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());
-
+                //sessionFactory.getProperties().get("hibernate.dialect")
             } catch (Exception e) {
                 System.out.println("Исключение!" + e);
             }

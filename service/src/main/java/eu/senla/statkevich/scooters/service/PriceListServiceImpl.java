@@ -1,7 +1,11 @@
 package eu.senla.statkevich.scooters.service;
 
 import eu.senla.statkevich.scooters.dao.IPriceListDao;
+import eu.senla.statkevich.scooters.dao.IScooterDao;
+import eu.senla.statkevich.scooters.dao.ITermOfRentDAO;
 import eu.senla.statkevich.scooters.dto.PriceListDTO;
+import eu.senla.statkevich.scooters.entity.Scooters;
+import eu.senla.statkevich.scooters.entity.TermOfRent;
 import eu.senla.statkevich.scooters.entity.Users;
 import eu.senla.statkevich.scooters.service.IServices.PriceListService;
 import eu.senla.statkevich.scooters.service.mappers.IPriceListMapper;
@@ -17,6 +21,10 @@ public class PriceListServiceImpl implements PriceListService {
 
     @Autowired
     private IPriceListDao priceListDao;
+    @Autowired
+    private IScooterDao scooterDao;
+    @Autowired
+    private ITermOfRentDAO termOfRentDao;
 
     @Autowired
     private IPriceListMapper priceListMapper;
@@ -29,6 +37,20 @@ public class PriceListServiceImpl implements PriceListService {
     @Override
     public List<PriceListDTO> readAll() {
         return priceListMapper.listPriceListToListPriceListDto(priceListDao.readAll());
+    }
 
+    @Override
+    public PriceListDTO readByTermIdAndScooter(Long term, String scootersModel) {
+        Scooters scooter=scooterDao.readByModel(scootersModel);
+        return priceListMapper.PriceListToPriceListDto(priceListDao.readByTermAndScooter(term,scooter.getNumber()));
+    }
+
+    @Override
+    public PriceListDTO readByTermAndScooter(String term, String scootersModel) {
+        //Scooters scooter=scooterDao.readByModel(scootersModel);
+
+        TermOfRent termOfRent=termOfRentDao.readByTitle(term);
+        return readByTermIdAndScooter(termOfRent.getId(),scootersModel);
+        //return priceListMapper.PriceListToPriceListDto(priceListDao.readByTermAndScooter(termOfRent.getId(),scooter.getNumber()));
     }
 }

@@ -30,7 +30,7 @@ public class ScootersDAO extends GenericDaoImpl<Scooters> implements IScooterDao
         Predicate scooterByModel = cb.equal(scooters.get("model"), model);
         cq.where(scooterByModel);
 
-        logger.info("AAAAA  "+entityManager.createQuery(cq).getMaxResults());
+        //logger.info("AAAAA  "+entityManager.createQuery(cq).getMaxResults());
 
         return entityManager.createQuery(cq).getSingleResult();
         //return entityManager.createQuery("Select r from Scooters r where r.model=?1",Scooters.class).setParameter(1,model).getSingleResult();

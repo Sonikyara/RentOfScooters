@@ -18,6 +18,8 @@ public interface IPriceListMapper {
     @Mapping(target = "termOfRent", source = "termOfRent.title")
     PriceListDTO PriceListToPriceListDto(final PriceList priceList);
 
+    //PriceList PriceListDTOToPriceList(final PriceListDTO priceListDTO);
+
     List<PriceListDTO> listPriceListToListPriceListDto(List<PriceList> priceLists);
 
 }
