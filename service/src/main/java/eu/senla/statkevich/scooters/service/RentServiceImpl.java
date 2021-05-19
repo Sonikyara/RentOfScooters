@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -65,7 +66,21 @@ public class RentServiceImpl implements RentService {
         TermOfRent termOfRent=termOfRentDao.readByTitle(rentDTO.getTermOfRent());
         PriceList priceList= priceListDao.readByTermAndScooter(termOfRent.getId(),scooter.getNumber());
         rent.setPrice(priceList);
-        logger.info(rent.toString());
+
+        //logger.info(rent.toString());
+
         return String.valueOf(rentDao.create(rent));
+    }
+
+    @Override
+    public RentDTO returnTheScooter(String scooterName, String name) {
+
+        Users user =userDAO.readByName(name);
+        Scooters scooter = scooterDao.readByModel(scooterName);
+
+        Rent rent=rentDao.readByUserScooter(user.getId(),scooter.getNumber());
+        rent.setDateEnd(new Date());
+
+        return rentMapper.RentToRentDto(rentDao.updateDateEnd(rent));
     }
 }

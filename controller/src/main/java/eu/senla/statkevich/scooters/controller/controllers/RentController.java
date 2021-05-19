@@ -40,6 +40,14 @@ public class RentController {
 		return rentService.create(rentDTO);
 	}
 
+	@RequestMapping(value = "/rent/returnScooter",
+			method = RequestMethod.GET,
+			produces = {MediaType.APPLICATION_JSON_VALUE})
+	public RentDTO returnTheScooter(@RequestParam(name = "scooter",required = true) String scooter,Principal principal){
+
+		return rentService.returnTheScooter(scooter,principal.getName());
+	}
+
 	@RequestMapping(value = "/rent/All",
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -55,7 +63,7 @@ public class RentController {
 	}
 
 //price
-	@RequestMapping(value = "/price",
+	@RequestMapping(value = "/priceList",
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
 	public List<PriceListDTO> getAllPrice(){

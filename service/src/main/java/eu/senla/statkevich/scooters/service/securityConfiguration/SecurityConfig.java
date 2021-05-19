@@ -48,8 +48,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()//отключено для браузера
                 .authorizeRequests()
                     //.antMatchers("/roleSave").hasAnyRole( "ADMIN")
-                    .antMatchers("/helloUser","/user/registration").permitAll()
-                    .antMatchers("/user/**","/role/**","/scooters/**","/price/**").hasAnyRole("USER", "ADMIN")
+                    .antMatchers("/helloUser","/user/registration","/priceList").permitAll()
+                    .antMatchers("/user/**","/role/**","/scooters/**","/price/**","/rent/**").hasAnyRole("USER", "ADMIN")
 
                 .and()
                 .formLogin()

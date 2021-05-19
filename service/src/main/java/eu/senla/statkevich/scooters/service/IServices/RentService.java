@@ -13,4 +13,6 @@ public interface RentService {
     String create(final RentDTO rentDTO);
     List<RentDTO> readAll();
     List<RentDTO> getByUserName(String name);
+
+    RentDTO returnTheScooter(String scooter, String name);
 }

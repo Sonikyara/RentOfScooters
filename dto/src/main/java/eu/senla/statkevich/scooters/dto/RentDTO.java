@@ -1,21 +1,18 @@
 package eu.senla.statkevich.scooters.dto;
 
-import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
-import java.util.Date;
 
 public class RentDTO {
     private Long id;
     //private int scooter_number;
     private String scooter_model;
     private String user_name;
-    //private BigDecimal price;
+    private String price;
    // @NotBlank
     private String termOfRent;
    // @NotBlank
-   private Date dateStart;
-    //private Date dateStart;
-    private Date dateEnd;
+    private String dateStart;
+    private String dateEnd;
 
     public RentDTO() {
     }
@@ -38,7 +35,6 @@ public class RentDTO {
     public String getScooter_model() {
         return scooter_model;
     }
-
     public void setScooter_model(String scooter_model) {
         this.scooter_model = scooter_model;
     }
@@ -46,7 +42,6 @@ public class RentDTO {
     public String getUser_name() {
         return user_name;
     }
-
     public void setUser_name(String user_name) {
         this.user_name = user_name;
     }
@@ -54,26 +49,26 @@ public class RentDTO {
     public String getTermOfRent() {
         return termOfRent;
     }
-
     public void setTermOfRent(String priceList_termOfRent) {
         this.termOfRent = priceList_termOfRent;
     }
 
-    public Date getDateStart() {
+    public String getDateStart() {
         return dateStart;
     }
-
-    public void setDateStart(Date dateStart) {
+    public void setDateStart(String dateStart) {
         this.dateStart = dateStart;
     }
 
-    public Date getDateEnd() {
+    public String getDateEnd() {
         return dateEnd;
     }
-
-    public void setDateEnd(Date dateEnd) {
+    public void setDateEnd(String dateEnd) {
         this.dateEnd = dateEnd;
     }
+
+    public String getPrice() {        return price;    }
+    public void setPrice(String price) {        this.price = price;    }
 
     @Override
     public String toString() {
