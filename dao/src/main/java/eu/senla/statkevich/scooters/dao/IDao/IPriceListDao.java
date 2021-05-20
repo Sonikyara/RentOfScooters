@@ -1,4 +1,4 @@
-package eu.senla.statkevich.scooters.dao;
+package eu.senla.statkevich.scooters.dao.IDao;
 
 import eu.senla.statkevich.scooters.entity.PriceList;
 import eu.senla.statkevich.scooters.entity.Scooters;

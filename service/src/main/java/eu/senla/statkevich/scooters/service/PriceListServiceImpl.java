@@ -1,8 +1,8 @@
 package eu.senla.statkevich.scooters.service;
 
-import eu.senla.statkevich.scooters.dao.IPriceListDao;
-import eu.senla.statkevich.scooters.dao.IScooterDao;
-import eu.senla.statkevich.scooters.dao.ITermOfRentDAO;
+import eu.senla.statkevich.scooters.dao.IDao.IPriceListDao;
+import eu.senla.statkevich.scooters.dao.IDao.IScooterDao;
+import eu.senla.statkevich.scooters.dao.IDao.ITermOfRentDAO;
 import eu.senla.statkevich.scooters.dto.PriceListDTO;
 import eu.senla.statkevich.scooters.entity.Scooters;
 import eu.senla.statkevich.scooters.entity.TermOfRent;

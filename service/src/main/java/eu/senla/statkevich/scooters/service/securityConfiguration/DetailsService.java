@@ -1,6 +1,6 @@
 package eu.senla.statkevich.scooters.service.securityConfiguration;
 
-import eu.senla.statkevich.scooters.dao.IUserDao;
+import eu.senla.statkevich.scooters.dao.IDao.IUserDao;
 import eu.senla.statkevich.scooters.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;

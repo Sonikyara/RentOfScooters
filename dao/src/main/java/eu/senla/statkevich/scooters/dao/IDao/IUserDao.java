@@ -1,6 +1,5 @@
-package eu.senla.statkevich.scooters.dao;
+package eu.senla.statkevich.scooters.dao.IDao;
 
-import eu.senla.statkevich.scooters.entity.Roles;
 import eu.senla.statkevich.scooters.entity.Users;
 
 public interface IUserDao extends IGenericDao<Users>{

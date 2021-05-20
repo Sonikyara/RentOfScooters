@@ -1,7 +1,6 @@
 package eu.senla.statkevich.scooters.service;
 
-import eu.senla.statkevich.scooters.dao.IScooterDao;
-import eu.senla.statkevich.scooters.dao.ScootersDAO;
+import eu.senla.statkevich.scooters.dao.IDao.IScooterDao;
 import eu.senla.statkevich.scooters.dto.ScooterDTO;
 import eu.senla.statkevich.scooters.entity.Scooters;
 import eu.senla.statkevich.scooters.service.IServices.ScootersService;

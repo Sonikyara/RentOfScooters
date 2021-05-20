@@ -1,13 +1,11 @@
 package eu.senla.statkevich.scooters.dao;
 
-import eu.senla.statkevich.scooters.entity.PriceList;
+import eu.senla.statkevich.scooters.dao.IDao.IRentDao;
 import eu.senla.statkevich.scooters.entity.Rent;
-import eu.senla.statkevich.scooters.entity.Users;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.criteria.*;
-import java.util.Date;
 import java.util.List;
 
 @Repository

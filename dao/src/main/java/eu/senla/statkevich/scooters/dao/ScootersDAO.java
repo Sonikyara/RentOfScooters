@@ -1,7 +1,7 @@
 package eu.senla.statkevich.scooters.dao;
 
+import eu.senla.statkevich.scooters.dao.IDao.IScooterDao;
 import eu.senla.statkevich.scooters.entity.Scooters;
-import eu.senla.statkevich.scooters.entity.Users;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -11,7 +11,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-public class ScootersDAO extends GenericDaoImpl<Scooters> implements IScooterDao{
+public class ScootersDAO extends GenericDaoImpl<Scooters> implements IScooterDao {
 
     private static final Logger logger = Logger.getLogger(ScootersDAO.class);
 
