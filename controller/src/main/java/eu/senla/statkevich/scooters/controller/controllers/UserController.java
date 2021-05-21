@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import eu.senla.statkevich.scooters.dto.UserDTO;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 
 @RestController
@@ -28,7 +29,6 @@ public class UserController {
         return userService.read(id);
     }
 
-    //public User getUserFromDB(@RequestParam(required = false) int id, @RequestParam String name) {
     @RequestMapping(value = "/user/registration",
             method = {RequestMethod.POST, RequestMethod.GET},
             consumes = {"application/json"},

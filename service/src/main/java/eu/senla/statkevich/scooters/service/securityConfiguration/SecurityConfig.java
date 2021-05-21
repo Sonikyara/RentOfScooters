@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @ComponentScan(basePackages = {"eu.senla.statkevich.scooters.service"})
@@ -20,6 +21,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService userDetailsService;
+
+//    @Autowired
+//    TokenAuthenticationManager tokenAuthenticationManager;
+
+    @Autowired
+    private JwtFilter jwtFilter;
 
     @Bean
     public PasswordEncoder encoder() {
@@ -46,14 +53,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .csrf().disable()//отключено для браузера
+//                .addFilter(new JwtUsernameAndPasswordFilter(authenticationManager(), jwtConfig, secretKey))
+//                .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordFilter.class)
                 .authorizeRequests()
                 //.antMatchers("/roleSave").hasAnyRole( "ADMIN")
                 .antMatchers("/helloUser", "/user/registration", "/priceList").permitAll()
                 .antMatchers("/user/**", "/role/**", "/scooters/**", "/price/**", "/rent/**").hasAnyRole("USER", "ADMIN")
 
                 .and()
+                .addFilterBefore(jwtFilter,UsernamePasswordAuthenticationFilter.class)
                 .formLogin()
                 .loginProcessingUrl("/user")
+
         ;
     }
 
@@ -61,4 +72,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authProvider());
     }
+
+
+//    @Bean(name = "restTokenAuthenticationFilter")
+//    public RestTokenAuthenticationFilter restTokenAuthenticationFilter() {
+//        RestTokenAuthenticationFilter restTokenAuthenticationFilter = new RestTokenAuthenticationFilter();
+//        tokenAuthenticationManager.setUserDetailsService(userDetailsService);
+//        restTokenAuthenticationFilter.setAuthenticationManager(tokenAuthenticationManager);
+//        return restTokenAuthenticationFilter;
+//    }
 }

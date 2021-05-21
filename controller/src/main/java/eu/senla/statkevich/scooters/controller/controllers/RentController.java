@@ -101,8 +101,7 @@ public class RentController {
     @RequestMapping(value = "/scooters/free",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<ScooterDTO> getFreeScooters(@DateTimeFormat(pattern = "dd-MM-yyyy") @RequestParam(name = "date") Date date, @RequestParam(name = "dateStr") String dateStr) {
-//если дата не задана, то возьмет просто текущее состояние табилц??
+    public List<ScooterDTO> getFreeScooters( @RequestParam(name = "dateStr") String dateStr) {
         logger.info(dateStr);
         return scooterService.readFreeScooters(dateStr);
     }

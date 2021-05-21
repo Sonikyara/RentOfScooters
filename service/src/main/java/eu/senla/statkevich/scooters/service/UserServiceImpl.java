@@ -5,7 +5,10 @@ import eu.senla.statkevich.scooters.dao.IDao.IUserDao;
 import eu.senla.statkevich.scooters.entity.Roles;
 import eu.senla.statkevich.scooters.service.IServices.UsersService;
 import eu.senla.statkevich.scooters.service.mappers.IUserMapper;
+import eu.senla.statkevich.scooters.service.securityConfiguration.JwtProvider;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import eu.senla.statkevich.scooters.dto.UserDTO;
@@ -30,7 +33,13 @@ public class UserServiceImpl implements UsersService {
     private IRoleDao roleDAO;
 
     @Autowired
+    private JwtProvider jwtProvider;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
+
+    private static final Logger logger = Logger.getLogger(UserServiceImpl.class);
+
 
     @Override
     public UserDTO read(Long id) {
@@ -49,10 +58,12 @@ public class UserServiceImpl implements UsersService {
 
         Users user = userMapper.userDtoToUser(userDTO);
         user.setRole(role);
-
         user.setPass(passwordEncoder.encode(userDTO.getPass()));
 
-        return (userDAO.create(user)).toString();
+        String token = jwtProvider.generateToken(user.getName());
+        logger.info(user.toString());
+        logger.info("token :  "+token);
+        return (userDAO.create(user)).toString()+token;
     }
 
     @Override

@@ -34,6 +34,7 @@ public class UserDAO extends GenericDaoImpl<Users> implements IUserDao {
 
     @Override
     public Users create(Users user) {
+
         entityManager.persist(user);
         return user;
     }
