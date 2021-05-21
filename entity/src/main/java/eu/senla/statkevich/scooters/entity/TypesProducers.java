@@ -34,6 +34,9 @@ public class TypesProducers {
     public List<Scooters> getTypeProducer() {        return typeProducer;    }
     public void setTypeProducer(List<Scooters> typeProducer) {        this.typeProducer = typeProducer;    }
 
+    public TypeOfScooter getScootersType() {        return scootersType;    }
+    public void setScootersType(TypeOfScooter scootersType) {        this.scootersType = scootersType;    }
+
     @Override
     public String toString() {
         return "Type-producer: "+

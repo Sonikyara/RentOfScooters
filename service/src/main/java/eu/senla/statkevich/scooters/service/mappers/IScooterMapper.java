@@ -17,7 +17,9 @@ public interface IScooterMapper {
     //Scooters scooterDtoToScooter(final ScooterDTO scooterDTO);
 
     @Mapping(target = "seller", source = "seller.name")
-    @Mapping(target = "typeProducer", source = "typeProducer.id")
+    //@Mapping(target = "typeProducer", source = "typeProducer.id")
+    @Mapping(target = "producer", source = "typeProducer.producer.name")
+    @Mapping(target = "type", source = "typeProducer.scootersType.title")
     ScooterDTO scooterToScooterDto(final Scooters scooter);
 
     List<ScooterDTO> listScooterToListScooterDto(List<Scooters> scooter);

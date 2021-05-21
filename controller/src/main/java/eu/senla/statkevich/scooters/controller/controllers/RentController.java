@@ -3,24 +3,26 @@ package eu.senla.statkevich.scooters.controller.controllers;
 import eu.senla.statkevich.scooters.dto.PriceListDTO;
 import eu.senla.statkevich.scooters.dto.RentDTO;
 import eu.senla.statkevich.scooters.dto.ScooterDTO;
-import eu.senla.statkevich.scooters.dto.UserDTO;
-import eu.senla.statkevich.scooters.entity.PriceList;
-import eu.senla.statkevich.scooters.entity.Rent;
 import eu.senla.statkevich.scooters.service.IServices.PriceListService;
 import eu.senla.statkevich.scooters.service.IServices.RentService;
 import eu.senla.statkevich.scooters.service.IServices.ScootersService;
+import eu.senla.statkevich.scooters.service.ScooterServiceImpl;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 
 @RestController
 public class RentController {
-//посмотреть список самокатов (свободных ?)
-//мои аренды
 //вернуть самокат
+
+	private static final Logger logger = Logger.getLogger(RentController.class);
+
 	@Autowired
 	public ScootersService scooterService;
 
@@ -86,13 +88,22 @@ public class RentController {
 		return scooterService.read(number);
 	}
 
-	@RequestMapping(value = "/scooters/states",
+	@RequestMapping(value = "/scooters/all",
 			method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE})
-	public List<ScooterDTO> getScooters(Principal principal){
+	public List<ScooterDTO> getAllScooters(Principal principal){
 		//(authentication.isAuthenticated())?((UserPrincipal) authentication.getPrincipal()).getName():"Нет такого юзера"
 		//return principal.getName();
 		return scooterService.readAll();
+	}
+	//ожидается, что в эту дату будут свободны
+	@RequestMapping(value = "/scooters/free",
+			method = RequestMethod.GET,
+			produces = {MediaType.APPLICATION_JSON_VALUE})
+	public List<ScooterDTO> getFreeScooters(@DateTimeFormat(pattern = "dd-MM-yyyy") @RequestParam(name = "date") Date date,@RequestParam(name = "dateStr") String dateStr){
+//если дата не задана, то возьмет просто текущее состояние табилц??
+		logger.info(dateStr);
+		return scooterService.readFreeScooters(dateStr);
 	}
 
 	@RequestMapping(value = "/scooters/{model}",

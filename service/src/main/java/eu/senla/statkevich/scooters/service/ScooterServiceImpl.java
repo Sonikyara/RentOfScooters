@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
+import java.util.*;
 
 @Service
 @Transactional
@@ -24,6 +24,10 @@ public class ScooterServiceImpl implements ScootersService {
     @Autowired
     private IScooterMapper scooterMapper;
 
+//    @Autowired
+//    private ISellerDao sellerDao;
+//    @Autowired
+//    private ITypeProducerDao typeProducerDao;
 
     @Override
     public ScooterDTO read(Long number) {
@@ -35,6 +39,23 @@ public class ScooterServiceImpl implements ScootersService {
     public List<ScooterDTO> readAll() {
         return scooterMapper.listScooterToListScooterDto(scootersDAO.readAll());
     }
+
+    @Override
+    public List<ScooterDTO> readFreeScooters(String date) {
+
+        //перевести дату
+
+
+        List<Object[]> resultList = scootersDAO.readFree(date);
+
+        List<Scooters> result = new ArrayList<>(resultList.size());
+        for (Object[] row : resultList) {
+            result.add(scootersDAO.readByModel((String)row[1]));
+
+        }
+        return scooterMapper.listScooterToListScooterDto(result);
+    }
+
 
     @Override
     public ScooterDTO readByModel(String model) {

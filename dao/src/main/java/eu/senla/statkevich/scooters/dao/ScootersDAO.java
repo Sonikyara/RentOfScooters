@@ -1,14 +1,15 @@
 package eu.senla.statkevich.scooters.dao;
 
 import eu.senla.statkevich.scooters.dao.IDao.IScooterDao;
-import eu.senla.statkevich.scooters.entity.Scooters;
+import eu.senla.statkevich.scooters.entity.*;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+
+import javax.persistence.Query;
+import javax.persistence.criteria.*;
+import java.util.Date;
 import java.util.List;
+
 
 @Repository
 public class ScootersDAO extends GenericDaoImpl<Scooters> implements IScooterDao {
@@ -30,8 +31,6 @@ public class ScootersDAO extends GenericDaoImpl<Scooters> implements IScooterDao
         Predicate scooterByModel = cb.equal(scooters.get("model"), model);
         cq.where(scooterByModel);
 
-        //logger.info("AAAAA  "+entityManager.createQuery(cq).getMaxResults());
-
         return entityManager.createQuery(cq).getSingleResult();
         //return entityManager.createQuery("Select r from Scooters r where r.model=?1",Scooters.class).setParameter(1,model).getSingleResult();
     }
@@ -47,6 +46,72 @@ public class ScootersDAO extends GenericDaoImpl<Scooters> implements IScooterDao
         return entityManager.createQuery(all).getResultList();
         //return  entityManager.createQuery("Select s from Scooters s").getResultList();
     }
+
+    @Override
+    public List<Object[]> readFree(String date) {
+
+//        CriteriaBuilder cb=entityManager.getCriteriaBuilder();
+//        CriteriaQuery<Scooters> cq=cb.createQuery(Scooters.class);
+//        Root<Scooters> root = cq.from(Scooters.class);
+//
+//        Join<Scooters, Rent> rent = root.join("scooter_number");
+//
+//        CriteriaQuery<Scooters> all = cq.select(root);
+//        cq.where(cb.isNull(rentRoot.get("dateEnd")));
+//
+//        return Optional.ofNullable(getSingleResult(criteriaQuery));
+
+
+//SQL - скутеры в аренде и дата ожидаемого возврата их
+//        /**/
+//        /*select scooters.model,alldoRent.* from scooters left join - сводная таблица, удобная для сравнения*/
+//        select scooters.* from scooters left join
+//        (
+//                /*вся аренда, что еще не вернули с ожидаемым сроком*/
+//                select rentWithTermId.scooter_number,rentWithTermId.date_start,rentWithTermId.date_end,
+//                term_of_rent.count_of_days,rentWithTermId.date_start +term_of_rent.count_of_days*interval'1 day' as date_must_end from
+//                (
+//                        /*вся аренда, что еще не вернули с ид term*/
+//                        select inRent.*,price_list.term_id from
+//                                /*вся аренда, что еще не вернули*/
+//                                        (
+//                                                select * from rent where rent.date_end isnull
+//                                        ) as inRent
+//                        /**/
+//                        left join price_list on inRent.price_id=price_list.id
+//                        /**/
+//                )as rentWithTermId
+//        left join term_of_rent on rentWithTermId.term_id=term_of_rent.id
+//        /**/
+//		) as alldoRent on scooters.number=alldoRent.scooter_number
+//        where ((alldoRent.date_start isnull)or(alldoRent.date_must_end<='2020-01-04')or(alldoRent.date_start>'2020-01-04'))
+
+        String myQuery=
+        "select scooters.* from scooters left join"+
+        "("+
+        "        select rentWithTermId.scooter_number,rentWithTermId.date_start,rentWithTermId.date_end,"+
+        "        term_of_rent.count_of_days,rentWithTermId.date_start +term_of_rent.count_of_days*interval'1 day' as date_must_end from"+
+        "        ("+
+        "                select inRent.*,price_list.term_id from"+
+        "                                ("+
+        "                                        select * from rent where rent.date_end isnull"+
+        "                                ) as inRent "+
+        "                left join price_list on inRent.price_id=price_list.id"+
+        "        )as rentWithTermId "+
+        "left join term_of_rent on rentWithTermId.term_id=term_of_rent.id"+
+		") as alldoRent on scooters.number=alldoRent.scooter_number"+
+        " where ((alldoRent.date_start isnull)or(alldoRent.date_must_end<='" +date+"')or(alldoRent.date_start>'" +date+"'))";
+
+
+        logger.info(myQuery);
+        Query query = entityManager.createNativeQuery(myQuery);
+
+        return query.getResultList();
+
+        //return entityManager.createQuery(all).getResultList();
+
+    }
+
 
 
 }

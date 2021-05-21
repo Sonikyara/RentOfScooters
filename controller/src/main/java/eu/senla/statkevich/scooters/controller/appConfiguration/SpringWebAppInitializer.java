@@ -1,6 +1,5 @@
 package eu.senla.statkevich.scooters.controller.appConfiguration;
 
-import eu.senla.statkevich.scooters.controller.controllers.UserController;
 import eu.senla.statkevich.scooters.dao.JPAConfig;
 import eu.senla.statkevich.scooters.service.securityConfiguration.SecurityConfig;
 import org.apache.log4j.Logger;
