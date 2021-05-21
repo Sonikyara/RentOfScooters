@@ -9,9 +9,13 @@ public class PriceListDTO {
     private int scooter_number;
     private String termOfRent;
 
-    public PriceListDTO() {    }
+    public PriceListDTO() {
+    }
 
-    public Long getId() {        return id;    }
+    public Long getId() {
+        return id;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -19,6 +23,7 @@ public class PriceListDTO {
     public int getScooter_number() {
         return scooter_number;
     }
+
     public void setScooter_number(int scooter_number) {
         this.scooter_number = scooter_number;
     }
@@ -26,6 +31,7 @@ public class PriceListDTO {
     public BigDecimal getPrice() {
         return price;
     }
+
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
@@ -33,6 +39,7 @@ public class PriceListDTO {
     public String getScooter() {
         return scooter;
     }
+
     public void setScooter(String scooter) {
         this.scooter = scooter;
     }
@@ -40,6 +47,7 @@ public class PriceListDTO {
     public String getTermOfRent() {
         return termOfRent;
     }
+
     public void setTermOfRent(String termOfRent) {
         this.termOfRent = termOfRent;
     }

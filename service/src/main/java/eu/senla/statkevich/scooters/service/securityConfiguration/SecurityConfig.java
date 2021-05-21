@@ -47,13 +47,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()//отключено для браузера
                 .authorizeRequests()
-                    //.antMatchers("/roleSave").hasAnyRole( "ADMIN")
-                    .antMatchers("/helloUser","/user/registration","/priceList").permitAll()
-                    .antMatchers("/user/**","/role/**","/scooters/**","/price/**","/rent/**").hasAnyRole("USER", "ADMIN")
+                //.antMatchers("/roleSave").hasAnyRole( "ADMIN")
+                .antMatchers("/helloUser", "/user/registration", "/priceList").permitAll()
+                .antMatchers("/user/**", "/role/**", "/scooters/**", "/price/**", "/rent/**").hasAnyRole("USER", "ADMIN")
 
                 .and()
                 .formLogin()
-         .loginProcessingUrl("/user")
+                .loginProcessingUrl("/user")
         ;
     }
 

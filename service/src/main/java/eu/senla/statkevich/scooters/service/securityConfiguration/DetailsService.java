@@ -17,10 +17,10 @@ public class DetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        Users user=userDAO.readByName(name);
+        Users user = userDAO.readByName(name);
 
-        if (user==null){
-            throw new UsernameNotFoundException("Unknown user: "+name);
+        if (user == null) {
+            throw new UsernameNotFoundException("Unknown user: " + name);
         }
         UserDetails userDetails = User.builder()
                 .username(user.getName())

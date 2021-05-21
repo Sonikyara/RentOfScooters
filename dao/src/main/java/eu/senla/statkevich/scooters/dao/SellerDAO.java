@@ -5,7 +5,7 @@ import eu.senla.statkevich.scooters.entity.Sellers;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class SellerDAO extends GenericDaoImpl<Sellers>  implements ISellerDao {
+public class SellerDAO extends GenericDaoImpl<Sellers> implements ISellerDao {
 
     @Override
     public Sellers read(final Long id) {

@@ -45,9 +45,9 @@ public class RentServiceImpl implements RentService {
 
     @Override
     public List<RentDTO> getByUserName(String name) {
-        Users user =userDAO.readByName(name);
+        Users user = userDAO.readByName(name);
         logger.info(user.toString());
-        List<Rent> rentDAO=rentDao.readByUserId(user.getId());
+        List<Rent> rentDAO = rentDao.readByUserId(user.getId());
         logger.info(rentDAO.stream().toArray());
         return rentMapper.ListRentToListRentDTO(rentDAO);
     }
@@ -55,16 +55,16 @@ public class RentServiceImpl implements RentService {
     @Override
     public String create(RentDTO rentDTO) {
 
-        Rent rent=rentMapper.RentDTOToRent(rentDTO);
+        Rent rent = rentMapper.RentDTOToRent(rentDTO);
 
-        Users user =userDAO.readByName(rentDTO.getUser_name());
+        Users user = userDAO.readByName(rentDTO.getUser_name());
         rent.setUser(user);
 
         Scooters scooter = scooterDao.readByModel(rentDTO.getScooter_model());
         rent.setScooter(scooter);
 
-        TermOfRent termOfRent=termOfRentDao.readByTitle(rentDTO.getTermOfRent());
-        PriceList priceList= priceListDao.readByTermAndScooter(termOfRent.getId(),scooter.getNumber());
+        TermOfRent termOfRent = termOfRentDao.readByTitle(rentDTO.getTermOfRent());
+        PriceList priceList = priceListDao.readByTermAndScooter(termOfRent.getId(), scooter.getNumber());
         rent.setPrice(priceList);
 
         //logger.info(rent.toString());
@@ -75,10 +75,10 @@ public class RentServiceImpl implements RentService {
     @Override
     public RentDTO returnTheScooter(String scooterName, String name) {
 
-        Users user =userDAO.readByName(name);
+        Users user = userDAO.readByName(name);
         Scooters scooter = scooterDao.readByModel(scooterName);
 
-        Rent rent=rentDao.readByUserScooter(user.getId(),scooter.getNumber());
+        Rent rent = rentDao.readByUserScooter(user.getId(), scooter.getNumber());
         rent.setDateEnd(new Date());
 
         return rentMapper.RentToRentDto(rentDao.updateDateEnd(rent));

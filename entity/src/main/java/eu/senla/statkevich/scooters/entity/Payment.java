@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name="payment")
+@Table(name = "payment")
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +19,8 @@ public class Payment {
     @JoinColumn(name = "rent_id", referencedColumnName = "id")
     private Rent rent;
 
-    public Payment() {}
+    public Payment() {
+    }
 
     public Payment(BigDecimal sum, Users user, Rent rent) {
         this.sum = sum;
@@ -27,23 +28,40 @@ public class Payment {
         this.rent = rent;
     }
 
-    public Long getId() {        return id;    }
+    public Long getId() {
+        return id;
+    }
 
-    public BigDecimal getSum() {        return sum;    }
-    public void setSum(BigDecimal sum) {        this.sum = sum;    }
+    public BigDecimal getSum() {
+        return sum;
+    }
 
-    public Users getUser() {        return user;    }
-    public void setUser(Users user) {        this.user = user;    }
+    public void setSum(BigDecimal sum) {
+        this.sum = sum;
+    }
 
-    public Rent getRent() {        return rent;    }
-    public void setRent(Rent rent) {        this.rent = rent;    }
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
+    }
+
+    public Rent getRent() {
+        return rent;
+    }
+
+    public void setRent(Rent rent) {
+        this.rent = rent;
+    }
 
     @Override
     public String toString() {
-        return "Payment: "+
-                ", id= "+id+
-                ", sum= "+sum+
-                ", from user= "+user.getName()+
-                ", rent's id= "+rent.getId();
+        return "Payment: " +
+                ", id= " + id +
+                ", sum= " + sum +
+                ", from user= " + user.getName() +
+                ", rent's id= " + rent.getId();
     }
 }

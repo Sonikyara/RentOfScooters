@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="users")
-public class Users extends AEntityWithName{
+@Table(name = "users")
+public class Users extends AEntityWithName {
 
-    @Column(name="phone_number")
+    @Column(name = "phone_number")
     private String phoneNumber;
     private String pass;
 
@@ -16,44 +16,72 @@ public class Users extends AEntityWithName{
     @JoinColumn
     private Roles role;
 
-    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Rent> rent;
 
-    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Payment> payment;
 
-    public Users() {}
+    public Users() {
+    }
 
-    public Users(String name) {super(name);}
+    public Users(String name) {
+        super(name);
+    }
 
     public Users(String name, String phoneNumber, String pass) {
         super(name);
         this.phoneNumber = phoneNumber;
         this.pass = pass;
-        rent=new ArrayList<>();
-        payment=new ArrayList<>();
+        rent = new ArrayList<>();
+        payment = new ArrayList<>();
     }
 
-    public String getPhoneNumber() {        return phoneNumber;    }
-    public void setPhoneNumber(String phoneNumber) {        this.phoneNumber = phoneNumber;    }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-    public String getPass() {        return pass;    }
-    public void setPass(String pass) {        this.pass = pass;    }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
-    public Roles getRole() {        return role;    }
-    public void setRole(Roles role) {        this.role = role;    }
+    public String getPass() {
+        return pass;
+    }
 
-    public List<Rent> getRent() {        return rent;    }
-    public void setRent(List<Rent> rent) {        this.rent = rent;    }
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
 
-    public List<Payment> getPayment() {        return payment;    }
-    public void setPayment(List<Payment> payment) {        this.payment = payment;    }
+    public Roles getRole() {
+        return role;
+    }
+
+    public void setRole(Roles role) {
+        this.role = role;
+    }
+
+    public List<Rent> getRent() {
+        return rent;
+    }
+
+    public void setRent(List<Rent> rent) {
+        this.rent = rent;
+    }
+
+    public List<Payment> getPayment() {
+        return payment;
+    }
+
+    public void setPayment(List<Payment> payment) {
+        this.payment = payment;
+    }
 
     @Override
     public String toString() {
-        return "User: "+
-                super.toString()+
-                ", phone number= "+phoneNumber+
-                ", pass= "+pass;
+        return "User: " +
+                super.toString() +
+                ", phone number= " + phoneNumber +
+                ", pass= " + pass;
     }
 }

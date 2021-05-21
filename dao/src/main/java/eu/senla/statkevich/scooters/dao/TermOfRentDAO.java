@@ -15,8 +15,8 @@ public class TermOfRentDAO extends GenericDaoImpl<TermOfRent> implements ITermOf
 
     @Override
     public TermOfRent readByTitle(String title) {
-        CriteriaBuilder cb=entityManager.getCriteriaBuilder();
-        CriteriaQuery<TermOfRent> cq=cb.createQuery(TermOfRent.class);
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<TermOfRent> cq = cb.createQuery(TermOfRent.class);
         Root<TermOfRent> termOfRentRoot = cq.from(TermOfRent.class);
 
         Predicate termByTitle = cb.equal(termOfRentRoot.get("title"), title);

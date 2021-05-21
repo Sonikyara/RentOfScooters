@@ -14,15 +14,15 @@ import java.util.List;
 @Repository
 //public class RoleDAO  implements IRoleDao{
 
-public class RoleDAO extends GenericDaoImpl<Roles>  implements IRoleDao { //
+public class RoleDAO extends GenericDaoImpl<Roles> implements IRoleDao { //
 
     @Override
     public Roles read(final Long id) {
         //native query
         Query query = entityManager.createNativeQuery("SELECT * FROM roles WHERE id=?1", Roles.class);
-        query.setParameter(1,id);
+        query.setParameter(1, id);
         return (Roles) query.getSingleResult();
- //       return entityManager.find(Roles.class, id);
+        //       return entityManager.find(Roles.class, id);
     }
 
     @Override

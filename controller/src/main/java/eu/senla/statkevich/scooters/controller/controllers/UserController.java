@@ -16,51 +16,51 @@ import javax.validation.Valid;
 @RestController
 public class UserController {
 
-	private static final Logger logger = Logger.getLogger(UserController.class);
+    private static final Logger logger = Logger.getLogger(UserController.class);
 
-	@Autowired
-	public UsersService userService;
+    @Autowired
+    public UsersService userService;
 
-	@RequestMapping(value = "/user/{id}",
-			method = RequestMethod.GET,
-			produces = {MediaType.APPLICATION_JSON_VALUE})
-	protected UserDTO getUser(@PathVariable("id")Long id){
-		return userService.read(id);
-	}
+    @RequestMapping(value = "/user/{id}",
+            method = RequestMethod.GET,
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    protected UserDTO getUser(@PathVariable("id") Long id) {
+        return userService.read(id);
+    }
 
-//public User getUserFromDB(@RequestParam(required = false) int id, @RequestParam String name) {
-	@RequestMapping(value = "/user/registration",
-			method = {RequestMethod.POST,RequestMethod.GET},
-	        consumes = { "application/json" },
-			produces = {MediaType.APPLICATION_JSON_VALUE})
-	public String saveUser(@Valid @RequestBody  UserDTO userDTO, BindingResult result) {
-		if (result.hasErrors()){
+    //public User getUserFromDB(@RequestParam(required = false) int id, @RequestParam String name) {
+    @RequestMapping(value = "/user/registration",
+            method = {RequestMethod.POST, RequestMethod.GET},
+            consumes = {"application/json"},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public String saveUser(@Valid @RequestBody UserDTO userDTO, BindingResult result) {
+        if (result.hasErrors()) {
 
-			String allErrors = "Wrong data in the fields:";
-			for (FieldError err:result.getFieldErrors()) {
-				allErrors+=err.getField()+",";
-			}
-			logger.info(allErrors);
-			throw new ServiceException(allErrors);
-		}
-		return userService.create(userDTO);
-	}
+            String allErrors = "Wrong data in the fields:";
+            for (FieldError err : result.getFieldErrors()) {
+                allErrors += err.getField() + ",";
+            }
+            logger.info(allErrors);
+            throw new ServiceException(allErrors);
+        }
+        return userService.create(userDTO);
+    }
 
-	@RequestMapping(value = "/user/ByName/{name}",
-			method = RequestMethod.GET,
-			produces = {MediaType.APPLICATION_JSON_VALUE})
-	protected UserDTO getUserByName(@PathVariable("name")String name){
+    @RequestMapping(value = "/user/ByName/{name}",
+            method = RequestMethod.GET,
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    protected UserDTO getUserByName(@PathVariable("name") String name) {
 
-		logger.info("Get user: "+name);
+        logger.info("Get user: " + name);
 
-		return userService.readByName(name);
-	}
+        return userService.readByName(name);
+    }
 
-	//TEST
-	@RequestMapping ( "/helloUser" )
-	public String helloWorld () {
-		return "helloUser";
-	}
+    //TEST
+    @RequestMapping("/helloUser")
+    public String helloWorld() {
+        return "helloUser";
+    }
 
 
 //	@GetMapping("/userAuth")

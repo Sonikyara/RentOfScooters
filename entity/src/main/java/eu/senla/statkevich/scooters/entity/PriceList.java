@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="price_list")
+@Table(name = "price_list")
 public class PriceList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,38 +21,61 @@ public class PriceList {
     @JoinColumn(name = "term_id")
     private TermOfRent termOfRent;
 
-    @OneToMany(mappedBy = "price",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "price", fetch = FetchType.LAZY)
     private List<Rent> rent;
 
-    public PriceList() {}
+    public PriceList() {
+    }
 
     public PriceList(BigDecimal price, Scooters scooter, TermOfRent termOfRent) {
         this.price = price;
         this.scooter = scooter;
         this.termOfRent = termOfRent;
-        rent=new ArrayList<>();
+        rent = new ArrayList<>();
     }
 
-    public Long getId() {        return id;    }
+    public Long getId() {
+        return id;
+    }
 
-    public Scooters getScooter() {        return scooter;    }
-    public void setScooter(Scooters scooter) {        this.scooter = scooter;    }
+    public Scooters getScooter() {
+        return scooter;
+    }
 
-    public BigDecimal getPrice() {        return price;    }
-    public void setPrice(BigDecimal price) {        this.price = price;    }
+    public void setScooter(Scooters scooter) {
+        this.scooter = scooter;
+    }
 
-    public TermOfRent getTermOfRent() {        return termOfRent;    }
-    public void setTermOfRent(TermOfRent termOfRent) {        this.termOfRent = termOfRent;    }
+    public BigDecimal getPrice() {
+        return price;
+    }
 
-    public List<Rent> getRent() {        return rent;    }
-    public void setRent(List<Rent> rent) {        this.rent = rent;    }
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public TermOfRent getTermOfRent() {
+        return termOfRent;
+    }
+
+    public void setTermOfRent(TermOfRent termOfRent) {
+        this.termOfRent = termOfRent;
+    }
+
+    public List<Rent> getRent() {
+        return rent;
+    }
+
+    public void setRent(List<Rent> rent) {
+        this.rent = rent;
+    }
 
     @Override
     public String toString() {
-        return "Price: "+
-                "id= "+id+
-                ", scooter= "+scooter.getModel()+
-                ", term of rent= "+termOfRent.getTitle()+
-                " price= "+price;
+        return "Price: " +
+                "id= " + id +
+                ", scooter= " + scooter.getModel() +
+                ", term of rent= " + termOfRent.getTitle() +
+                " price= " + price;
     }
 }

@@ -10,8 +10,11 @@ import java.util.List;
 public interface RentService {
 
     RentDTO readByUser(Users user);
+
     String create(final RentDTO rentDTO);
+
     List<RentDTO> readAll();
+
     List<RentDTO> getByUserName(String name);
 
     RentDTO returnTheScooter(String scooter, String name);

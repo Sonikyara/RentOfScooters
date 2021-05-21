@@ -21,8 +21,8 @@ public class UserDAO extends GenericDaoImpl<Users> implements IUserDao {
 
     //@Override
     public Users readByName(final String name) {
-        CriteriaBuilder cb=entityManager.getCriteriaBuilder();
-        CriteriaQuery<Users> cq=cb.createQuery(Users.class);
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Users> cq = cb.createQuery(Users.class);
         Root<Users> user = cq.from(Users.class);
 
         Predicate userByName = cb.equal(user.get("name"), name);

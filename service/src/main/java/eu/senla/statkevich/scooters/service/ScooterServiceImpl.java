@@ -50,7 +50,7 @@ public class ScooterServiceImpl implements ScootersService {
 
         List<Scooters> result = new ArrayList<>(resultList.size());
         for (Object[] row : resultList) {
-            result.add(scootersDAO.readByModel((String)row[1]));
+            result.add(scootersDAO.readByModel((String) row[1]));
 
         }
         return scooterMapper.listScooterToListScooterDto(result);
@@ -59,7 +59,7 @@ public class ScooterServiceImpl implements ScootersService {
 
     @Override
     public ScooterDTO readByModel(String model) {
-        Scooters scooter=scootersDAO.readByModel(model);
+        Scooters scooter = scootersDAO.readByModel(model);
         return scooterMapper.scooterToScooterDto(scootersDAO.readByModel(model));
     }
 

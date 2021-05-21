@@ -6,25 +6,31 @@ import java.util.List;
 
 
 @Entity
-@Table(name="type_of_scooter")
-public class TypeOfScooter extends AEntityWithTitle{
+@Table(name = "type_of_scooter")
+public class TypeOfScooter extends AEntityWithTitle {
 
-    @OneToMany(mappedBy = "scootersType",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "scootersType", fetch = FetchType.LAZY)
     private List<TypesProducers> typesProducers;
 
-    public TypeOfScooter() {}
+    public TypeOfScooter() {
+    }
 
     public TypeOfScooter(String title) {
         super(title);
-        typesProducers=new ArrayList<>();
+        typesProducers = new ArrayList<>();
     }
 
-    public List<TypesProducers> getTypesProducers() {        return typesProducers;    }
-    public void setTypesProducers(List<TypesProducers> typesProducers) {        this.typesProducers = typesProducers;    }
+    public List<TypesProducers> getTypesProducers() {
+        return typesProducers;
+    }
+
+    public void setTypesProducers(List<TypesProducers> typesProducers) {
+        this.typesProducers = typesProducers;
+    }
 
     @Override
     public String toString() {
-        return "Type of scooter: "+
+        return "Type of scooter: " +
                 super.toString();
     }
 }

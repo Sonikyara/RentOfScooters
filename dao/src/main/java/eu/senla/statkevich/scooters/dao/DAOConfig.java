@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(basePackages = "eu.senla.statkevich.scooters.dao")
 public class DAOConfig {
 
-    public DAOConfig() {    }
+    public DAOConfig() {
+    }
 
 }

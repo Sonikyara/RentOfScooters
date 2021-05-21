@@ -16,8 +16,8 @@ public class SpringWebAppInitializer implements WebApplicationInitializer {
     private static final Logger logger = Logger.getLogger(SpringWebAppInitializer.class);
 
     @Override
-    public void onStartup(ServletContext servletContext){
-        AnnotationConfigWebApplicationContext appContext=new AnnotationConfigWebApplicationContext();
+    public void onStartup(ServletContext servletContext) {
+        AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
 
         appContext.register(ControllerConfig.class);
         appContext.register(ServiceConfig.class);

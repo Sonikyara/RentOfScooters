@@ -22,9 +22,11 @@ public class RoleServiceImpl implements RolesService {
     private IRoleMapper roleMapper;
 
     @Override
-    public RoleDTO read(final Long id){
+    public RoleDTO read(final Long id) {
         return roleMapper.roleToRoleDto(roleDAO.read(id));
-    };
+    }
+
+    ;
 
     @Override
     public RoleDTO readByTitle(String title) {

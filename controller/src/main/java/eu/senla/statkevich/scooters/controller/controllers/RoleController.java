@@ -9,22 +9,22 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class RoleController {
 
-	@Autowired
-	public RolesService roleService;
+    @Autowired
+    public RolesService roleService;
 
-	@RequestMapping(value = "/role/{id}",
-			method = RequestMethod.GET,
-			produces = {MediaType.APPLICATION_JSON_VALUE})
-	protected RoleDTO getRoleById(@PathVariable("id")Long id){
-		return roleService.read(id);
-	}
+    @RequestMapping(value = "/role/{id}",
+            method = RequestMethod.GET,
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    protected RoleDTO getRoleById(@PathVariable("id") Long id) {
+        return roleService.read(id);
+    }
 
-	@RequestMapping(value = "/role/ByTitle/{title}",
-			method = RequestMethod.GET,
-			produces = {MediaType.APPLICATION_JSON_VALUE})
-	protected RoleDTO getRoleByTitle(@PathVariable("title")String title){
-		return roleService.readByTitle(title);
-	}
+    @RequestMapping(value = "/role/ByTitle/{title}",
+            method = RequestMethod.GET,
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    protected RoleDTO getRoleByTitle(@PathVariable("title") String title) {
+        return roleService.readByTitle(title);
+    }
 
 //	@RequestMapping(value = "/roleSave",
 //			method = {RequestMethod.POST,RequestMethod.GET},
@@ -35,11 +35,11 @@ public class RoleController {
 //		return roleService.create(roleDTO.getTitle());
 //	}
 
-	//TEST
-	//@PermitAll
-	@RequestMapping ( "/helloRole" )
-	public String helloWorld () {
-		return "helloRole";
-	}
+    //TEST
+    //@PermitAll
+    @RequestMapping("/helloRole")
+    public String helloWorld() {
+        return "helloRole";
+    }
 
 }

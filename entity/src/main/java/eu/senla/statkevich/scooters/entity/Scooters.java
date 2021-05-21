@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name= "scooters")
+@Table(name = "scooters")
 public class Scooters {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,13 +22,14 @@ public class Scooters {
     @JoinColumn(name = "types_producers_id")
     private TypesProducers typeProducer;
 
-    @OneToMany(mappedBy = "scooter",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "scooter", fetch = FetchType.LAZY)
     private List<PriceList> priceLists;
 
-    @OneToMany(mappedBy = "scooter",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "scooter", fetch = FetchType.LAZY)
     private List<Rent> rent;
 
-    public Scooters() {}
+    public Scooters() {
+    }
 
     public Scooters(String model, BigDecimal sum, Sellers seller, TypesProducers typeProducer) {
         this.model = model;
@@ -39,33 +40,65 @@ public class Scooters {
         rent = new ArrayList<>();
     }
 
-    public Long getNumber() {        return number;    }
+    public Long getNumber() {
+        return number;
+    }
 
-    public String getModel() {        return model;    }
-    public void setModel(String model) {        this.model = model;    }
+    public String getModel() {
+        return model;
+    }
 
-    public BigDecimal getSum() {        return sum;    }
-    public void setSum(BigDecimal sum) {        this.sum = sum;    }
+    public void setModel(String model) {
+        this.model = model;
+    }
 
-    public Sellers getSeller() {        return seller;    }
-    public void setSeller(Sellers seller) {        this.seller = seller;    }
+    public BigDecimal getSum() {
+        return sum;
+    }
 
-    public TypesProducers getTypeProducer() {        return typeProducer;    }
-    public void setTypeProducer(TypesProducers typeProducer) {        this.typeProducer = typeProducer;    }
+    public void setSum(BigDecimal sum) {
+        this.sum = sum;
+    }
 
-    public List<PriceList> getPriceLists() {        return priceLists;    }
-    public void setPriceLists(List<PriceList> priceLists) {        this.priceLists = priceLists;    }
+    public Sellers getSeller() {
+        return seller;
+    }
 
-    public List<Rent> getRent() {        return rent;    }
-    public void setRent(List<Rent> rent) {        this.rent = rent;    }
+    public void setSeller(Sellers seller) {
+        this.seller = seller;
+    }
+
+    public TypesProducers getTypeProducer() {
+        return typeProducer;
+    }
+
+    public void setTypeProducer(TypesProducers typeProducer) {
+        this.typeProducer = typeProducer;
+    }
+
+    public List<PriceList> getPriceLists() {
+        return priceLists;
+    }
+
+    public void setPriceLists(List<PriceList> priceLists) {
+        this.priceLists = priceLists;
+    }
+
+    public List<Rent> getRent() {
+        return rent;
+    }
+
+    public void setRent(List<Rent> rent) {
+        this.rent = rent;
+    }
 
     @Override
     public String toString() {
-        return "Scooter: "+
-                "number= "+number+
-                ", model= "+model+
-                ", seller= "+seller.getName()+
-                ", id type-producer= "+typeProducer.toString()+
-                " ,сумма= "+sum;
+        return "Scooter: " +
+                "number= " + number +
+                ", model= " + model +
+                ", seller= " + seller.getName() +
+                ", id type-producer= " + typeProducer.toString() +
+                " ,сумма= " + sum;
     }
 }

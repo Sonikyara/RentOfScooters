@@ -2,7 +2,7 @@ package eu.senla.statkevich.scooters.dto;
 
 import javax.validation.constraints.NotBlank;
 
-public class UserDTO{
+public class UserDTO {
 
     private Long id;
 
@@ -14,15 +14,26 @@ public class UserDTO{
 
     private String role;
 
-    public Long getId() {        return id;    }
-    public void setId(Long id) {        this.id = id;    }
+    public Long getId() {
+        return id;
+    }
 
-    public String getName() {        return name;    }
-    public void setName(String name) {        this.name = name;    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getPhoneNumber() {
         return phoneNumber;
     }
+
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
@@ -30,24 +41,30 @@ public class UserDTO{
     public String getPass() {
         return pass;
     }
+
     public void setPass(String pass) {
         this.pass = pass;
     }
 
-    public String getRole() {        return role;    }
-    public void setRole(String role) {        this.role = role;    }
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
 //    public RoleDTO getRoleDTO() {        return roleDTO;    }
 //    public void setRoleDTO(RoleDTO roleDTO) {        this.roleDTO = roleDTO;    }
 
     @Override
     public String toString() {
-        return "User: "+
-                " id="+id+
-                " name="+name+
+        return "User: " +
+                " id=" + id +
+                " name=" + name +
                 //", role="+roleDTO.getTitle()+
-                ", role="+role+
-                ", phone number= "+phoneNumber+
-                ", pass= "+pass;
+                ", role=" + role +
+                ", phone number= " + phoneNumber +
+                ", pass= " + pass;
     }
 }

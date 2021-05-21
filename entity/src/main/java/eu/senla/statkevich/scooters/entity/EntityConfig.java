@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan
 public class EntityConfig {
 
-    public EntityConfig() {    }
+    public EntityConfig() {
+    }
 
 }

@@ -16,8 +16,8 @@ public class RentDAO extends GenericDaoImpl<Rent> implements IRentDao {
     @Override
     public List<Rent> readByUserId(Long id) {
 
-        CriteriaBuilder cb=entityManager.getCriteriaBuilder();
-        CriteriaQuery<Rent> cq=cb.createQuery(Rent.class);
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Rent> cq = cb.createQuery(Rent.class);
         Root<Rent> rentRoot = cq.from(Rent.class);
 
         Predicate userById = cb.equal(rentRoot.get("user"), id);
@@ -30,8 +30,8 @@ public class RentDAO extends GenericDaoImpl<Rent> implements IRentDao {
 
     @Override
     public Rent readByUserScooter(Long id, Long number) {
-        CriteriaBuilder cb=entityManager.getCriteriaBuilder();
-        CriteriaQuery<Rent> cq=cb.createQuery(Rent.class);
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Rent> cq = cb.createQuery(Rent.class);
         Root<Rent> rentRoot = cq.from(Rent.class);
 
         Predicate[] predicates = new Predicate[3];
@@ -41,7 +41,7 @@ public class RentDAO extends GenericDaoImpl<Rent> implements IRentDao {
 
         //cq.where(cb.isNull(rentRoot.get("dateEnd")));
 
-        logger.info("user "+id+" scooter "+number);
+        logger.info("user " + id + " scooter " + number);
 
         cq.select(rentRoot).where(predicates);
 
@@ -50,7 +50,7 @@ public class RentDAO extends GenericDaoImpl<Rent> implements IRentDao {
 
     @Override
     public Rent updateDateEnd(Rent rent) {
-        CriteriaBuilder cb=entityManager.getCriteriaBuilder();
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaUpdate<Rent> criteriaUpdate = cb.createCriteriaUpdate(Rent.class);
         Root<Rent> root = criteriaUpdate.from(Rent.class);
         criteriaUpdate.set("dateEnd", rent.getDateEnd());
@@ -62,8 +62,8 @@ public class RentDAO extends GenericDaoImpl<Rent> implements IRentDao {
 
     @Override
     public List<Rent> readAll() {
-        CriteriaBuilder cb=entityManager.getCriteriaBuilder();
-        CriteriaQuery<Rent> cq=cb.createQuery(Rent.class);
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Rent> cq = cb.createQuery(Rent.class);
         Root<Rent> rentRoot = cq.from(Rent.class);
 
         CriteriaQuery<Rent> all = cq.select(rentRoot);

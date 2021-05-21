@@ -14,17 +14,37 @@ public class ScooterDTO {
     private String producer;
     private String type;
 
-    public int getNumber() {        return number;    }
-    public void setNumber(int number) {        this.number = number;    }
+    public int getNumber() {
+        return number;
+    }
 
-    public String getModel() {        return model;    }
-    public void setModel(String model) {        this.model = model;    }
+    public void setNumber(int number) {
+        this.number = number;
+    }
 
-    public BigDecimal getSum() {        return sum;    }
-    public void setSum(BigDecimal sum) {        this.sum = sum;    }
+    public String getModel() {
+        return model;
+    }
 
-    public String getSeller() {        return seller;    }
-    public void setSeller(String seller) {        this.seller = seller;    }
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public BigDecimal getSum() {
+        return sum;
+    }
+
+    public void setSum(BigDecimal sum) {
+        this.sum = sum;
+    }
+
+    public String getSeller() {
+        return seller;
+    }
+
+    public void setSeller(String seller) {
+        this.seller = seller;
+    }
 
 //    public Long getTypeProducer() {        return typeProducer;    }
 //    public void setTypeProducer(Long typeProducer) {        this.typeProducer = typeProducer;    }

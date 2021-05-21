@@ -2,7 +2,7 @@ package eu.senla.statkevich.scooters.dao.IDao;
 
 import java.util.List;
 
-public interface IGenericDao<T>  {
+public interface IGenericDao<T> {
 
     T read(final Long id);
 

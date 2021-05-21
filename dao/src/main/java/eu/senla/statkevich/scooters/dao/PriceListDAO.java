@@ -31,7 +31,7 @@ public class PriceListDAO extends GenericDaoImpl<PriceList> implements IPriceLis
 //        return entityManager.createQuery(cq).getSingleResult();
 
         //JPQL
-        Query query = entityManager.createQuery("SELECT p FROM PriceList p WHERE p.termOfRent.id=?1 and p.scooter.number=?2",PriceList.class);
+        Query query = entityManager.createQuery("SELECT p FROM PriceList p WHERE p.termOfRent.id=?1 and p.scooter.number=?2", PriceList.class);
         query.setParameter(1, term_id);
         query.setParameter(2, scootersNumber);
 
@@ -45,8 +45,8 @@ public class PriceListDAO extends GenericDaoImpl<PriceList> implements IPriceLis
 
     @Override
     public List<PriceList> readAll() {
-        CriteriaBuilder cb=entityManager.getCriteriaBuilder();
-        CriteriaQuery<PriceList> cq=cb.createQuery(PriceList.class);
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<PriceList> cq = cb.createQuery(PriceList.class);
         Root<PriceList> priceListRoot = cq.from(PriceList.class);
 
         CriteriaQuery<PriceList> all = cq.select(priceListRoot);

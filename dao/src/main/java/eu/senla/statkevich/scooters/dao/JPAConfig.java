@@ -36,7 +36,7 @@ public class JPAConfig {
     @Value("${db.password}")
     private String dbPwd;
 
-    private final static Logger logger=Logger.getLogger(JPAConfig.class);
+    private final static Logger logger = Logger.getLogger(JPAConfig.class);
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
@@ -47,9 +47,9 @@ public class JPAConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 
-        LocalContainerEntityManagerFactoryBean em= new LocalContainerEntityManagerFactoryBean();
+        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[] { "eu.senla.statkevich.scooters.entity" });
+        em.setPackagesToScan(new String[]{"eu.senla.statkevich.scooters.entity"});
         em.setJpaVendorAdapter(vendorAdapter);
         em.setJpaProperties(additionalProperties());
 
@@ -65,7 +65,7 @@ public class JPAConfig {
     }
 
     @Bean
-    public DataSource dataSource(){
+    public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(dbDriverClass);
         dataSource.setUrl(dbUrl);
@@ -83,7 +83,7 @@ public class JPAConfig {
     }
 
     @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
+    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
