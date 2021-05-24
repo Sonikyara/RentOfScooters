@@ -26,11 +26,9 @@ public class RoleServiceImpl implements RolesService {
         return roleMapper.roleToRoleDto(roleDAO.read(id));
     }
 
-    ;
 
     @Override
     public RoleDTO readByTitle(String title) {
-        //return roleMapper.roleToRoleDto(roleDAO.readByNameTitle(title));
         return roleMapper.roleToRoleDto(roleDAO.readByTitle(title));
     }
 
