@@ -1,8 +1,8 @@
 package eu.senla.statkevich.scooters.dao.IDao;
 
+import eu.senla.statkevich.scooters.entity.Roles;
 import eu.senla.statkevich.scooters.entity.Scooters;
 
-import java.util.Date;
 import java.util.List;
 
 public interface IScooterDao {
@@ -13,5 +13,5 @@ public interface IScooterDao {
 
     List<Scooters> readAll();
 
-    List<Object[]> readFree(String date);
+    List<Scooters> readFree(String date);
 }

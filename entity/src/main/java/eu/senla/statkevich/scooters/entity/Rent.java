@@ -33,6 +33,12 @@ public class Rent {
     public Rent() {
     }
 
+    public Rent(Users user,Scooters scooter,PriceList priceList) {
+        this.user=user;
+        this.scooter=scooter;
+        this.price=priceList;
+    }
+
     public Long getId() {
         return id;
     }

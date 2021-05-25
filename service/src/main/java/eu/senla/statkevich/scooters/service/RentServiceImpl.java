@@ -46,10 +46,8 @@ public class RentServiceImpl implements RentService {
     @Override
     public List<RentDTO> getByUserName(String name) {
         Users user = userDAO.readByName(name);
-        logger.info(user.toString());
-        List<Rent> rentDAO = rentDao.readByUserId(user.getId());
-        logger.info(rentDAO.stream().toArray());
-        return rentMapper.ListRentToListRentDTO(rentDAO);
+        List<Rent> rent = rentDao.readByUserId(user.getId());
+        return rentMapper.ListRentToListRentDTO(rent);
     }
 
     @Override

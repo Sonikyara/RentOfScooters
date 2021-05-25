@@ -88,6 +88,7 @@ public class RentController {
         return scooterService.read(number);
     }
 
+    //http://localhost:8081/controller-1.0-SNAPSHOT/scooters/free?dateStr=2020-07-01
     @RequestMapping(value = "/scooters/all",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})

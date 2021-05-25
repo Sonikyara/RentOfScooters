@@ -42,24 +42,16 @@ public class ScooterServiceImpl implements ScootersService {
 
     @Override
     public List<ScooterDTO> readFreeScooters(String date) {
-
         //перевести дату
 
-
-        List<Object[]> resultList = scootersDAO.readFree(date);
-
-        List<Scooters> result = new ArrayList<>(resultList.size());
-        for (Object[] row : resultList) {
-            result.add(scootersDAO.readByModel((String) row[1]));
-
-        }
+        List<Scooters> result = scootersDAO.readFree(date);
         return scooterMapper.listScooterToListScooterDto(result);
     }
 
 
     @Override
     public ScooterDTO readByModel(String model) {
-        Scooters scooter = scootersDAO.readByModel(model);
+        //Scooters scooter = scootersDAO.readByModel(model);
         return scooterMapper.scooterToScooterDto(scootersDAO.readByModel(model));
     }
 

@@ -27,6 +27,12 @@ public class PriceList {
     public PriceList() {
     }
 
+    public PriceList(Scooters scooter, TermOfRent termOfRent) {
+        this.scooter = scooter;
+        this.termOfRent = termOfRent;
+        rent = new ArrayList<>();
+    }
+
     public PriceList(BigDecimal price, Scooters scooter, TermOfRent termOfRent) {
         this.price = price;
         this.scooter = scooter;

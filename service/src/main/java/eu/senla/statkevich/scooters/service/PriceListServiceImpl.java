@@ -30,11 +30,6 @@ public class PriceListServiceImpl implements PriceListService {
     private IPriceListMapper priceListMapper;
 
     @Override
-    public PriceListDTO readByUser(Users user) {
-        return null;
-    }
-
-    @Override
     public List<PriceListDTO> readAll() {
         return priceListMapper.listPriceListToListPriceListDto(priceListDao.readAll());
     }
@@ -47,8 +42,6 @@ public class PriceListServiceImpl implements PriceListService {
 
     @Override
     public PriceListDTO readByTermAndScooter(String term, String scootersModel) {
-        //Scooters scooter=scooterDao.readByModel(scootersModel);
-
         TermOfRent termOfRent = termOfRentDao.readByTitle(term);
         return readByTermIdAndScooter(termOfRent.getId(), scootersModel);
         //return priceListMapper.PriceListToPriceListDto(priceListDao.readByTermAndScooter(termOfRent.getId(),scooter.getNumber()));

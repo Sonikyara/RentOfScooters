@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
 import javax.persistence.criteria.*;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -48,7 +48,8 @@ public class ScootersDAO extends GenericDaoImpl<Scooters> implements IScooterDao
     }
 
     @Override
-    public List<Object[]> readFree(String date) {
+    public List<Scooters> readFree(String date) {
+        //public List<Object[]> readFree(String date) {
 
 //        CriteriaBuilder cb=entityManager.getCriteriaBuilder();
 //        CriteriaQuery<Scooters> cq=cb.createQuery(Scooters.class);
@@ -106,7 +107,14 @@ public class ScootersDAO extends GenericDaoImpl<Scooters> implements IScooterDao
         logger.info(myQuery);
         Query query = entityManager.createNativeQuery(myQuery);
 
-        return query.getResultList();
+        List<Object[]> resultList = query.getResultList();
+
+        List<Scooters> result = new ArrayList<>(resultList.size());
+        for (Object[] row : resultList) {
+            result.add(readByModel((String) row[1]));
+        }
+
+        return result;
 
         //return entityManager.createQuery(all).getResultList();
 
