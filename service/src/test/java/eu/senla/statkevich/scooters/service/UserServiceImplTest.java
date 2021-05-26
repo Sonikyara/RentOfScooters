@@ -1,9 +1,13 @@
 package eu.senla.statkevich.scooters.service;
 
+import eu.senla.statkevich.scooters.dao.RoleDAO;
 import eu.senla.statkevich.scooters.dao.UserDAO;
+import eu.senla.statkevich.scooters.dto.ScooterDTO;
 import eu.senla.statkevich.scooters.dto.UserDTO;
+import eu.senla.statkevich.scooters.entity.Roles;
 import eu.senla.statkevich.scooters.entity.Users;
 import eu.senla.statkevich.scooters.service.mappers.IUserMapper;
+import eu.senla.statkevich.scooters.service.securityConfiguration.JwtProvider;
 import junit.framework.TestCase;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -14,8 +18,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
@@ -25,17 +32,30 @@ public class UserServiceImplTest extends TestCase {
 
     @Mock
     private UserDAO userDAO;
+    @Mock
+    private RoleDAO roleDAO;
+    @Mock
+    private JwtProvider jwtProvider;
+    @Mock
+    private PasswordEncoder passwordEncoder;
     @Spy
     IUserMapper userMapper = Mappers.getMapper(IUserMapper.class);
     @InjectMocks
     private UserServiceImpl userService;
 
     private static Users testUser;
+    private static List<Users> testUsersList;
+    private static Roles testRole;
 
     @BeforeClass
     public static void prepareTestData() {
-        testUser=new Users("Ann");
+        testUser = new Users("Ann");
+        testUser.setPass("pass");
 
+        testRole = new Roles("User");
+
+        testUsersList = new ArrayList<>();
+        testUsersList.add(testUser);
     }
 
     @Test
@@ -48,6 +68,7 @@ public class UserServiceImplTest extends TestCase {
         assertNotNull(resultUserDTO);
         assertEquals(resultUserDTO.getName(), userMapper.userToUserDto(testUser).getName());
     }
+
     @Test
     public void testReadByName() {
         when(userDAO.readByName(any(String.class))).thenReturn(testUser);
@@ -59,7 +80,30 @@ public class UserServiceImplTest extends TestCase {
         assertEquals(resultUserDTO.getName(), userMapper.userToUserDto(testUser).getName());
     }
 
+    @Test
     public void testCreate() {
+        when(userDAO.create(any(Users.class))).thenReturn(testUser);
+        when(roleDAO.readByTitle(any(String.class))).thenReturn(testRole);
+        when(passwordEncoder.encode(any(String.class))).thenReturn("pass");
+        when(jwtProvider.generateToken(any(String.class))).thenReturn("pass");
+
+        UserDTO testUserDTO = userMapper.userToUserDto(testUser);
+        String resultUserDTOString = userService.create(testUserDTO);
+
+        //Mockito.verify(userDAO).create(testUser);
+        assertNotNull(resultUserDTOString);
     }
 
+    //@Test
+    public void testReadAll() {
+
+//        when(userDAO.readAll()).thenReturn(testUsersList);
+//
+//        List<UserDTO> resultListUserDTO = userService.readAll();
+//
+//        Mockito.verify(userDAO).readAll();
+//        assertFalse(resultListUserDTO.isEmpty());
+//        assertNotSame(0,resultListUserDTO.size());
+
+    }
 }

@@ -75,7 +75,7 @@ public class ScooterServiceImplTest extends TestCase {
         assertEquals(2, resultListScooterDTO.size());
     }
 
-   // @Test
+    @Test
     public void testReadFreeScooters() {
         System.out.println("TestReadFree");
         when(scootersDAO.readFree(any(String.class))).thenReturn(testScootersList);

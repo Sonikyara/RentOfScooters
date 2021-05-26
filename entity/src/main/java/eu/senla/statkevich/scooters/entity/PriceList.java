@@ -44,6 +44,10 @@ public class PriceList {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Scooters getScooter() {
         return scooter;
     }

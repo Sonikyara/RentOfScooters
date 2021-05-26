@@ -33,10 +33,6 @@ public class RentServiceImpl implements RentService {
 
     private static final Logger logger = Logger.getLogger(RentServiceImpl.class);
 
-    @Override
-    public RentDTO readByUser(Users user) {
-        return null;
-    }
 
     @Override
     public List<RentDTO> readAll() {
@@ -65,15 +61,13 @@ public class RentServiceImpl implements RentService {
         PriceList priceList = priceListDao.readByTermAndScooter(termOfRent.getId(), scooter.getNumber());
         rent.setPrice(priceList);
 
-        //logger.info(rent.toString());
-
         return String.valueOf(rentDao.create(rent));
     }
 
     @Override
-    public RentDTO returnTheScooter(String scooterName, String name) {
+    public RentDTO returnTheScooter(String scooterName, String userName) {
 
-        Users user = userDAO.readByName(name);
+        Users user = userDAO.readByName(userName);
         Scooters scooter = scooterDao.readByModel(scooterName);
 
         Rent rent = rentDao.readByUserScooter(user.getId(), scooter.getNumber());

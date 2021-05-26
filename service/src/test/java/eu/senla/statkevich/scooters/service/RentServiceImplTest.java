@@ -17,6 +17,7 @@ import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.mockito.Matchers.any;
@@ -29,14 +30,14 @@ public class RentServiceImplTest extends TestCase {
 
     @Mock
     private RentDAO rentDAO;
-    //    @Mock
-//    private PriceListDAO priceListDAO;
+    @Mock
+    private PriceListDAO priceListDAO;
     @Mock
     private UserDAO userDAO;
-//    @Mock
-//    private ScootersDAO scootersDAO;
-//    @Mock
-//    private TermOfRentDAO termOfRentDAO;
+    @Mock
+    private ScootersDAO scootersDAO;
+    @Mock
+    private TermOfRentDAO termOfRentDAO;
 
     @Spy
     IRentMapper rentMapper = Mappers.getMapper(IRentMapper.class);
@@ -49,9 +50,8 @@ public class RentServiceImplTest extends TestCase {
     private static Scooters testScooter;
     private static PriceList testPrice;
     private static TermOfRent testTerm;
-    //    private static PriceList testPrice2;
-//    private static List<PriceList> testListPrice;
     private static List<Rent> testListRent;
+    private static RentDTO testRentDTO;
 
     @BeforeClass
     public static void prepareTestData() {
@@ -70,7 +70,11 @@ public class RentServiceImplTest extends TestCase {
         testListRent = new ArrayList<>();
         testListRent.add(testRent);
 
-//
+        testRentDTO = new RentDTO();
+        testRentDTO.setDateStart("01-01-2022");
+        testRentDTO.setScooter_model("Model1");
+        testRentDTO.setTermOfRent("Day");
+
 //        testListPrice = new ArrayList<>();
 //        testListPrice.add(testPrice1);
 //        testListPrice.add(testPrice2);
@@ -99,9 +103,30 @@ public class RentServiceImplTest extends TestCase {
         assertEquals(1, resultRentDTO.size());
     }
 
+    @Test
     public void testCreate() {
+        when(userDAO.readByName(any(String.class))).thenReturn(testUser);
+        when(scootersDAO.readByModel(any(String.class))).thenReturn(testScooter);
+        when(termOfRentDAO.readByTitle(any(String.class))).thenReturn(testTerm);
+        when(priceListDAO.readByTermAndScooter(any(Long.class), any(Long.class))).thenReturn(testPrice);
+        when(rentDAO.create(any(Rent.class))).thenReturn(testRent);
+
+        String result = rentService.create(testRentDTO);
+
+        assertNotSame(result.length(), 0);
     }
 
+    @Test
     public void testReturnTheScooter() {
+        when(userDAO.readByName(any(String.class))).thenReturn(testUser);
+        when(scootersDAO.readByModel(any(String.class))).thenReturn(testScooter);
+        when(rentDAO.readByUserScooter(any(Long.class), any(Long.class))).thenReturn(testRent);
+        when(rentDAO.updateDateEnd(any(Rent.class))).thenReturn(testRent);
+
+        RentDTO resultRentDTO = rentService.returnTheScooter("Model1", "Ann");
+
+        Mockito.verify(rentDAO).updateDateEnd(testRent);
+        assertNotNull(resultRentDTO);
+        assertEquals(resultRentDTO.getScooter_model(), testScooter.getModel());
     }
 }

@@ -63,11 +63,13 @@ public class UserServiceImpl implements UsersService {
         String token = jwtProvider.generateToken(user.getName());
         logger.info(user.toString());
         logger.info("token :  "+token);
-        return (userDAO.create(user)).toString()+token;
+        String createdUser=(userDAO.create(user)).toString();
+        return createdUser+token;
     }
 
     @Override
     public List<UserDTO> readAll() {
+        //userDAO.readAll()
         return null;
     }
 

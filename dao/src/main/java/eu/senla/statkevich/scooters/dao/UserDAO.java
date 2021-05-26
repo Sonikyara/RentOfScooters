@@ -19,7 +19,7 @@ public class UserDAO extends GenericDaoImpl<Users> implements IUserDao {
         return entityManager.find(Users.class, id);
     }
 
-    //@Override
+    @Override
     public Users readByName(final String name) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Users> cq = cb.createQuery(Users.class);
@@ -41,9 +41,9 @@ public class UserDAO extends GenericDaoImpl<Users> implements IUserDao {
 
     @Override
     public List<Users> readAll() {
-        //entityManager.createQuery("Select rs from Scooters s").getResultList();
+        return entityManager.createQuery("Select u from Users u").getResultList();
 
-        return null;
+        //return null;
     }
 
 }

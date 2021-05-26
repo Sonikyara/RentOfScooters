@@ -1,0 +1,71 @@
+package eu.senla.statkevich.scooters.dao;
+
+import eu.senla.statkevich.scooters.dao.IDao.IPriceListDao;
+import eu.senla.statkevich.scooters.dao.IDao.IScooterDao;
+import eu.senla.statkevich.scooters.dao.IDao.ITermOfRentDAO;
+import eu.senla.statkevich.scooters.entity.PriceList;
+import eu.senla.statkevich.scooters.entity.Scooters;
+import eu.senla.statkevich.scooters.entity.TermOfRent;
+import junit.framework.TestCase;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+
+@ContextConfiguration(classes = {JPAConfig.class}, loader = AnnotationConfigContextLoader.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@Transactional
+public class PriceListDAOTest extends TestCase {
+
+    @Autowired
+    private IPriceListDao priceListDao;
+
+    @Autowired
+    private IScooterDao scooterDao;
+
+    @Autowired
+    private ITermOfRentDAO termOfRentDAO;
+
+    private static PriceList testPrice;
+
+    @BeforeClass
+    public static void prepareTestData() {
+        testPrice = new PriceList();
+        testPrice.setId(1L);
+
+    }
+
+    @Test
+    public void testReadByTermAndScooter() {
+        Scooters testScooter = scooterDao.readAll().get(0);
+        TermOfRent termOfRent = termOfRentDAO.readByTitle("Day");
+
+        PriceList resultPrice = priceListDao.readByTermAndScooter(termOfRent.getId(), testScooter.getNumber());
+
+        assertNotNull(resultPrice);
+        assertEquals(testScooter.getModel(), resultPrice.getScooter().getModel());
+    }
+
+    @Test
+    public void testRead() {
+        PriceList resultPrice = priceListDao.read(1L);
+
+        assertNotNull(resultPrice);
+        assertEquals(resultPrice.getId(), testPrice.getId());
+    }
+
+    @Test
+    public void testReadAll() {
+        List<PriceList> resultListPrice = priceListDao.readAll();
+
+        assertFalse(resultListPrice.isEmpty());
+        assertEquals(6, resultListPrice.size());
+    }
+}
