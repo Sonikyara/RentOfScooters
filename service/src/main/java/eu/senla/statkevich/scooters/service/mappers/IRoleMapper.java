@@ -11,10 +11,8 @@ public interface IRoleMapper {
 
     IRoleMapper INSTANCE = Mappers.getMapper(IRoleMapper.class);
 
-    //@Mapping(target="title", source="role.title")
     Roles roleDtoToRole(final RoleDTO roleDTO);
 
-    //    @Mapping(target="title", source="title")
     RoleDTO roleToRoleDto(final Roles role);
 
     Roles roleTitleToRole(final String title);

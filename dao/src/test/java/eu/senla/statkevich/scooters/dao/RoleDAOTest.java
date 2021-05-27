@@ -38,10 +38,3 @@ public class RoleDAOTest extends TestCase {
 
     }
 }
-
-//    @PersistenceContext
-//    protected EntityManager entityManager;
-//System.out.println("entityManager - "+entityManager);
-
-//System.out.println("DAO-result role - "+resultRole.toString());
-//assertEquals(1, resultRole.size());

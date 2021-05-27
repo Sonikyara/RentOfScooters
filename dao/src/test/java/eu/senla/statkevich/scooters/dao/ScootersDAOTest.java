@@ -5,7 +5,6 @@ import eu.senla.statkevich.scooters.entity.Scooters;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -45,7 +44,9 @@ public class ScootersDAOTest extends TestCase {
     @Test
     public void testReadFree() {
         List<Scooters> listScooters=scooterDao.readFree("2020-07-01");
-        assertNotSame(listScooters.size(),0);
-        //assertFalse(listScooters.isEmpty());
+
+        if (listScooters.size()>0){
+            assertNotNull(listScooters.get(0));
+        }
     }
 }

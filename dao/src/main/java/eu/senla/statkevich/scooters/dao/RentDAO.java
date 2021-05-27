@@ -39,13 +39,16 @@ public class RentDAO extends GenericDaoImpl<Rent> implements IRentDao {
         predicates[1] = cb.equal(rentRoot.get("scooter"), number);
         predicates[2] = cb.isNull(rentRoot.get("dateEnd"));
 
-        //cq.where(cb.isNull(rentRoot.get("dateEnd")));
-
         logger.info("user " + id + " scooter " + number);
 
         cq.select(rentRoot).where(predicates);
+        List<Rent> resultList=entityManager.createQuery(cq).getResultList();
+        if (resultList.size() !=0) {
+            return resultList.get(0);
+        }else{
+            return null;
+        }
 
-        return entityManager.createQuery(cq).getSingleResult();
     }
 
     @Override

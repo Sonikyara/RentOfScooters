@@ -91,13 +91,13 @@ public class Rent {
         this.payment = payment;
     }
 
-//    @Override
-//    public String toString() {
-//        return "id: " + id +
-//                ",scooters- " + scooter.getModel() +
-//                ",user " + user.getName() +
-//                ",price №" + price.getId() +
-//                ",from " + dateStart +
-//                "-to " + dateEnd;
-//    }
+    @Override
+    public String toString() {
+        return "id: " + id +
+                ",scooters- " + ((scooter != null)?scooter.getModel():"") +
+                ",user " + ((user!=null)?user.getName():"") +
+                ",price №" + ((price!=null)?price.getId():"") +
+                ",from " + dateStart +
+                "-to " + dateEnd;
+    }
 }

@@ -22,6 +22,11 @@ public class Payment {
     public Payment() {
     }
 
+    public Payment(BigDecimal sum, Users user) {
+        this.sum = sum;
+        this.user = user;
+    }
+
     public Payment(BigDecimal sum, Users user, Rent rent) {
         this.sum = sum;
         this.user = user;

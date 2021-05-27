@@ -1,6 +1,7 @@
 package eu.senla.statkevich.scooters.service;
 
 import eu.senla.statkevich.scooters.dao.IDao.*;
+import eu.senla.statkevich.scooters.dao.RentDAO;
 import eu.senla.statkevich.scooters.dto.RentDTO;
 import eu.senla.statkevich.scooters.entity.*;
 import eu.senla.statkevich.scooters.service.IServices.RentService;
@@ -27,6 +28,8 @@ public class RentServiceImpl implements RentService {
     private IScooterDao scooterDao;
     @Autowired
     private ITermOfRentDAO termOfRentDao;
+    @Autowired
+    private IPaymentDao paymentDao;
 
     @Autowired
     private IRentMapper rentMapper;
@@ -47,7 +50,7 @@ public class RentServiceImpl implements RentService {
     }
 
     @Override
-    public String create(RentDTO rentDTO) {
+    public RentDTO create(RentDTO rentDTO) {
 
         Rent rent = rentMapper.RentDTOToRent(rentDTO);
 
@@ -61,7 +64,20 @@ public class RentServiceImpl implements RentService {
         PriceList priceList = priceListDao.readByTermAndScooter(termOfRent.getId(), scooter.getNumber());
         rent.setPrice(priceList);
 
-        return String.valueOf(rentDao.create(rent));
+        //проверим, есть ли оплата
+        List<Payment> paymentList = paymentDao.getFreePayment(user, priceList.getPrice());
+        if (paymentList.size()>0) {
+            //тут оплату привязать
+            Rent resultRent=rentDao.create(rent);
+
+            paymentList.get(0).setRent(resultRent);
+            paymentDao.updateRentId(paymentList.get(0));
+
+            return rentMapper.RentToRentDto(resultRent);
+        }else{
+            return null;
+        }
+
     }
 
     @Override

@@ -43,7 +43,6 @@ public class UserDAO extends GenericDaoImpl<Users> implements IUserDao {
     public List<Users> readAll() {
         return entityManager.createQuery("Select u from Users u").getResultList();
 
-        //return null;
     }
 
 }

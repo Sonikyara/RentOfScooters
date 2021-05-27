@@ -1,8 +1,10 @@
 package eu.senla.statkevich.scooters.controller.controllers;
 
+import eu.senla.statkevich.scooters.dto.PaymentDTO;
 import eu.senla.statkevich.scooters.dto.PriceListDTO;
 import eu.senla.statkevich.scooters.dto.RentDTO;
 import eu.senla.statkevich.scooters.dto.ScooterDTO;
+import eu.senla.statkevich.scooters.service.IServices.PaymentService;
 import eu.senla.statkevich.scooters.service.IServices.PriceListService;
 import eu.senla.statkevich.scooters.service.IServices.RentService;
 import eu.senla.statkevich.scooters.service.IServices.ScootersService;
@@ -13,13 +15,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 
 @RestController
 public class RentController {
-//вернуть самокат
 
     private static final Logger logger = Logger.getLogger(RentController.class);
 
@@ -32,14 +34,48 @@ public class RentController {
     @Autowired
     public RentService rentService;
 
+    @Autowired
+    public PaymentService paymentService;
+
+    //payment
+    @RequestMapping(value = "/payment/pay",
+            method = {RequestMethod.POST, RequestMethod.GET},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public PaymentDTO addPayment(@RequestParam(name = "sum", required = true) BigDecimal sum, Principal principal) {
+
+        return  paymentService.create(sum,principal.getName());
+    }
+
+    @RequestMapping(value = "/payment/all",
+            method = {RequestMethod.GET},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<PaymentDTO> allPayments() {
+
+        return  paymentService.readAll();
+    }
+
+    @RequestMapping(value = "/payment/my",
+            method = {RequestMethod.GET},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<PaymentDTO> allPaymentsForUser(Principal principal) {
+
+        return  paymentService.getByUserName(principal.getName());
+    }
+
     //rent a scooter
     @RequestMapping(value = "/rent/scooter",
-            method = RequestMethod.POST,
+            method = {RequestMethod.POST, RequestMethod.GET},
             consumes = {"application/json"},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String rentTheScooter(@RequestBody RentDTO rentDTO, Principal principal) {
         rentDTO.setUser_name(principal.getName());
-        return rentService.create(rentDTO);
+        RentDTO resultRentDTO=rentService.create(rentDTO);
+        logger.info(resultRentDTO);
+        if (resultRentDTO==null){
+            return "нет подходящей оплаты";
+        }else{
+            return resultRentDTO.toString();
+        }
     }
 
     @RequestMapping(value = "/rent/returnScooter",
@@ -50,7 +86,7 @@ public class RentController {
         return rentService.returnTheScooter(scooter, principal.getName());
     }
 
-    @RequestMapping(value = "/rent/All",
+    @RequestMapping(value = "/rent/all",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<RentDTO> getAll() {

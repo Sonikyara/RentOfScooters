@@ -1,6 +1,5 @@
 package eu.senla.statkevich.scooters.dao;
 
-import eu.senla.statkevich.scooters.dao.IDao.ISellerDao;
 import eu.senla.statkevich.scooters.dao.IDao.ITypeProducerDao;
 import eu.senla.statkevich.scooters.entity.TypesProducers;
 import junit.framework.TestCase;
@@ -15,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @ContextConfiguration(classes = {JPAConfig.class}, loader = AnnotationConfigContextLoader.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
-public class TypeProduserDAOTest extends TestCase {
+public class TypeProducerDAOTest extends TestCase {
 
     @Autowired
     private ITypeProducerDao typeProducerDao;

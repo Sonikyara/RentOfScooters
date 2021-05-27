@@ -1,12 +1,13 @@
 package eu.senla.statkevich.scooters.service.IServices;
 
 import eu.senla.statkevich.scooters.dto.RentDTO;
+import eu.senla.statkevich.scooters.entity.Rent;
 
 import java.util.List;
 
 public interface RentService {
 
-    String create(final RentDTO rentDTO);
+    RentDTO create(final RentDTO rentDTO);
 
     List<RentDTO> readAll();
 
