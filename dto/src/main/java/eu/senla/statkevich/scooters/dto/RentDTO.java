@@ -1,6 +1,5 @@
 package eu.senla.statkevich.scooters.dto;
 
-import java.math.BigDecimal;
 
 public class RentDTO {
     private Long id;
@@ -15,6 +14,12 @@ public class RentDTO {
     private String dateEnd;
 
     public RentDTO() {
+    }
+
+    public RentDTO(String scooter_model,String dateStart,String termOfRent) {
+        this.scooter_model=scooter_model;
+        this.dateStart=dateStart;
+        this.termOfRent=termOfRent;
     }
 
     public Long getId() {

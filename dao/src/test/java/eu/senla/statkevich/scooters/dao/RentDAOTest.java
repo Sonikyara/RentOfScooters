@@ -14,8 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @ContextConfiguration(classes = {JPAConfig.class}, loader = AnnotationConfigContextLoader.class)
@@ -86,20 +84,19 @@ public class RentDAOTest extends TestCase {
     public void testReadAll() {
         List<Rent> listRent = rentDao.readAll();
 
-        if (listRent.size()!=0){
+        if (listRent.size() != 0) {
             assertNotNull(listRent.get(0));
         }
     }
 
-    //    @Test
-//    @Rollback(true)
+    @Test
+    @Rollback(true)
     public void testCreate() {
 
         Users user = userDao.readAll().get(0);
         Scooters scooter = scooterDao.readAll().get(0);
         TermOfRent termOfRent = termOfRentDAO.readByTitle("Day");
         PriceList priceList = priceListDao.readByTermAndScooter(termOfRent.getId(), scooter.getNumber());
-
 
         Rent testRent = new Rent(user, scooter, priceList);
         try {

@@ -1,9 +1,9 @@
 package eu.senla.statkevich.scooters.service;
 
 import eu.senla.statkevich.scooters.dao.*;
+import eu.senla.statkevich.scooters.dao.IDao.IPaymentDao;
 import eu.senla.statkevich.scooters.dto.RentDTO;
 import eu.senla.statkevich.scooters.entity.*;
-import eu.senla.statkevich.scooters.service.mappers.IPriceListMapper;
 import eu.senla.statkevich.scooters.service.mappers.IRentMapper;
 import junit.framework.TestCase;
 import org.junit.BeforeClass;
@@ -16,12 +16,11 @@ import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -38,6 +37,8 @@ public class RentServiceImplTest extends TestCase {
     private ScootersDAO scootersDAO;
     @Mock
     private TermOfRentDAO termOfRentDAO;
+    @Mock
+    private IPaymentDao paymentDao;
 
     @Spy
     IRentMapper rentMapper = Mappers.getMapper(IRentMapper.class);
@@ -52,6 +53,8 @@ public class RentServiceImplTest extends TestCase {
     private static TermOfRent testTerm;
     private static List<Rent> testListRent;
     private static RentDTO testRentDTO;
+    private static Payment testPayment;
+    private static List<Payment> testListPayment;
 
     @BeforeClass
     public static void prepareTestData() {
@@ -70,14 +73,12 @@ public class RentServiceImplTest extends TestCase {
         testListRent = new ArrayList<>();
         testListRent.add(testRent);
 
-        testRentDTO = new RentDTO();
-        testRentDTO.setDateStart("01-01-2022");
-        testRentDTO.setScooter_model("Model1");
-        testRentDTO.setTermOfRent("Day");
+        testRentDTO = new RentDTO("Model1", "01-01-2022", "Day");
 
-//        testListPrice = new ArrayList<>();
-//        testListPrice.add(testPrice1);
-//        testListPrice.add(testPrice2);
+        testPayment = new Payment(new BigDecimal("8"), testUser);
+
+        testListPayment = new ArrayList<>();
+        testListPayment.add(testPayment);
     }
 
     @Test
@@ -96,25 +97,29 @@ public class RentServiceImplTest extends TestCase {
         when(userDAO.readByName(any(String.class))).thenReturn(testUser);
         when(rentDAO.readByUserId(any(Long.class))).thenReturn(testListRent);
 
-        List<RentDTO> resultRentDTO = rentService.getByUserName("Ann");
+        List<RentDTO> resultRentDTO = rentService.getByUserName(testUser.getName());
 
-        Mockito.verify(rentDAO).readByUserId(1L);
+        Mockito.verify(rentDAO).readByUserId(testUser.getId());
         assertFalse(resultRentDTO.isEmpty());
         assertEquals(1, resultRentDTO.size());
     }
 
-   // @Test
+    @Test
     public void testCreate() {
         when(userDAO.readByName(any(String.class))).thenReturn(testUser);
         when(scootersDAO.readByModel(any(String.class))).thenReturn(testScooter);
         when(termOfRentDAO.readByTitle(any(String.class))).thenReturn(testTerm);
         when(priceListDAO.readByTermAndScooter(any(Long.class), any(Long.class))).thenReturn(testPrice);
-        when(rentDAO.create(any(Rent.class))).thenReturn(testRent);
 
+        when(paymentDao.getFreePayment(any(Users.class), any(BigDecimal.class))).thenReturn(testListPayment);
+        when(rentDAO.create(any(Rent.class))).thenReturn(testRent);
+        when(paymentDao.updateRentId(any(Payment.class))).thenReturn(testPayment);
+
+        RentDTO testRentDTO = rentMapper.RentToRentDto(testRent);
         RentDTO resultRentDTO = rentService.create(testRentDTO);
 
         assertNotNull(resultRentDTO);
-        assertEquals(resultRentDTO.getScooter_model(), testScooter.getModel());
+        assertEquals(resultRentDTO.getId(), testRentDTO.getId());
     }
 
     @Test
