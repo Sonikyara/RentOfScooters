@@ -9,6 +9,8 @@ public interface UsersService extends IGenericService<UserDTO> {
 
     String create(UserDTO userDTO);
 
+    UserDTO readRepo(Long id);
+
     //
 //    T update(final T entity);
 //

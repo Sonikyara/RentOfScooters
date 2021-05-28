@@ -52,7 +52,6 @@ public class UserController {
     protected UserDTO getUserByName(@PathVariable("name") String name) {
 
         logger.info("Get user: " + name);
-
         return userService.readByName(name);
     }
 

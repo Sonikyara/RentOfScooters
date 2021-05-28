@@ -13,12 +13,10 @@ public interface IUserMapper {
     IUserMapper INSTANCE = Mappers.getMapper(IUserMapper.class);
 
     @Mapping(target = "role", source = "role.title")
-//,
     UserDTO userToUserDto(final Users user);
 
     // defaultExpression = "java()")
     @Mapping(target = "role", expression = "java(null)")
-//,
     Users userDtoToUser(final UserDTO userDTO);
 
 }

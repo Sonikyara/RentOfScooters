@@ -2,7 +2,7 @@ package eu.senla.statkevich.scooters.service;
 
 import eu.senla.statkevich.scooters.dao.RoleDAO;
 import eu.senla.statkevich.scooters.dao.UserDAO;
-import eu.senla.statkevich.scooters.dto.ScooterDTO;
+import eu.senla.statkevich.scooters.dao.repository.UsersRepository;
 import eu.senla.statkevich.scooters.dto.UserDTO;
 import eu.senla.statkevich.scooters.entity.Roles;
 import eu.senla.statkevich.scooters.entity.Users;
@@ -31,6 +31,9 @@ import static org.mockito.Mockito.when;
 public class UserServiceImplTest extends TestCase {
 
     @Mock
+    private UsersRepository usersRepository;
+
+    @Mock
     private UserDAO userDAO;
     @Mock
     private RoleDAO roleDAO;
@@ -50,9 +53,11 @@ public class UserServiceImplTest extends TestCase {
     @BeforeClass
     public static void prepareTestData() {
         testUser = new Users("Ann");
+        testUser.setId(1L);
         testUser.setPass("pass");
 
         testRole = new Roles("User");
+        testUser.setId(1L);
 
         testUsersList = new ArrayList<>();
         testUsersList.add(testUser);

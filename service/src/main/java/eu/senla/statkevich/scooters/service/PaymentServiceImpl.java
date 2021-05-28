@@ -29,8 +29,8 @@ public class PaymentServiceImpl implements PaymentService {
     private IUserDao userDao;
 
     @Override
-    public PaymentDTO create(BigDecimal sum,String userName) {
-        Payment payment=new Payment(sum, userDao.readByName(userName));
+    public PaymentDTO create(BigDecimal sum, String userName) {
+        Payment payment = new Payment(sum, userDao.readByName(userName));
         return paymentMapper.paymentToPaymentDTO(paymentDao.create(payment));
     }
 

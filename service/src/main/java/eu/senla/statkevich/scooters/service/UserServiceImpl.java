@@ -2,6 +2,7 @@ package eu.senla.statkevich.scooters.service;
 
 import eu.senla.statkevich.scooters.dao.IDao.IRoleDao;
 import eu.senla.statkevich.scooters.dao.IDao.IUserDao;
+import eu.senla.statkevich.scooters.dao.repository.UsersRepository;
 import eu.senla.statkevich.scooters.entity.Roles;
 import eu.senla.statkevich.scooters.service.IServices.UsersService;
 import eu.senla.statkevich.scooters.service.mappers.IUserMapper;
@@ -16,14 +17,15 @@ import eu.senla.statkevich.scooters.entity.Users;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
 @Transactional
 public class UserServiceImpl implements UsersService {
 
-//    @Autowired
-//    private UsersRepository usersRepository;
+    @Autowired
+    private UsersRepository usersRepository;
 
     @Autowired
     private IUserMapper userMapper;
@@ -70,7 +72,13 @@ public class UserServiceImpl implements UsersService {
     @Override
     public List<UserDTO> readAll() {
         //userDAO.readAll()
+        //List<Users> usersList=usersRepository.findAll();
         return null;
+    }
+
+    @Override
+    public UserDTO readRepo(Long id) {
+        return userMapper.userToUserDto(usersRepository.findById(id).get());
     }
 
     //    @Override

@@ -16,7 +16,9 @@ public interface IPaymentMapper {
 
 
     @Mapping(target = "userName", source = "user.name")
-    @Mapping(target = "rentId", source = "rent.id")
+    @Mapping(target = "rentId", expression ="java(payment.getRent()==null?null:payment.getRent().getId())")
+   // @Mapping(target = "rentId", source = "rent.id")
+  //  expression = "java(UUID.randomUUID().toString())")
     PaymentDTO paymentToPaymentDTO(final  Payment payment);
 
     //PaymentDTO paymentDTOToPayment(final  PaymentDTO paymentDTO);
