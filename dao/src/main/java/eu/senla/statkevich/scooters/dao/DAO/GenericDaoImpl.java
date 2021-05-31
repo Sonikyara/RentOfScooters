@@ -1,4 +1,4 @@
-package eu.senla.statkevich.scooters.dao;
+package eu.senla.statkevich.scooters.dao.DAO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

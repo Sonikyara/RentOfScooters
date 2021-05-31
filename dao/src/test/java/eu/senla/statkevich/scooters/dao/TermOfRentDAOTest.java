@@ -1,6 +1,6 @@
 package eu.senla.statkevich.scooters.dao;
 
-import eu.senla.statkevich.scooters.dao.IDao.ITermOfRentDAO;
+import eu.senla.statkevich.scooters.dao.IDao.ITermOfRentDao;
 import eu.senla.statkevich.scooters.entity.entities.TermOfRent;
 import junit.framework.TestCase;
 import org.junit.Test;
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class TermOfRentDAOTest extends TestCase {
 
     @Autowired
-    private ITermOfRentDAO termOfRentDAO;
+    private ITermOfRentDao termOfRentDAO;
 
     @Test
     public void testReadByTitle() {

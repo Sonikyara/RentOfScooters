@@ -1,10 +1,11 @@
 package eu.senla.statkevich.scooters.service;
 
-import eu.senla.statkevich.scooters.dao.RoleDAO;
+import eu.senla.statkevich.scooters.dao.DAO.RoleDAO;
 import eu.senla.statkevich.scooters.dto.RoleDTO;
 import eu.senla.statkevich.scooters.entity.entities.Roles;
 import eu.senla.statkevich.scooters.service.mappers.IRoleMapper;
 
+import eu.senla.statkevich.scooters.service.serviceImpl.RoleServiceImpl;
 import junit.framework.TestCase;
 import org.junit.BeforeClass;
 import org.junit.Test;

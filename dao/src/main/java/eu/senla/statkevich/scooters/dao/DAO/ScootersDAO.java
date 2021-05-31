@@ -1,4 +1,4 @@
-package eu.senla.statkevich.scooters.dao;
+package eu.senla.statkevich.scooters.dao.DAO;
 
 import eu.senla.statkevich.scooters.dao.IDao.IScooterDao;
 import eu.senla.statkevich.scooters.entity.entities.Scooters;

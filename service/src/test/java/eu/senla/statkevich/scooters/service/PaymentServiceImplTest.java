@@ -1,11 +1,12 @@
 package eu.senla.statkevich.scooters.service;
 
-import eu.senla.statkevich.scooters.dao.PaymentDao;
-import eu.senla.statkevich.scooters.dao.UserDAO;
+import eu.senla.statkevich.scooters.dao.DAO.PaymentDAO;
+import eu.senla.statkevich.scooters.dao.DAO.UserDAO;
 import eu.senla.statkevich.scooters.dto.PaymentDTO;
 import eu.senla.statkevich.scooters.entity.entities.Payment;
 import eu.senla.statkevich.scooters.entity.entities.Users;
 import eu.senla.statkevich.scooters.service.mappers.IPaymentMapper;
+import eu.senla.statkevich.scooters.service.serviceImpl.PaymentServiceImpl;
 import junit.framework.TestCase;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -28,7 +29,7 @@ import static org.mockito.Mockito.when;
 public class PaymentServiceImplTest extends TestCase {
 
     @Mock
-    private PaymentDao paymentDao;
+    private PaymentDAO paymentDao;
 
     @Spy
     IPaymentMapper paymentMapper = Mappers.getMapper(IPaymentMapper.class);

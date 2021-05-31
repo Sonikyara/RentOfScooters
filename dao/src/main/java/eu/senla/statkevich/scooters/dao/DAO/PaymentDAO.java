@@ -1,4 +1,4 @@
-package eu.senla.statkevich.scooters.dao;
+package eu.senla.statkevich.scooters.dao.DAO;
 
 import eu.senla.statkevich.scooters.dao.IDao.IPaymentDao;
 import eu.senla.statkevich.scooters.entity.entities.Payment;
@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
-public class PaymentDao extends GenericDaoImpl<Payment> implements IPaymentDao {
+public class PaymentDAO extends GenericDaoImpl<Payment> implements IPaymentDao {
     @Override
     public Payment create(Payment payment) {
         entityManager.persist(payment);

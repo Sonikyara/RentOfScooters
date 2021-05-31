@@ -4,7 +4,7 @@ import eu.senla.statkevich.scooters.entity.entities.TermOfRent;
 
 import java.util.List;
 
-public interface ITermOfRentDAO {
+public interface ITermOfRentDao {
 
     TermOfRent read(final Long id);
 

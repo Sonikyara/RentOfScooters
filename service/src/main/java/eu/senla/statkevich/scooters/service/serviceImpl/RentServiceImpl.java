@@ -1,4 +1,4 @@
-package eu.senla.statkevich.scooters.service;
+package eu.senla.statkevich.scooters.service.serviceImpl;
 
 import eu.senla.statkevich.scooters.dao.IDao.*;
 import eu.senla.statkevich.scooters.dto.RentDTO;
@@ -26,7 +26,7 @@ public class RentServiceImpl implements RentService {
     @Autowired
     private IScooterDao scooterDao;
     @Autowired
-    private ITermOfRentDAO termOfRentDao;
+    private ITermOfRentDao termOfRentDao;
     @Autowired
     private IPaymentDao paymentDao;
 

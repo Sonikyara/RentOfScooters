@@ -31,7 +31,7 @@ public class UserController {
 
     @RequestMapping(value = "/user/registration",
             method = {RequestMethod.POST, RequestMethod.GET},
-            consumes = {"application/json"},
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String saveUser(@Valid @RequestBody UserDTO userDTO, BindingResult result) {
         if (result.hasErrors()) {

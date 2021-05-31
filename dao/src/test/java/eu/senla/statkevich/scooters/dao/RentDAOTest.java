@@ -31,7 +31,7 @@ public class RentDAOTest extends TestCase {
     private IUserDao userDao;
 
     @Autowired
-    private ITermOfRentDAO termOfRentDAO;
+    private ITermOfRentDao termOfRentDAO;
 
     @Autowired
     private IPriceListDao priceListDao;

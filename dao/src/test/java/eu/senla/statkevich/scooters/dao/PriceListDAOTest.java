@@ -2,7 +2,7 @@ package eu.senla.statkevich.scooters.dao;
 
 import eu.senla.statkevich.scooters.dao.IDao.IPriceListDao;
 import eu.senla.statkevich.scooters.dao.IDao.IScooterDao;
-import eu.senla.statkevich.scooters.dao.IDao.ITermOfRentDAO;
+import eu.senla.statkevich.scooters.dao.IDao.ITermOfRentDao;
 import eu.senla.statkevich.scooters.entity.entities.PriceList;
 import eu.senla.statkevich.scooters.entity.entities.Scooters;
 import eu.senla.statkevich.scooters.entity.entities.TermOfRent;
@@ -31,7 +31,7 @@ public class PriceListDAOTest extends TestCase {
     private IScooterDao scooterDao;
 
     @Autowired
-    private ITermOfRentDAO termOfRentDAO;
+    private ITermOfRentDao termOfRentDAO;
 
     private static PriceList testPrice;
 

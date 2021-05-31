@@ -1,4 +1,4 @@
-package eu.senla.statkevich.scooters.service;
+package eu.senla.statkevich.scooters.service.serviceImpl;
 
 import eu.senla.statkevich.scooters.dao.IDao.IScooterDao;
 import eu.senla.statkevich.scooters.dto.ScooterDTO;

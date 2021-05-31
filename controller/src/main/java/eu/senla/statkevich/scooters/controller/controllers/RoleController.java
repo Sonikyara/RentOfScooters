@@ -26,15 +26,6 @@ public class RoleController {
         return roleService.readByTitle(title);
     }
 
-//	@RequestMapping(value = "/roleSave",
-//			method = {RequestMethod.POST,RequestMethod.GET},
-//			consumes = { "application/json" },
-//			produces = {MediaType.APPLICATION_JSON_VALUE})
-//	@ResponseBody
-//	public Roles saveRole(@RequestBody RoleDTO roleDTO) {
-//		return roleService.create(roleDTO.getTitle());
-//	}
-
     //TEST
     //@PermitAll
     @RequestMapping("/helloRole")

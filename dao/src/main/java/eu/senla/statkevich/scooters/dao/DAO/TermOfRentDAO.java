@@ -1,6 +1,6 @@
-package eu.senla.statkevich.scooters.dao;
+package eu.senla.statkevich.scooters.dao.DAO;
 
-import eu.senla.statkevich.scooters.dao.IDao.ITermOfRentDAO;
+import eu.senla.statkevich.scooters.dao.IDao.ITermOfRentDao;
 import eu.senla.statkevich.scooters.entity.entities.TermOfRent;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +11,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-public class TermOfRentDAO extends GenericDaoImpl<TermOfRent> implements ITermOfRentDAO {
+public class TermOfRentDAO extends GenericDaoImpl<TermOfRent> implements ITermOfRentDao {
 
     @Override
     public TermOfRent readByTitle(String title) {

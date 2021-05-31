@@ -8,16 +8,13 @@ import eu.senla.statkevich.scooters.service.IServices.PaymentService;
 import eu.senla.statkevich.scooters.service.IServices.PriceListService;
 import eu.senla.statkevich.scooters.service.IServices.RentService;
 import eu.senla.statkevich.scooters.service.IServices.ScootersService;
-import eu.senla.statkevich.scooters.service.ScooterServiceImpl;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.security.Principal;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -65,7 +62,7 @@ public class RentController {
     //rent a scooter
     @RequestMapping(value = "/rent/scooter",
             method = {RequestMethod.POST, RequestMethod.GET},
-            consumes = {"application/json"},
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String rentTheScooter(@RequestBody RentDTO rentDTO, Principal principal) {
         rentDTO.setUser_name(principal.getName());
@@ -128,9 +125,7 @@ public class RentController {
     @RequestMapping(value = "/scooters/all",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<ScooterDTO> getAllScooters(Principal principal) {
-        //(authentication.isAuthenticated())?((UserPrincipal) authentication.getPrincipal()).getName():"Нет такого юзера"
-        //return principal.getName();
+    public List<ScooterDTO> getAllScooters() {
         return scooterService.readAll();
     }
 
