@@ -1,7 +1,7 @@
 package eu.senla.statkevich.scooters.dao;
 
 import eu.senla.statkevich.scooters.dao.IDao.ITypeProducerDao;
-import eu.senla.statkevich.scooters.entity.TypesProducers;
+import eu.senla.statkevich.scooters.entity.entities.TypesProducers;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;

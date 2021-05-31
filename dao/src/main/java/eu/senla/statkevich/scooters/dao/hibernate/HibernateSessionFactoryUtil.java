@@ -1,6 +1,6 @@
 package eu.senla.statkevich.scooters.dao.hibernate;
 
-import eu.senla.statkevich.scooters.entity.*;
+import eu.senla.statkevich.scooters.entity.entities.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;

@@ -1,9 +1,8 @@
 package eu.senla.statkevich.scooters.dao;
 
 import eu.senla.statkevich.scooters.dao.IDao.IPaymentDao;
-import eu.senla.statkevich.scooters.entity.Payment;
-import eu.senla.statkevich.scooters.entity.Rent;
-import eu.senla.statkevich.scooters.entity.Users;
+import eu.senla.statkevich.scooters.entity.entities.Payment;
+import eu.senla.statkevich.scooters.entity.entities.Users;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.criteria.*;

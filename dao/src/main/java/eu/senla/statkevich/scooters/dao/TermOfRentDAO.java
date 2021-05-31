@@ -1,7 +1,7 @@
 package eu.senla.statkevich.scooters.dao;
 
 import eu.senla.statkevich.scooters.dao.IDao.ITermOfRentDAO;
-import eu.senla.statkevich.scooters.entity.TermOfRent;
+import eu.senla.statkevich.scooters.entity.entities.TermOfRent;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.criteria.CriteriaBuilder;

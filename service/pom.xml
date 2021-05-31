@@ -3,6 +3,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <artifactId>scooters</artifactId>
+        <groupId>eu.senla.statkevich</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>service</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>service</name>
+
     <dependencies>
         <dependency>
             <groupId>eu.senla.statkevich</groupId>
@@ -50,23 +60,14 @@
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
+            <scope>test</scope>
         </dependency>
-
     </dependencies>
 
-    <parent>
-        <artifactId>scooters</artifactId>
-        <groupId>eu.senla.statkevich</groupId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
-
-    <artifactId>service</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
-    <name>service</name>
     <build>
         <plugins>
             <plugin>

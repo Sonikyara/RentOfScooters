@@ -1,7 +1,7 @@
 package eu.senla.statkevich.scooters.dao;
 
 import eu.senla.statkevich.scooters.dao.IDao.IUserDao;
-import eu.senla.statkevich.scooters.entity.Users;
+import eu.senla.statkevich.scooters.entity.entities.Users;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.criteria.CriteriaBuilder;

@@ -1,6 +1,6 @@
 package eu.senla.statkevich.scooters.dao.IDao;
 
-import eu.senla.statkevich.scooters.entity.TypesProducers;
+import eu.senla.statkevich.scooters.entity.entities.TypesProducers;
 
 public interface ITypeProducerDao {
 

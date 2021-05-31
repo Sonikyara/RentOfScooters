@@ -1,7 +1,6 @@
 package eu.senla.statkevich.scooters.dao.IDao;
 
-import eu.senla.statkevich.scooters.entity.Roles;
-import eu.senla.statkevich.scooters.entity.Scooters;
+import eu.senla.statkevich.scooters.entity.entities.Scooters;
 
 import java.util.List;
 

@@ -1,14 +1,14 @@
-package eu.senla.statkevich.scooters.entity;
+package eu.senla.statkevich.scooters.entity.abstractEntities;
 
 import javax.persistence.*;
 
 @MappedSuperclass
-public abstract class AEntity {
+public abstract class EntityMain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public AEntity() {
+    public EntityMain() {
     }
 
     public Long getId() {

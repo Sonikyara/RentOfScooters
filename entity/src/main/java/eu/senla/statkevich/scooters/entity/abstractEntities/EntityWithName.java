@@ -1,15 +1,15 @@
-package eu.senla.statkevich.scooters.entity;
+package eu.senla.statkevich.scooters.entity.abstractEntities;
 
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class AEntityWithName extends AEntity {
+public abstract class EntityWithName extends EntityMain {
     private String name;
 
-    public AEntityWithName() {
+    public EntityWithName() {
     }
 
-    public AEntityWithName(String name) {
+    public EntityWithName(String name) {
         super();
         this.name = name;
     }

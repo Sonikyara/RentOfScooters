@@ -1,9 +1,7 @@
 package eu.senla.statkevich.scooters.dao.IDao;
 
-import eu.senla.statkevich.scooters.entity.Rent;
-import eu.senla.statkevich.scooters.entity.Users;
+import eu.senla.statkevich.scooters.entity.entities.Rent;
 
-import java.util.Date;
 import java.util.List;
 
 public interface IRentDao {

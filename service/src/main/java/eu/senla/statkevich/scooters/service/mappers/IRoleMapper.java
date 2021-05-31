@@ -2,7 +2,7 @@ package eu.senla.statkevich.scooters.service.mappers;
 
 
 import eu.senla.statkevich.scooters.dto.RoleDTO;
-import eu.senla.statkevich.scooters.entity.Roles;
+import eu.senla.statkevich.scooters.entity.entities.Roles;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

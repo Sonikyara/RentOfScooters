@@ -1,9 +1,6 @@
 package eu.senla.statkevich.scooters.dao.IDao;
 
-import eu.senla.statkevich.scooters.entity.PriceList;
-import eu.senla.statkevich.scooters.entity.Scooters;
-import eu.senla.statkevich.scooters.entity.TermOfRent;
-import eu.senla.statkevich.scooters.entity.Users;
+import eu.senla.statkevich.scooters.entity.entities.PriceList;
 
 import java.util.List;
 

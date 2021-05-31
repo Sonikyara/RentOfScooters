@@ -1,11 +1,13 @@
-package eu.senla.statkevich.scooters.entity;
+package eu.senla.statkevich.scooters.entity.entities;
+
+import eu.senla.statkevich.scooters.entity.abstractEntities.EntityWithTitle;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "term_of_rent")
-public class TermOfRent extends AEntityWithTitle {
+public class TermOfRent extends EntityWithTitle {
 
     @Column(name = "count_of_days")
     private int countOfDays;

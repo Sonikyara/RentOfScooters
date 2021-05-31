@@ -1,14 +1,10 @@
 package eu.senla.statkevich.scooters.dao;
 
 import eu.senla.statkevich.scooters.dao.IDao.IRoleDao;
-import eu.senla.statkevich.scooters.entity.Roles;
+import eu.senla.statkevich.scooters.entity.entities.Roles;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository

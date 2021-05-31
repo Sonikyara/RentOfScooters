@@ -1,7 +1,7 @@
 package eu.senla.statkevich.scooters.dao;
 
 import eu.senla.statkevich.scooters.dao.IDao.IPriceListDao;
-import eu.senla.statkevich.scooters.entity.PriceList;
+import eu.senla.statkevich.scooters.entity.entities.PriceList;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 

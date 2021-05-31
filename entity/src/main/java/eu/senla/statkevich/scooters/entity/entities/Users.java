@@ -1,4 +1,6 @@
-package eu.senla.statkevich.scooters.entity;
+package eu.senla.statkevich.scooters.entity.entities;
+
+import eu.senla.statkevich.scooters.entity.abstractEntities.EntityWithName;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -6,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class Users extends AEntityWithName {
+public class Users extends EntityWithName {
 
     @Column(name = "phone_number")
     private String phoneNumber;

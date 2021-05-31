@@ -3,6 +3,17 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>scooters</artifactId>
+        <groupId>eu.senla.statkevich</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>dao</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>dao</name>
+
     <dependencies>
         <dependency>
             <groupId>eu.senla.statkevich</groupId>
@@ -52,28 +63,14 @@
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
         </dependency>
-
     </dependencies>
-    <parent>
-        <artifactId>scooters</artifactId>
-        <groupId>eu.senla.statkevich</groupId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
-
-    <artifactId>dao</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
-    <name>dao</name>
-
-    <properties>
-    </properties>
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
-                <version>3.4.1</version>
+                <version>4.2.2</version>
                 <configuration>
                     <propertyFile>src/main/resources/liquibase.properties</propertyFile>
                     <systemProperties>
@@ -83,14 +80,14 @@
                 <dependencies>
                     <dependency>
                         <groupId>org.liquibase.ext</groupId>
-                        <artifactId>liquibase-hibernate4</artifactId>
-                        <version>3.5</version>
+                        <artifactId>liquibase-hibernate5</artifactId>
+                        <version>4.3.5</version>
                     </dependency>
 
                     <dependency>
                         <groupId>org.springframework</groupId>
                         <artifactId>spring-beans</artifactId>
-                        <version>4.1.7.RELEASE</version>
+                        <version>5.2.12.RELEASE</version>
                     </dependency>
 
                     <dependency>

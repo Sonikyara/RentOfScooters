@@ -1,7 +1,6 @@
 package eu.senla.statkevich.scooters.service.IServices;
 
 import eu.senla.statkevich.scooters.dto.RentDTO;
-import eu.senla.statkevich.scooters.entity.Rent;
 
 import java.util.List;
 

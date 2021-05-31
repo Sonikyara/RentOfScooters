@@ -1,7 +1,7 @@
 package eu.senla.statkevich.scooters.dao.IDao;
 
-import eu.senla.statkevich.scooters.entity.Payment;
-import eu.senla.statkevich.scooters.entity.Users;
+import eu.senla.statkevich.scooters.entity.entities.Payment;
+import eu.senla.statkevich.scooters.entity.entities.Users;
 
 import java.math.BigDecimal;
 import java.util.List;

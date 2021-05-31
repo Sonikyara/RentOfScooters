@@ -1,4 +1,6 @@
-package eu.senla.statkevich.scooters.entity;
+package eu.senla.statkevich.scooters.entity.entities;
+
+import eu.senla.statkevich.scooters.entity.abstractEntities.EntityWithName;
 
 import javax.persistence.*;
 import java.util.List;
@@ -6,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "sellers")
-public class Sellers extends AEntityWithName {
+public class Sellers extends EntityWithName {
 
     private String adress;
 

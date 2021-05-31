@@ -1,7 +1,7 @@
 package eu.senla.statkevich.scooters.dao;
 
 import eu.senla.statkevich.scooters.dao.IDao.IScooterDao;
-import eu.senla.statkevich.scooters.entity.*;
+import eu.senla.statkevich.scooters.entity.entities.Scooters;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 

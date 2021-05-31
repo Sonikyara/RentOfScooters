@@ -2,7 +2,7 @@ package eu.senla.statkevich.scooters.service.mappers;
 
 
 import eu.senla.statkevich.scooters.dto.PaymentDTO;
-import eu.senla.statkevich.scooters.entity.Payment;
+import eu.senla.statkevich.scooters.entity.entities.Payment;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

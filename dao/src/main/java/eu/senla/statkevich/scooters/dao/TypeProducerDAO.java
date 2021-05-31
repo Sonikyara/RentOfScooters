@@ -1,7 +1,7 @@
 package eu.senla.statkevich.scooters.dao;
 
 import eu.senla.statkevich.scooters.dao.IDao.ITypeProducerDao;
-import eu.senla.statkevich.scooters.entity.TypesProducers;
+import eu.senla.statkevich.scooters.entity.entities.TypesProducers;
 import org.springframework.stereotype.Repository;
 
 @Repository

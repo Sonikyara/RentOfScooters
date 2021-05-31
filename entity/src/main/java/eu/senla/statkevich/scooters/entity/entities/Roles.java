@@ -1,12 +1,15 @@
-package eu.senla.statkevich.scooters.entity;
+package eu.senla.statkevich.scooters.entity.entities;
+
+import eu.senla.statkevich.scooters.entity.abstractEntities.EntityWithTitle;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Entity
-@Table(name = "roles")
-public class Roles extends AEntityWithTitle {
+@Table(name = "roles")//,uniqueConstraints = {@UniqueConstraint(columnNames = "name")}
+public class Roles extends EntityWithTitle {
 
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)//fetch = FetchType.EAGER
     //,cascade = CascadeType.ALL ???

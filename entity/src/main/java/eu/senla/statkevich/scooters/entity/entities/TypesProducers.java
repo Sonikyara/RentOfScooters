@@ -1,4 +1,4 @@
-package eu.senla.statkevich.scooters.entity;
+package eu.senla.statkevich.scooters.entity.entities;
 
 import javax.persistence.*;
 import java.util.List;

@@ -1,9 +1,8 @@
 package eu.senla.statkevich.scooters.service;
 
 import eu.senla.statkevich.scooters.dao.IDao.*;
-import eu.senla.statkevich.scooters.dao.RentDAO;
 import eu.senla.statkevich.scooters.dto.RentDTO;
-import eu.senla.statkevich.scooters.entity.*;
+import eu.senla.statkevich.scooters.entity.entities.*;
 import eu.senla.statkevich.scooters.service.IServices.RentService;
 import eu.senla.statkevich.scooters.service.mappers.IRentMapper;
 import org.apache.log4j.Logger;

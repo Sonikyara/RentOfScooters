@@ -1,4 +1,6 @@
-package eu.senla.statkevich.scooters.entity;
+package eu.senla.statkevich.scooters.entity.entities;
+
+import eu.senla.statkevich.scooters.entity.abstractEntities.EntityWithName;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -7,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "producer")
-public class Producer extends AEntityWithName {
+public class Producer extends EntityWithName {
 
     @OneToMany(mappedBy = "producer", fetch = FetchType.LAZY)
     private List<TypesProducers> typesProducers;

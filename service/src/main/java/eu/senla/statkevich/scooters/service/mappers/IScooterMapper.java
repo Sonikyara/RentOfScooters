@@ -1,7 +1,7 @@
 package eu.senla.statkevich.scooters.service.mappers;
 
 import eu.senla.statkevich.scooters.dto.ScooterDTO;
-import eu.senla.statkevich.scooters.entity.Scooters;
+import eu.senla.statkevich.scooters.entity.entities.Scooters;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
