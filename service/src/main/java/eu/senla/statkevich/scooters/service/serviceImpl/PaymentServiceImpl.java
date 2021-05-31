@@ -4,7 +4,7 @@ import eu.senla.statkevich.scooters.dao.IDao.IPaymentDao;
 import eu.senla.statkevich.scooters.dao.IDao.IUserDao;
 import eu.senla.statkevich.scooters.dto.PaymentDTO;
 import eu.senla.statkevich.scooters.entity.entities.Payment;
-import eu.senla.statkevich.scooters.service.IServices.PaymentService;
+import eu.senla.statkevich.scooters.service.ServicesI.PaymentService;
 import eu.senla.statkevich.scooters.service.mappers.IPaymentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

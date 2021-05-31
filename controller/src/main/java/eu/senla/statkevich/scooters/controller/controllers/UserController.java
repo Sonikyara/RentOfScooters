@@ -1,7 +1,9 @@
 package eu.senla.statkevich.scooters.controller.controllers;
 
+import eu.senla.statkevich.scooters.controller.securityConfiguration.JwtProvider;
+import eu.senla.statkevich.scooters.entity.entities.Users;
 import eu.senla.statkevich.scooters.service.ServiceException;
-import eu.senla.statkevich.scooters.service.IServices.UsersService;
+import eu.senla.statkevich.scooters.service.ServicesI.UsersService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -11,13 +13,14 @@ import org.springframework.web.bind.annotation.*;
 import eu.senla.statkevich.scooters.dto.UserDTO;
 
 import javax.validation.Valid;
-import java.security.Principal;
-
 
 @RestController
 public class UserController {
 
     private static final Logger logger = Logger.getLogger(UserController.class);
+
+    @Autowired
+    private JwtProvider jwtProvider;
 
     @Autowired
     public UsersService userService;
@@ -43,7 +46,13 @@ public class UserController {
             logger.info(allErrors);
             throw new ServiceException(allErrors);
         }
-        return userService.create(userDTO);
+        Users newUser = userService.create(userDTO);
+
+        String token = jwtProvider.generateToken(newUser.getName());
+        logger.info(newUser.toString());
+        logger.info("token :  " + token);
+
+        return newUser.toString() + " , token: " + token;
     }
 
     @RequestMapping(value = "/user/ByName/{name}",

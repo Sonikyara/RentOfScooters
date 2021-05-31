@@ -1,4 +1,4 @@
-package eu.senla.statkevich.scooters.service.securityConfiguration;
+package eu.senla.statkevich.scooters.controller.securityConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -6,6 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -17,13 +18,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @ComponentScan(basePackages = {"eu.senla.statkevich.scooters.service"})
 @EnableWebSecurity(debug = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true,jsr250Enabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService userDetailsService;
 
-//    @Autowired
-//    TokenAuthenticationManager tokenAuthenticationManager;
 
     @Autowired
     private JwtFilter jwtFilter;
@@ -57,11 +57,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordFilter.class)
                 .authorizeRequests()
                 //.antMatchers("/roleSave").hasAnyRole( "ADMIN")
-                .antMatchers("/helloUser", "/user/registration", "/priceList").permitAll()
-                .antMatchers("/user/**", "/role/**", "/scooters/**", "/price/**", "/rent/**","/payment/**").hasAnyRole("USER", "ADMIN")
+                .mvcMatchers("/helloUser", "/user/registration", "/priceList").permitAll()
+                .mvcMatchers("/user/**", "/role/**", "/scooters/**", "/price/**", "/rent/**").hasAnyRole("USER", "ADMIN")
 
                 .and()
-                .addFilterBefore(jwtFilter,UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .formLogin()
                 .loginProcessingUrl("/user")
 

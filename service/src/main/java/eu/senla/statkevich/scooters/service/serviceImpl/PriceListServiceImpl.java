@@ -6,7 +6,7 @@ import eu.senla.statkevich.scooters.dao.IDao.ITermOfRentDao;
 import eu.senla.statkevich.scooters.dto.PriceListDTO;
 import eu.senla.statkevich.scooters.entity.entities.Scooters;
 import eu.senla.statkevich.scooters.entity.entities.TermOfRent;
-import eu.senla.statkevich.scooters.service.IServices.PriceListService;
+import eu.senla.statkevich.scooters.service.ServicesI.PriceListService;
 import eu.senla.statkevich.scooters.service.mappers.IPriceListMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

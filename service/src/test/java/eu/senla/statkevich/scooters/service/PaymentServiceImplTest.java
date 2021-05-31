@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -64,6 +65,8 @@ public class PaymentServiceImplTest extends TestCase {
         PaymentDTO testPaymentDTO = paymentMapper.paymentToPaymentDTO(testPayment);
         PaymentDTO resultPaymentDTO = paymentService.create(testPayment.getSum(), testUser.getName());
 
+        verify(userDao,Mockito.atLeast(1)).readByName(testUser.getName());
+        verify(paymentDao).create(any(Payment.class));
         assertNotNull(resultPaymentDTO);
         assertEquals(testPaymentDTO.getUserName(), resultPaymentDTO.getUserName());
     }
@@ -74,7 +77,7 @@ public class PaymentServiceImplTest extends TestCase {
 
         List<PaymentDTO> resultListPaymentDTO = paymentService.readAll();
 
-        Mockito.verify(paymentDao).readAll();
+        verify(paymentDao).readAll();
         assertFalse(resultListPaymentDTO.isEmpty());
         assertEquals(1, resultListPaymentDTO.size());
     }
@@ -86,7 +89,8 @@ public class PaymentServiceImplTest extends TestCase {
 
         List<PaymentDTO> resultListPaymentDTO = paymentService.getByUserName(testUser.getName());
 
-        Mockito.verify(paymentDao).getByUser(testUser);
+        verify(userDao,Mockito.atLeast(1)).readByName(testUser.getName());
+        verify(paymentDao).getByUser(testUser);
         assertFalse(resultListPaymentDTO.isEmpty());
         assertEquals(1, resultListPaymentDTO.size());
     }

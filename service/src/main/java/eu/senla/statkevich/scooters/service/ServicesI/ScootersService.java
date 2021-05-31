@@ -1,11 +1,10 @@
-package eu.senla.statkevich.scooters.service.IServices;
+package eu.senla.statkevich.scooters.service.ServicesI;
 
 import eu.senla.statkevich.scooters.dto.ScooterDTO;
 
-import java.util.Date;
 import java.util.List;
 
-public interface ScootersService extends IGenericService<ScooterDTO> {
+public interface ScootersService extends GenericService<ScooterDTO> {
 
     ScooterDTO readByModel(final String model);
 

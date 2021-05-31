@@ -1,4 +1,4 @@
-package eu.senla.statkevich.scooters.service.securityConfiguration;
+package eu.senla.statkevich.scooters.controller.securityConfiguration;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import org.apache.log4j.Logger;

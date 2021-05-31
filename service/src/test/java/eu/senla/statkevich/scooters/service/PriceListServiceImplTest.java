@@ -81,6 +81,8 @@ public class PriceListServiceImplTest extends TestCase {
 
         PriceListDTO resultPriceListDTO = priceListService.readByTermIdAndScooter(1L, "Model1");
 
+        Mockito.verify(scootersDAO).readByModel(testScooter.getModel());
+        Mockito.verify(priceListDAO).readByTermAndScooter(any(Long.class), any(Long.class));
         assertNotNull(resultPriceListDTO);
         assertEquals(resultPriceListDTO.getScooter(), priceListMapper.PriceListToPriceListDto(testPrice1).getScooter());
     }
@@ -93,6 +95,9 @@ public class PriceListServiceImplTest extends TestCase {
 
         PriceListDTO resultPriceListDTO = priceListService.readByTermAndScooter("Day", "Model1");
 
+        Mockito.verify(scootersDAO).readByModel(testScooter.getModel());
+        Mockito.verify(termOfRentDao).readByTitle(testTerm.getTitle());
+        Mockito.verify(priceListDAO).readByTermAndScooter(any(Long.class), any(Long.class));
         assertNotNull(resultPriceListDTO);
         assertEquals(resultPriceListDTO.getScooter(), testPrice1.getScooter().getModel());
     }

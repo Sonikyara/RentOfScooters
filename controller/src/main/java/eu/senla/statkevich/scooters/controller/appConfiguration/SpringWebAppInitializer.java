@@ -1,7 +1,7 @@
 package eu.senla.statkevich.scooters.controller.appConfiguration;
 
 import eu.senla.statkevich.scooters.dao.JPAConfig;
-import eu.senla.statkevich.scooters.service.securityConfiguration.SecurityConfig;
+import eu.senla.statkevich.scooters.controller.securityConfiguration.SecurityConfig;
 import org.apache.log4j.Logger;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;

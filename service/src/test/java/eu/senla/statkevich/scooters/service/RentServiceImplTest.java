@@ -101,6 +101,7 @@ public class RentServiceImplTest extends TestCase {
         List<RentDTO> resultRentDTO = rentService.getByUserName(testUser.getName());
 
         Mockito.verify(rentDAO).readByUserId(testUser.getId());
+        Mockito.verify(userDAO).readByName(testUser.getName());
         assertFalse(resultRentDTO.isEmpty());
         assertEquals(1, resultRentDTO.size());
     }
@@ -119,6 +120,15 @@ public class RentServiceImplTest extends TestCase {
         RentDTO testRentDTO = rentMapper.RentToRentDto(testRent);
         RentDTO resultRentDTO = rentService.create(testRentDTO);
 
+        Mockito.verify(userDAO).readByName(testUser.getName());
+        Mockito.verify(scootersDAO).readByModel(testScooter.getModel());
+        Mockito.verify(termOfRentDAO).readByTitle(testTerm.getTitle());
+        Mockito.verify(priceListDAO).readByTermAndScooter(any(Long.class), any(Long.class));
+
+        Mockito.verify(paymentDao).getFreePayment(any(Users.class), any(BigDecimal.class));
+        Mockito.verify(rentDAO).create(any(Rent.class));
+        Mockito.verify(paymentDao).updateRentId(any(Payment.class));
+
         assertNotNull(resultRentDTO);
         assertEquals(resultRentDTO.getId(), testRentDTO.getId());
     }
@@ -132,6 +142,9 @@ public class RentServiceImplTest extends TestCase {
 
         RentDTO resultRentDTO = rentService.returnTheScooter("Model1", "Ann");
 
+        Mockito.verify(userDAO).readByName(testUser.getName());
+        Mockito.verify(scootersDAO).readByModel(testScooter.getModel());
+        Mockito.verify(rentDAO).readByUserScooter(any(Long.class), any(Long.class));
         Mockito.verify(rentDAO).updateDateEnd(testRent);
         assertNotNull(resultRentDTO);
         assertEquals(resultRentDTO.getScooter_model(), testScooter.getModel());

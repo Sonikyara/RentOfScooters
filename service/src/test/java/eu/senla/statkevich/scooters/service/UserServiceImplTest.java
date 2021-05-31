@@ -7,7 +7,6 @@ import eu.senla.statkevich.scooters.dto.UserDTO;
 import eu.senla.statkevich.scooters.entity.entities.Roles;
 import eu.senla.statkevich.scooters.entity.entities.Users;
 import eu.senla.statkevich.scooters.service.mappers.IUserMapper;
-import eu.senla.statkevich.scooters.service.securityConfiguration.JwtProvider;
 import eu.senla.statkevich.scooters.service.serviceImpl.UserServiceImpl;
 import junit.framework.TestCase;
 import org.junit.BeforeClass;
@@ -38,8 +37,6 @@ public class UserServiceImplTest extends TestCase {
     private UserDAO userDAO;
     @Mock
     private RoleDAO roleDAO;
-    @Mock
-    private JwtProvider jwtProvider;
     @Mock
     private PasswordEncoder passwordEncoder;
     @Spy
@@ -91,13 +88,12 @@ public class UserServiceImplTest extends TestCase {
         when(userDAO.create(any(Users.class))).thenReturn(testUser);
         when(roleDAO.readByTitle(any(String.class))).thenReturn(testRole);
         when(passwordEncoder.encode(any(String.class))).thenReturn("pass");
-        when(jwtProvider.generateToken(any(String.class))).thenReturn("pass");
 
         UserDTO testUserDTO = userMapper.userToUserDto(testUser);
-        String resultUserDTOString = userService.create(testUserDTO);
+        Users resultUser = userService.create(testUserDTO);
 
-        //Mockito.verify(userDAO).create(testUser);
-        assertNotNull(resultUserDTOString);
+        Mockito.verify(userDAO).create(any(Users.class));
+        assertNotNull(resultUser);
     }
 
     //@Test

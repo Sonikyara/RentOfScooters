@@ -1,4 +1,4 @@
-package eu.senla.statkevich.scooters.service.securityConfiguration;
+package eu.senla.statkevich.scooters.controller.securityConfiguration;
 
 import eu.senla.statkevich.scooters.dao.IDao.IUserDao;
 import eu.senla.statkevich.scooters.entity.entities.Users;

@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface IPriceListMapper {
 
-    IPriceListMapper INSTANCE = Mappers.getMapper(IPriceListMapper.class);
+    //IPriceListMapper INSTANCE = Mappers.getMapper(IPriceListMapper.class);
 
     @Mapping(target = "scooter", source = "scooter.model")
     @Mapping(target = "scooter_number", source = "scooter.number")

@@ -1,4 +1,4 @@
-package eu.senla.statkevich.scooters.service.securityConfiguration;
+package eu.senla.statkevich.scooters.controller.securityConfiguration;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;

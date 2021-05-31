@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface IRentMapper {
 
-    IRentMapper INSTANCE = Mappers.getMapper(IRentMapper.class);
+    //IRentMapper INSTANCE = Mappers.getMapper(IRentMapper.class);
 
     @Mapping(target = "scooter_model", source = "scooter.model")
     //@Mapping(target = "scooter_number", source = "scooter.number")

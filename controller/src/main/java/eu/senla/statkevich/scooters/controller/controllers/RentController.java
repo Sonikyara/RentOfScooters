@@ -4,13 +4,15 @@ import eu.senla.statkevich.scooters.dto.PaymentDTO;
 import eu.senla.statkevich.scooters.dto.PriceListDTO;
 import eu.senla.statkevich.scooters.dto.RentDTO;
 import eu.senla.statkevich.scooters.dto.ScooterDTO;
-import eu.senla.statkevich.scooters.service.IServices.PaymentService;
-import eu.senla.statkevich.scooters.service.IServices.PriceListService;
-import eu.senla.statkevich.scooters.service.IServices.RentService;
-import eu.senla.statkevich.scooters.service.IServices.ScootersService;
+import eu.senla.statkevich.scooters.service.ServicesI.PaymentService;
+import eu.senla.statkevich.scooters.service.ServicesI.PriceListService;
+import eu.senla.statkevich.scooters.service.ServicesI.RentService;
+import eu.senla.statkevich.scooters.service.ServicesI.ScootersService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -35,28 +37,31 @@ public class RentController {
     public PaymentService paymentService;
 
     //payment
+    @Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
     @RequestMapping(value = "/payment/pay",
             method = {RequestMethod.POST, RequestMethod.GET},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public PaymentDTO addPayment(@RequestParam(name = "sum", required = true) BigDecimal sum, Principal principal) {
 
-        return  paymentService.create(sum,principal.getName());
+        return paymentService.create(sum, principal.getName());
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/payment/all",
             method = {RequestMethod.GET},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<PaymentDTO> allPayments() {
 
-        return  paymentService.readAll();
+        return paymentService.readAll();
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
     @RequestMapping(value = "/payment/my",
             method = {RequestMethod.GET},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<PaymentDTO> allPaymentsForUser(Principal principal) {
 
-        return  paymentService.getByUserName(principal.getName());
+        return paymentService.getByUserName(principal.getName());
     }
 
     //rent a scooter
@@ -66,11 +71,11 @@ public class RentController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public String rentTheScooter(@RequestBody RentDTO rentDTO, Principal principal) {
         rentDTO.setUser_name(principal.getName());
-        RentDTO resultRentDTO=rentService.create(rentDTO);
+        RentDTO resultRentDTO = rentService.create(rentDTO);
         logger.info(resultRentDTO);
-        if (resultRentDTO==null){
+        if (resultRentDTO == null) {
             return "нет подходящей оплаты";
-        }else{
+        } else {
             return resultRentDTO.toString();
         }
     }
@@ -133,7 +138,7 @@ public class RentController {
     @RequestMapping(value = "/scooters/free",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<ScooterDTO> getFreeScooters( @RequestParam(name = "dateStr") String dateStr) {
+    public List<ScooterDTO> getFreeScooters(@RequestParam(name = "dateStr") String dateStr) {
         logger.info(dateStr);
         return scooterService.readFreeScooters(dateStr);
     }

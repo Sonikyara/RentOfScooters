@@ -12,7 +12,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface IPaymentMapper {
 
-    IPaymentMapper INSTANCE = Mappers.getMapper(IPaymentMapper.class);
+    //IPaymentMapper INSTANCE = Mappers.getMapper(IPaymentMapper.class);
 
 
     @Mapping(target = "userName", source = "user.name")

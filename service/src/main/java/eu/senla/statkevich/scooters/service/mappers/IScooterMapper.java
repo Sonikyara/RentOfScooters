@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface IScooterMapper {
 
-    IScooterMapper INSTANCE = Mappers.getMapper(IScooterMapper.class);
+    //IScooterMapper INSTANCE = Mappers.getMapper(IScooterMapper.class);
 
     //пока запись из браузера не нужна
     //Scooters scooterDtoToScooter(final ScooterDTO scooterDTO);

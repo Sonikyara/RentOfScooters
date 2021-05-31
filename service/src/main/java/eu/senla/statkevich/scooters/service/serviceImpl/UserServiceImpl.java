@@ -4,9 +4,8 @@ import eu.senla.statkevich.scooters.dao.IDao.IRoleDao;
 import eu.senla.statkevich.scooters.dao.IDao.IUserDao;
 import eu.senla.statkevich.scooters.dao.repository.UsersRepository;
 import eu.senla.statkevich.scooters.entity.entities.Roles;
-import eu.senla.statkevich.scooters.service.IServices.UsersService;
+import eu.senla.statkevich.scooters.service.ServicesI.UsersService;
 import eu.senla.statkevich.scooters.service.mappers.IUserMapper;
-import eu.senla.statkevich.scooters.service.securityConfiguration.JwtProvider;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,7 +15,6 @@ import eu.senla.statkevich.scooters.entity.entities.Users;
 
 import javax.transaction.Transactional;
 import java.util.List;
-
 
 @Service
 @Transactional
@@ -32,8 +30,6 @@ public class UserServiceImpl implements UsersService {
     @Autowired
     private IRoleDao roleDAO;
 
-    @Autowired
-    private JwtProvider jwtProvider;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -52,7 +48,7 @@ public class UserServiceImpl implements UsersService {
     }
 
     @Override
-    public String create(UserDTO userDTO) {
+    public Users create(UserDTO userDTO) {
 
         Roles role = roleDAO.readByTitle("USER");
 
@@ -60,11 +56,7 @@ public class UserServiceImpl implements UsersService {
         user.setRole(role);
         user.setPass(passwordEncoder.encode(userDTO.getPass()));
 
-        String token = jwtProvider.generateToken(user.getName());
-        logger.info(user.toString());
-        logger.info("token :  "+token);
-        String createdUser=(userDAO.create(user)).toString();
-        return createdUser+token;
+        return userDAO.create(user);
     }
 
     @Override

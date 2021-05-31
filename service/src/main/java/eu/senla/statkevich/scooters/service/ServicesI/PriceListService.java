@@ -1,4 +1,4 @@
-package eu.senla.statkevich.scooters.service.IServices;
+package eu.senla.statkevich.scooters.service.ServicesI;
 
 import eu.senla.statkevich.scooters.dto.PriceListDTO;
 

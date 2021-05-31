@@ -43,7 +43,6 @@ public class RoleServiceImplTest extends TestCase {
 
     @Test
     public void testRead() {
-        System.out.println("TestById");
         when(roleDAO.read(any(Long.class))).thenReturn(testRole);
 
         RoleDTO resultRoleDTO = roleService.read(10L);
@@ -56,7 +55,6 @@ public class RoleServiceImplTest extends TestCase {
 
     @Test
     public void testReadByTitle() {
-        System.out.println("TestByTitle");
         when(roleDAO.readByTitle(any(String.class))).thenReturn(testRole);
 
         RoleDTO resultRoleDTO = roleService.readByTitle("TestUser");

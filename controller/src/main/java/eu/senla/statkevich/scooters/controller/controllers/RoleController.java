@@ -1,7 +1,7 @@
 package eu.senla.statkevich.scooters.controller.controllers;
 
 import eu.senla.statkevich.scooters.dto.RoleDTO;
-import eu.senla.statkevich.scooters.service.IServices.RolesService;
+import eu.senla.statkevich.scooters.service.ServicesI.RolesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +27,6 @@ public class RoleController {
     }
 
     //TEST
-    //@PermitAll
     @RequestMapping("/helloRole")
     public String helloWorld() {
         return "helloRole";

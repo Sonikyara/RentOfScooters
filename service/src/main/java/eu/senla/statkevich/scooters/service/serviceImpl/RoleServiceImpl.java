@@ -3,7 +3,7 @@ package eu.senla.statkevich.scooters.service.serviceImpl;
 import eu.senla.statkevich.scooters.dao.IDao.IRoleDao;
 import eu.senla.statkevich.scooters.dto.RoleDTO;
 import eu.senla.statkevich.scooters.entity.entities.Roles;
-import eu.senla.statkevich.scooters.service.IServices.RolesService;
+import eu.senla.statkevich.scooters.service.ServicesI.RolesService;
 import eu.senla.statkevich.scooters.service.mappers.IRoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

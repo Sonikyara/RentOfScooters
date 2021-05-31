@@ -54,7 +54,6 @@ public class ScooterServiceImplTest extends TestCase {
 
     @Test
     public void testRead() {
-        System.out.println("TestRead");
         when(scootersDAO.read(any(Long.class))).thenReturn(testScooter);
 
         ScooterDTO resultScooterDTO = scooterService.read(1L);
@@ -66,7 +65,6 @@ public class ScooterServiceImplTest extends TestCase {
 
     @Test
     public void testReadAll() {
-        System.out.println("TestReadAll");
         when(scootersDAO.readAll()).thenReturn(testScootersList);
 
         List<ScooterDTO> resultListScooterDTO = scooterService.readAll();
@@ -78,7 +76,6 @@ public class ScooterServiceImplTest extends TestCase {
 
     @Test
     public void testReadFreeScooters() {
-        System.out.println("TestReadFree");
         when(scootersDAO.readFree(any(String.class))).thenReturn(testScootersList);
 
         List<ScooterDTO> resultListScooterDTO = scooterService.readFreeScooters("2020-07-01");
@@ -89,7 +86,6 @@ public class ScooterServiceImplTest extends TestCase {
 
     @Test
     public void testReadByModel() {
-        System.out.println("TestReadByModel");
         when(scootersDAO.readByModel(any(String.class))).thenReturn(testScooter);
 
         ScooterDTO resultScooterDTO = scooterService.readByModel("Model1");
