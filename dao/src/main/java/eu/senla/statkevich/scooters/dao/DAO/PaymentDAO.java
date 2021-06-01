@@ -3,6 +3,7 @@ package eu.senla.statkevich.scooters.dao.DAO;
 import eu.senla.statkevich.scooters.dao.IDao.IPaymentDao;
 import eu.senla.statkevich.scooters.entity.entities.Payment;
 import eu.senla.statkevich.scooters.entity.entities.Users;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.criteria.*;
@@ -11,6 +12,9 @@ import java.util.List;
 
 @Repository
 public class PaymentDAO extends GenericDaoImpl<Payment> implements IPaymentDao {
+
+    private static final Logger logger=Logger.getLogger(PaymentDAO.class);
+
     @Override
     public Payment create(Payment payment) {
         entityManager.persist(payment);
@@ -26,6 +30,34 @@ public class PaymentDAO extends GenericDaoImpl<Payment> implements IPaymentDao {
         CriteriaQuery<Payment> all = cq.select(paymentRoot);
 
         return entityManager.createQuery(all).getResultList();
+    }
+
+    @Override
+    public List<Payment> readPage(int firstResult, int sizeOfPage, Users user, BigDecimal sum) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Payment> cq = cb.createQuery(Payment.class);
+        Root<Payment> paymentRoot = cq.from(Payment.class);
+
+        CriteriaQuery<Payment> all = cq.select(paymentRoot);
+
+        //если есть фильтры, то добавить
+        Predicate[] predicates;
+        if ((user != null) && (sum != null)) {
+            predicates = new Predicate[2];
+            predicates[0] = cb.equal(paymentRoot.get("user"), user.getId());
+            predicates[1] = cb.equal(paymentRoot.get("sum"), sum);
+            all.where(predicates);
+        }else if ((user != null) || (sum != null)){
+            predicates = new Predicate[1];
+            if(user != null){
+                predicates[0] = cb.equal(paymentRoot.get("user"), user.getId());
+            }else{
+                predicates[0] = cb.equal(paymentRoot.get("sum"), sum);
+            }
+            all.where(predicates);
+        }
+
+        return entityManager.createQuery(all).setFirstResult(firstResult).setMaxResults(sizeOfPage).getResultList();
     }
 
     @Override

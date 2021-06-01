@@ -10,11 +10,14 @@ import eu.senla.statkevich.scooters.service.ServicesI.RentService;
 import eu.senla.statkevich.scooters.service.ServicesI.ScootersService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.List;
@@ -37,6 +40,25 @@ public class RentController {
     public PaymentService paymentService;
 
     //payment
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(value = "/payment/allPages",
+            method = {RequestMethod.GET},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<PaymentDTO> allPaymentsWithPagination(@RequestParam(name = "page", defaultValue = "1") int page,
+                                                      @RequestParam(name = "size", defaultValue = "2") int sizeOfPage,
+                                                      @RequestParam(name = "user", required = false) String user,
+                                                      @RequestParam(name = "sum", required = false) BigDecimal sum) {
+        if (sizeOfPage < 1) {
+            sizeOfPage = 2;
+        }
+        if (page < 1) {
+            page = 1;
+        }
+        logger.info(user);
+        logger.info(sum);
+        return paymentService.readPage(page, sizeOfPage, user, sum);
+    }
+
     @Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
     @RequestMapping(value = "/payment/pay",
             method = {RequestMethod.POST, RequestMethod.GET},
@@ -50,7 +72,6 @@ public class RentController {
             method = {RequestMethod.GET},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<PaymentDTO> allPayments() {
-
         return paymentService.readAll();
     }
 

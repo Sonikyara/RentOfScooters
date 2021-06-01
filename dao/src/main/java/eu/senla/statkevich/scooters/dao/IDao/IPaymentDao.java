@@ -12,6 +12,8 @@ public interface IPaymentDao {
 
     List<Payment> readAll();
 
+    List<Payment> readPage(int firstResult,int sizeOfPage,Users user, BigDecimal sum);
+
     List<Payment> getByUser(Users user);
 
     List<Payment> getFreePayment(Users user, BigDecimal sum);

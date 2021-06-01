@@ -16,13 +16,8 @@ public class LoggingAspect {
     public void controllerPointСut() { //,Exception e
     }
 
-//    @After("controllerPointСut()")
-//    public void doAfterTask(JoinPoint joinPoint){
-//        logger.info("Method : "+joinPoint.getSignature().getName());
-//    }
-
     @AfterThrowing(pointcut = "controllerPointСut()",throwing ="ex")
     public void doAfterThrowingTask(Exception ex){
-        logger.error("Exception  : "+ex.getMessage());
+        logger.error("Exception  : "+ex.getMessage()+"  "+ex.getStackTrace());
     }
 }

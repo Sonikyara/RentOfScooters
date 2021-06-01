@@ -11,6 +11,8 @@ public interface PaymentService {
 
     List<PaymentDTO> readAll();
 
+    List<PaymentDTO> readPage(int page,int sizeOfPage,String user, BigDecimal sum);
+
     List<PaymentDTO> getByUserName(String name);
 
 }

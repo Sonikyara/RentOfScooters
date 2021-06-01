@@ -11,7 +11,7 @@ import java.util.List;
 @Table(name = "roles")//,uniqueConstraints = {@UniqueConstraint(columnNames = "name")}
 public class Roles extends EntityWithTitle {
 
-    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)//fetch = FetchType.EAGER
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
     //,cascade = CascadeType.ALL ???
     private List<Users> users;
 
