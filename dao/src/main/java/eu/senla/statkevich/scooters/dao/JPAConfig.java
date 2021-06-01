@@ -21,6 +21,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
+@EnableAspectJAutoProxy
 @ComponentScan
 @PropertySource("classpath:application.properties")
 @Import(EntityConfig.class)

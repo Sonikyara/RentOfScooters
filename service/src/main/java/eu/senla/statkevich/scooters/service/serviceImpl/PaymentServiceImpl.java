@@ -39,7 +39,6 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public List<PaymentDTO> getByUserName(String name) {
-
         return paymentMapper.listPaymentToListPaymentDto(paymentDao.getByUser(userDao.readByName(name)));
     }
 }

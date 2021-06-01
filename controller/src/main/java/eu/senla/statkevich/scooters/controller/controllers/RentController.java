@@ -42,7 +42,6 @@ public class RentController {
             method = {RequestMethod.POST, RequestMethod.GET},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public PaymentDTO addPayment(@RequestParam(name = "sum", required = true) BigDecimal sum, Principal principal) {
-
         return paymentService.create(sum, principal.getName());
     }
 
@@ -60,7 +59,6 @@ public class RentController {
             method = {RequestMethod.GET},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<PaymentDTO> allPaymentsForUser(Principal principal) {
-
         return paymentService.getByUserName(principal.getName());
     }
 
