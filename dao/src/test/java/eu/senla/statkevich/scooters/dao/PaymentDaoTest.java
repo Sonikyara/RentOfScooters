@@ -18,6 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @ContextConfiguration(classes = {JPAConfig.class}, loader = AnnotationConfigContextLoader.class)
@@ -98,6 +99,17 @@ public class PaymentDaoTest extends TestCase {
                 assertEquals(resultPayment.getRent(), testPayment.getRent());
             }
         }
-
     }
+
+    @Test
+    @Rollback(true)
+    public void testReadPage() {
+        Users resultUser = userDao.readAll().get(0);
+        List<Payment> resultListPayment=paymentDao.readPage(1,1,resultUser, BigDecimal.valueOf(6));
+        if (!resultListPayment.isEmpty()){
+            assertEquals(resultListPayment.get(0).getUser().getName(),resultUser.getName());
+            assertEquals(resultListPayment.get(0).getSum(), BigDecimal.valueOf(6));
+        }
+    }
+
 }

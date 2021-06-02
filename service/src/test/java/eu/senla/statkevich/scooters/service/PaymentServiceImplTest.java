@@ -45,6 +45,8 @@ public class PaymentServiceImplTest extends TestCase {
     private static Payment testPayment;
     private static List<Payment> testListPayment;
 
+    private static BigDecimal sum;
+
     @BeforeClass
     public static void prepareTestData() {
         testUser = new Users("Ann");
@@ -55,6 +57,7 @@ public class PaymentServiceImplTest extends TestCase {
         testListPayment = new ArrayList<>();
         testListPayment.add(testPayment);
 
+        sum = BigDecimal.valueOf(7);
     }
 
     @Test
@@ -65,7 +68,7 @@ public class PaymentServiceImplTest extends TestCase {
         PaymentDTO testPaymentDTO = paymentMapper.paymentToPaymentDTO(testPayment);
         PaymentDTO resultPaymentDTO = paymentService.create(testPayment.getSum(), testUser.getName());
 
-        verify(userDao,Mockito.atLeast(1)).readByName(testUser.getName());
+        verify(userDao, Mockito.atLeast(1)).readByName(testUser.getName());
         verify(paymentDao).create(any(Payment.class));
         assertNotNull(resultPaymentDTO);
         assertEquals(testPaymentDTO.getUserName(), resultPaymentDTO.getUserName());
@@ -89,9 +92,26 @@ public class PaymentServiceImplTest extends TestCase {
 
         List<PaymentDTO> resultListPaymentDTO = paymentService.getByUserName(testUser.getName());
 
-        verify(userDao,Mockito.atLeast(1)).readByName(testUser.getName());
+        verify(userDao, Mockito.atLeast(1)).readByName(testUser.getName());
         verify(paymentDao).getByUser(testUser);
         assertFalse(resultListPaymentDTO.isEmpty());
         assertEquals(1, resultListPaymentDTO.size());
+    }
+
+    @Test
+    public void testReadPage() {
+        when(userDao.readByName(any(String.class))).thenReturn(testUser);
+        when(paymentDao.readPage(any(Integer.class), any(Integer.class), any(Users.class), any(BigDecimal.class))).thenReturn(testListPayment);
+
+        List<PaymentDTO> resultListPaymentDTO = paymentService.readPage(1, 1, testUser.getName(), sum);
+
+        verify(userDao, Mockito.atLeast(1)).readByName(testUser.getName());
+        verify(paymentDao).readPage(0, 1, testUser, sum);
+
+        if (!resultListPaymentDTO.isEmpty()) {
+            assertEquals(resultListPaymentDTO.get(0).getUserName(), testUser.getName());
+            assertEquals(resultListPaymentDTO.get(0).getSum(), sum);
+        }
+
     }
 }

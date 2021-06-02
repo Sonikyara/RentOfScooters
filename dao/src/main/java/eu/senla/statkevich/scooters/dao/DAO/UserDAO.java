@@ -11,7 +11,6 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-//public class UserDAO implements IUserDao{
 public class UserDAO extends GenericDaoImpl<Users> implements IUserDao {
 
     @Override

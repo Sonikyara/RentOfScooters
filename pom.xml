@@ -16,7 +16,7 @@
     <url>http://www.example.com</url>
 
     <properties>
-
+        <org.jetbrains.annotations.version>RELEASE</org.jetbrains.annotations.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -44,6 +44,7 @@
         <mapstruct-processor.version>1.4.1.Final</mapstruct-processor.version>
         <org.mockito.version>1.10.19</org.mockito.version>
         <junit.version>4.12</junit.version>
+        <aspectjweaver.version>1.9.6</aspectjweaver.version>
 
         <liquibase-maven-plugin.version>4.2.2</liquibase-maven-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -52,6 +53,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.jetbrains</groupId>
+                <artifactId>annotations</artifactId>
+                <version>${org.jetbrains.annotations.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
@@ -190,7 +198,7 @@
             <dependency>
                 <groupId>org.aspectj</groupId>
                 <artifactId>aspectjweaver</artifactId>
-                <version>1.9.6</version>
+                <version>${aspectjweaver.version}</version>
             </dependency>
 
         </dependencies>

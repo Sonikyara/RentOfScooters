@@ -24,15 +24,14 @@ public class RoleDAOTest extends TestCase {
 
     @BeforeClass
     public static void prepareTestData() {
+
         testRole = new Roles("USER");
     }
 
     @Test
     public void testReadByTitle() {
-        System.out.println("DAO-TestReadByTitle");
-
-        Roles resultRole = roleDAO.readByTitle("USER");
-
+        Roles resultRole = roleDAO.readByTitle(testRole.getTitle());
+        System.out.println(resultRole);
         assertNotNull(resultRole);
         assertEquals(resultRole.getTitle(), testRole.getTitle());
 
