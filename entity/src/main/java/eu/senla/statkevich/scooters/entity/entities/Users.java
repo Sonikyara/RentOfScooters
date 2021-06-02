@@ -10,12 +10,13 @@ import java.util.List;
 @Table(name = "users")
 public class Users extends EntityWithName {
 
-    @Column(name = "phone_number")
+    @Column(name = "phone_number",nullable = false)
     private String phoneNumber;
+    @Column(nullable = false)
     private String pass;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(nullable = false)
     private Roles role;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)

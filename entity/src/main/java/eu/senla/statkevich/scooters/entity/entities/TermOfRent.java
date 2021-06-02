@@ -6,10 +6,12 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "term_of_rent")
+@Table(name = "term_of_rent"
+        ,uniqueConstraints = {@UniqueConstraint(columnNames = {"title","count_of_days"},name = "term_uniq")}
+)
 public class TermOfRent extends EntityWithTitle {
 
-    @Column(name = "count_of_days")
+    @Column(name = "count_of_days",nullable = false)
     private int countOfDays;
 
     @OneToMany(mappedBy = "termOfRent", fetch = FetchType.LAZY)

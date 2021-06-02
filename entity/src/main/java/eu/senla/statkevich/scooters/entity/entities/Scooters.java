@@ -11,15 +11,17 @@ public class Scooters {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long number;
+    @Column(nullable = false)
     private String model;
+    @Column(nullable = false)
     private BigDecimal sum;
 
     @ManyToOne
-    @JoinColumn//(name = "seller_id")
+    @JoinColumn(nullable = false)//(name = "seller_id")
     private Sellers seller;
 
     @ManyToOne
-    @JoinColumn(name = "types_producers_id")
+    @JoinColumn(name = "types_producers_id",nullable = false)
     private TypesProducers typeProducer;
 
     @OneToMany(mappedBy = "scooter", fetch = FetchType.LAZY)

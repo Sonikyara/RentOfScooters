@@ -10,21 +10,21 @@ public class Rent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "date_start")
+    @Column(name = "date_start",nullable = false)
     private Date dateStart;
     @Column(name = "date_end")
     private Date dateEnd;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(nullable = false)
     private Scooters scooter;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(nullable = false)
     private Users user;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(nullable = false)
     private PriceList price;
 
     @OneToOne(mappedBy = "rent", fetch = FetchType.LAZY)

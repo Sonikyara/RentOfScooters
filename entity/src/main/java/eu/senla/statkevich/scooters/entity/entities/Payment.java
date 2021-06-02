@@ -9,10 +9,11 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private BigDecimal sum;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(nullable = false)
     private Users user;
 
     @OneToOne(cascade = CascadeType.ALL)

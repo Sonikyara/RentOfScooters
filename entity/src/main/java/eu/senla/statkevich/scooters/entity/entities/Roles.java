@@ -9,12 +9,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "roles"
-        //,uniqueConstraints = {@UniqueConstraint(columnNames = "name",name = "roles_uniq")}
+        ,uniqueConstraints = {@UniqueConstraint(columnNames = "title",name = "roles_uniq")}
 )
 public class Roles extends EntityWithTitle {
 
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
-    //,cascade = CascadeType.ALL ???
     private List<Users> users;
 
 

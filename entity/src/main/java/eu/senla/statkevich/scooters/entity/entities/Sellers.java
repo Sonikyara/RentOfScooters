@@ -10,6 +10,7 @@ import java.util.List;
 @Table(name = "sellers")
 public class Sellers extends EntityWithName {
 
+    @Column(nullable = false)
     private String adress;
 
     @OneToMany(mappedBy = "seller", fetch = FetchType.LAZY)

@@ -4,18 +4,20 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "types_producers")
+@Table(name = "types_producers"
+        ,uniqueConstraints = {@UniqueConstraint(columnNames = {"producer_id","type_of_scooter_id"},name = "types_producers_uniq")}
+)
 public class TypesProducers {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "producer_id")
+    @JoinColumn(name = "producer_id",nullable = false)
     private Producer producer;
 
     @ManyToOne
-    @JoinColumn(name = "type_of_scooter_id")
+    @JoinColumn(name = "type_of_scooter_id",nullable = false)
     private TypeOfScooter scootersType;
 
     @OneToMany(mappedBy = "seller", fetch = FetchType.LAZY)

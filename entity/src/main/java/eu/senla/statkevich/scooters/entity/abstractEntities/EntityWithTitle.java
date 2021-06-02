@@ -1,6 +1,5 @@
 package eu.senla.statkevich.scooters.entity.abstractEntities;
 
-import org.springframework.lang.NonNull;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
@@ -8,7 +7,7 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class EntityWithTitle extends EntityMain {
 
-    //@Column(nullable = false)
+    @Column(nullable = false)
     private String title;
 
     public EntityWithTitle() {

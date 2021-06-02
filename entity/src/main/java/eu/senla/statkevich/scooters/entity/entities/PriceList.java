@@ -11,14 +11,15 @@ public class PriceList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private BigDecimal price;
 
     @ManyToOne
-    @JoinColumn(name = "scooter_number")
+    @JoinColumn(name = "scooter_number",nullable = false)
     private Scooters scooter;
 
     @ManyToOne
-    @JoinColumn(name = "term_id")
+    @JoinColumn(name = "term_id",nullable = false)
     private TermOfRent termOfRent;
 
     @OneToMany(mappedBy = "price", fetch = FetchType.LAZY)

@@ -1,9 +1,12 @@
 package eu.senla.statkevich.scooters.entity.abstractEntities;
 
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class EntityWithName extends EntityMain {
+
+    @Column(nullable = false)
     private String name;
 
     public EntityWithName() {
