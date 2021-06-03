@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -35,7 +36,7 @@ public class ScooterServiceImpl implements ScootersService {
     }
 
     @Override
-    public List<ScooterDTO> readFreeScooters(String date) {
+    public List<ScooterDTO> readFreeScooters(LocalDate date) {
         //перевести дату
         List<Scooters> result = scootersDAO.readFree(date);
         return scooterMapper.listScooterToListScooterDto(result);

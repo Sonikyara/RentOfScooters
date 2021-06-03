@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -25,13 +26,13 @@ public class ScootersDAOTest extends TestCase {
 
     private static Long testScootersNumber;
     private static String testScootersModel;
-    private static String testDateForFree;
+    private static LocalDate testDate;
 
     @BeforeClass
     public static void prepareTestData() {
         testScootersNumber = Long.valueOf(1);
         testScootersModel = "Model1";
-        testDateForFree="2020-07-01";
+        testDate=LocalDate.of(2021, 7, 1);
     }
 
     @Test
@@ -59,7 +60,7 @@ public class ScootersDAOTest extends TestCase {
 
     @Test
     public void testReadFree() {
-        List<Scooters> listScooters = scooterDao.readFree(testDateForFree);
+        List<Scooters> listScooters = scooterDao.readFree(testDate);
 
         if (listScooters.size() > 0) {
             assertNotNull(listScooters.get(0));

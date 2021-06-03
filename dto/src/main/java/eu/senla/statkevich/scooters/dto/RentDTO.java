@@ -3,9 +3,8 @@ package eu.senla.statkevich.scooters.dto;
 
 public class RentDTO {
     private Long id;
-    //private int scooter_number;
-    private String scooter_model;
-    private String user_name;
+    private String scooterModel;
+    private String userName;
     private String price;
     // @NotBlank
     private String termOfRent;
@@ -16,10 +15,10 @@ public class RentDTO {
     public RentDTO() {
     }
 
-    public RentDTO(String scooter_model,String dateStart,String termOfRent) {
-        this.scooter_model=scooter_model;
-        this.dateStart=dateStart;
-        this.termOfRent=termOfRent;
+    public RentDTO(String scooter_model, String dateStart, String termOfRent) {
+        this.scooterModel = scooter_model;
+        this.dateStart = dateStart;
+        this.termOfRent = termOfRent;
     }
 
     public Long getId() {
@@ -30,28 +29,20 @@ public class RentDTO {
         this.id = id;
     }
 
-//    public int getScooter_number() {
-//        return scooter_number;
-//    }
-//
-//    public void setScooter_number(int scooter_number) {
-//        this.scooter_number = scooter_number;
-//    }
-
-    public String getScooter_model() {
-        return scooter_model;
+    public String getScooterModel() {
+        return scooterModel;
     }
 
-    public void setScooter_model(String scooter_model) {
-        this.scooter_model = scooter_model;
+    public void setScooterModel(String scooterModel) {
+        this.scooterModel = scooterModel;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getTermOfRent() {
@@ -90,8 +81,8 @@ public class RentDTO {
     public String toString() {
         return "RentDTO{" +
                 "id=" + id +
-                ", scooter_model='" + scooter_model +
-                ", user_name='" + user_name +
+                ", scooterModel='" + scooterModel +
+                ", userName='" + userName+
                 ", termOfRent='" + termOfRent +
                 ", dateStart=" + dateStart;
     }

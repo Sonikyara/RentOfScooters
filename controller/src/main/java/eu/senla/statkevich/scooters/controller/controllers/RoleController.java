@@ -26,10 +26,4 @@ public class RoleController {
         return roleService.readByTitle(title);
     }
 
-    //TEST
-    @RequestMapping("/helloRole")
-    public String helloWorld() {
-        return "helloRole";
-    }
-
 }

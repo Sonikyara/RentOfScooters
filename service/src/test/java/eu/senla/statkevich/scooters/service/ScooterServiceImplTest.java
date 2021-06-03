@@ -19,6 +19,7 @@ import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class ScooterServiceImplTest extends TestCase {
     private static Scooters testScooter;
     private static Scooters testScooter1;
     private static List<Scooters> testScootersList;
+    private static LocalDate testDate;
 
     @BeforeClass
     public static void prepareTestData() {
@@ -50,6 +52,8 @@ public class ScooterServiceImplTest extends TestCase {
         testScootersList = new ArrayList<>();
         testScootersList.add(testScooter);
         testScootersList.add(testScooter1);
+
+        testDate=LocalDate.of(2021, 7, 1);
     }
 
     @Test
@@ -76,11 +80,11 @@ public class ScooterServiceImplTest extends TestCase {
 
     @Test
     public void testReadFreeScooters() {
-        when(scootersDAO.readFree(any(String.class))).thenReturn(testScootersList);
+        when(scootersDAO.readFree(any(LocalDate.class))).thenReturn(testScootersList);
 
-        List<ScooterDTO> resultListScooterDTO = scooterService.readFreeScooters("2020-07-01");
+        List<ScooterDTO> resultListScooterDTO = scooterService.readFreeScooters(testDate);
 
-        Mockito.verify(scootersDAO).readFree("2020-07-01");
+        Mockito.verify(scootersDAO).readFree(testDate);
         assertFalse(resultListScooterDTO.isEmpty());
     }
 

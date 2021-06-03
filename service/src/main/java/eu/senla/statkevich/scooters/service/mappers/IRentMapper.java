@@ -4,7 +4,6 @@ import eu.senla.statkevich.scooters.dto.RentDTO;
 import eu.senla.statkevich.scooters.entity.entities.Rent;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
@@ -13,9 +12,8 @@ public interface IRentMapper {
 
     //IRentMapper INSTANCE = Mappers.getMapper(IRentMapper.class);
 
-    @Mapping(target = "scooter_model", source = "scooter.model")
-    //@Mapping(target = "scooter_number", source = "scooter.number")
-    @Mapping(target = "user_name", source = "user.name")
+    @Mapping(target = "scooterModel", source = "scooter.model")
+    @Mapping(target = "userName", source = "user.name")
     @Mapping(target = "price", source = "price.price", numberFormat = "#.00")
     @Mapping(target = "termOfRent", source = "price.termOfRent.title")
     @Mapping(target = "dateStart", source = "dateStart", dateFormat = "dd-MM-yyyy")

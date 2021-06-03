@@ -18,7 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @ComponentScan(basePackages = {"eu.senla.statkevich.scooters.service"})
 @EnableWebSecurity(debug = true)
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true,jsr250Enabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -54,13 +54,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()//отключено для браузера
                 .authorizeRequests()
-                .mvcMatchers("/helloUser", "/user/registration", "/priceList").permitAll()
-                .mvcMatchers("/user/**", "/role/**", "/scooters/**", "/price/**", "/rent/**").hasAnyRole("USER", "ADMIN")
+                .mvcMatchers("/users/registration", "/price", "/login").permitAll()
+                .mvcMatchers("/users/id/**", "/users/name/**", "/roles/**").hasAnyRole("USER", "ADMIN")
                 .and()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-                .formLogin()
-                .loginProcessingUrl("/user")
-
         ;
     }
 
@@ -68,13 +65,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authProvider());
     }
-
-
-//    @Bean(name = "restTokenAuthenticationFilter")
-//    public RestTokenAuthenticationFilter restTokenAuthenticationFilter() {
-//        RestTokenAuthenticationFilter restTokenAuthenticationFilter = new RestTokenAuthenticationFilter();
-//        tokenAuthenticationManager.setUserDetailsService(userDetailsService);
-//        restTokenAuthenticationFilter.setAuthenticationManager(tokenAuthenticationManager);
-//        return restTokenAuthenticationFilter;
-//    }
 }

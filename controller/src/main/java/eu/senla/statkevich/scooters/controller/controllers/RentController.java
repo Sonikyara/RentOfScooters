@@ -11,6 +11,7 @@ import eu.senla.statkevich.scooters.service.ServicesI.RentService;
 import eu.senla.statkevich.scooters.service.ServicesI.ScootersService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,8 +19,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -84,6 +85,7 @@ public class RentController {
     }
 
     //rent a scooter
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/rent/all",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -91,6 +93,7 @@ public class RentController {
         return rentService.readAll();
     }
 
+    @Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
     @RequestMapping(value = "/rent/my",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -122,6 +125,13 @@ public class RentController {
         return scooterService.read(number);
     }
 
+    @RequestMapping(value = "/scooters/model/{model}",
+            method = RequestMethod.GET,
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    protected ScooterDTO getByModel(@PathVariable("model") String model) {
+        return scooterService.readByModel(model);
+    }
+
     @RequestMapping(value = "/scooters/all",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -130,29 +140,22 @@ public class RentController {
     }
 
     //ожидается, что в эту дату будут свободны
-    //http://localhost:8081/controller-1.0-SNAPSHOT/scooters/free/2020-07-01
-    @RequestMapping(value = "/scooters/free/{dateStr}",
+    //http://localhost:8081/controller-1.0-SNAPSHOT/scooters/free?date=2020-07-01
+    @RequestMapping(value = "/scooters/free",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<ScooterDTO> getFreeScooters(@PathVariable(name = "dateStr") String dateStr,
-                                            @RequestParam(name = "dateD", required = true) Date dateD) {
-        logger.info(dateStr);
-        return scooterService.readFreeScooters(dateStr);
+    public List<ScooterDTO> getFreeScooters(@RequestParam(name = "date", required = false) @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate date) {
+        //logger.info(date);
+        return scooterService.readFreeScooters(date);
     }
 
-    @RequestMapping(value = "/scooters/model/{model}",
-            method = RequestMethod.GET,
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    protected ScooterDTO getByModel(@PathVariable("model") String model) {
-        return scooterService.readByModel(model);
-    }
-
+    @Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
     @RequestMapping(value = "/scooters/rent",
             method = {RequestMethod.POST, RequestMethod.GET},
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public Object rentTheScooter(@RequestBody RentDTO rentDTO, Principal principal) {
-        rentDTO.setUser_name(principal.getName());
+        rentDTO.setUserName(principal.getName());
         RentDTO resultRentDTO = rentService.create(rentDTO);
         logger.info(resultRentDTO);
         if (resultRentDTO == null) {
@@ -163,19 +166,13 @@ public class RentController {
         }
     }
 
+    @Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
     @RequestMapping(value = "/scooters/return",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public RentDTO returnTheScooter(@RequestParam(name = "scooter", required = true) String scooter, Principal principal) {
 
         return rentService.returnTheScooter(scooter, principal.getName());
-    }
-
-    //TEST
-    //@PermitAll
-    @RequestMapping("/helloRent")
-    public String helloWorld() {
-        return "helloRent";
     }
 
 }

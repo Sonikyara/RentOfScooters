@@ -26,19 +26,12 @@ public class UserController {
     @Autowired
     public UsersService userService;
 
-    @RequestMapping(value = "/loginn",
+    @RequestMapping(value = "/login/{phone}",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
     protected Object login(@PathVariable("phone") String phone) {
         String token = jwtProvider.generateToken(phone);
         return Collections.singletonMap("token", token);
-    }
-
-    @RequestMapping(value = "/users/id/{id}",
-            method = RequestMethod.GET,
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    protected UserDTO getUser(@PathVariable("id") Long id) {
-        return userService.read(id);
     }
 
     @RequestMapping(value = "/users/registration",
@@ -60,6 +53,13 @@ public class UserController {
         return userService.create(userDTO);
     }
 
+    @RequestMapping(value = "/users/id/{id}",
+            method = RequestMethod.GET,
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    protected UserDTO getUser(@PathVariable("id") Long id) {
+        return userService.read(id);
+    }
+
     @RequestMapping(value = "/users/name/{name}",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -68,23 +68,4 @@ public class UserController {
         logger.info("Get user: " + name);
         return userService.readByName(name);
     }
-
-    //TEST
-    @RequestMapping("/helloUser")
-    public String helloWorld() {
-        return "helloUser";
-    }
-
-
-//	@GetMapping("/userAuth")
-//	public String user(Authentication authentication) {
-//		return authentication.getPrincipal().toString();
-//	}
-
-//	@RequestMapping ( "/login" )
-//	@ResponseBody
-//	public ModelAndView loginPage () {
-//		return new ModelAndView("Login page");
-//	}
-
 }

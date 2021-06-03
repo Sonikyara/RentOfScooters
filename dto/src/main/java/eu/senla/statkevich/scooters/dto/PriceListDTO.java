@@ -6,7 +6,7 @@ public class PriceListDTO {
     private Long id;
     private BigDecimal price;
     private String scooter;
-    private int scooter_number;
+    private int scooterNumber;
     private String termOfRent;
 
     public PriceListDTO() {
@@ -20,12 +20,12 @@ public class PriceListDTO {
         this.id = id;
     }
 
-    public int getScooter_number() {
-        return scooter_number;
+    public int getScooterNumber() {
+        return scooterNumber;
     }
 
-    public void setScooter_number(int scooter_number) {
-        this.scooter_number = scooter_number;
+    public void setScooterNumber(int scooterNumber) {
+        this.scooterNumber = scooterNumber;
     }
 
     public BigDecimal getPrice() {

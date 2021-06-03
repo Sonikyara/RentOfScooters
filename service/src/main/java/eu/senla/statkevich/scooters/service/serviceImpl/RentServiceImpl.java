@@ -53,10 +53,10 @@ public class RentServiceImpl implements RentService {
 
         Rent rent = rentMapper.RentDTOToRent(rentDTO);
 
-        Users user = userDAO.readByName(rentDTO.getUser_name());
+        Users user = userDAO.readByName(rentDTO.getUserName());
         rent.setUser(user);
 
-        Scooters scooter = scooterDao.readByModel(rentDTO.getScooter_model());
+        Scooters scooter = scooterDao.readByModel(rentDTO.getScooterModel());
         rent.setScooter(scooter);
 
         TermOfRent termOfRent = termOfRentDao.readByTitle(rentDTO.getTermOfRent());

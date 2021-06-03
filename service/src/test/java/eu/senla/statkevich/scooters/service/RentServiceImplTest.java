@@ -147,6 +147,6 @@ public class RentServiceImplTest extends TestCase {
         Mockito.verify(rentDAO).readByUserScooter(any(Long.class), any(Long.class));
         Mockito.verify(rentDAO).updateDateEnd(testRent);
         assertNotNull(resultRentDTO);
-        assertEquals(resultRentDTO.getScooter_model(), testScooter.getModel());
+        assertEquals(resultRentDTO.getScooterModel(), testScooter.getModel());
     }
 }

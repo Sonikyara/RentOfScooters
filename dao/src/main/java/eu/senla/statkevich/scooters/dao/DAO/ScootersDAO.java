@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
 import javax.persistence.criteria.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,6 @@ public class ScootersDAO extends GenericDaoImpl<Scooters> implements IScooterDao
 
     @Override
     public Scooters readByModel(String model) {
-        //entityManager.clear();
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Scooters> cq = cb.createQuery(Scooters.class);
         Root<Scooters> scooters = cq.from(Scooters.class);
@@ -48,8 +48,7 @@ public class ScootersDAO extends GenericDaoImpl<Scooters> implements IScooterDao
     }
 
     @Override
-    public List<Scooters> readFree(String date) {
-        //public List<Object[]> readFree(String date) {
+    public List<Scooters> readFree(LocalDate date) {
 
 //        CriteriaBuilder cb=entityManager.getCriteriaBuilder();
 //        CriteriaQuery<Scooters> cq=cb.createQuery(Scooters.class);
@@ -86,6 +85,8 @@ public class ScootersDAO extends GenericDaoImpl<Scooters> implements IScooterDao
 //        /**/
 //		) as alldoRent on scooters.number=alldoRent.scooter_number
 //        where ((alldoRent.date_start isnull)or(alldoRent.date_must_end<='2020-01-04')or(alldoRent.date_start>'2020-01-04'))
+
+        logger.info(date);
 
         String myQuery =
                 "select scooters.* from scooters left join" +
