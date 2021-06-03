@@ -68,9 +68,8 @@ public class RentServiceImpl implements RentService {
         if (paymentList.size()>0) {
             //тут оплату привязать
             Rent resultRent=rentDao.create(rent);
-
-            paymentList.get(0).setRent(resultRent);
-            paymentDao.updateRentId(paymentList.get(0));
+            System.out.println("Rent---"+resultRent);
+            paymentDao.updateRentId(paymentList.get(0),rent);
 
             return rentMapper.RentToRentDto(resultRent);
         }else{

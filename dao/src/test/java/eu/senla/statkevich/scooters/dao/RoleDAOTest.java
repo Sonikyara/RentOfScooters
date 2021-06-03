@@ -31,7 +31,7 @@ public class RoleDAOTest extends TestCase {
     @Test
     public void testReadByTitle() {
         Roles resultRole = roleDAO.readByTitle(testRole.getTitle());
-        System.out.println(resultRole);
+
         assertNotNull(resultRole);
         assertEquals(resultRole.getTitle(), testRole.getTitle());
 

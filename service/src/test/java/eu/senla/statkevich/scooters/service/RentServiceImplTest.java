@@ -115,7 +115,7 @@ public class RentServiceImplTest extends TestCase {
 
         when(paymentDao.getFreePayment(any(Users.class), any(BigDecimal.class))).thenReturn(testListPayment);
         when(rentDAO.create(any(Rent.class))).thenReturn(testRent);
-        when(paymentDao.updateRentId(any(Payment.class))).thenReturn(testPayment);
+        when(paymentDao.updateRentId(any(Payment.class),any(Rent.class))).thenReturn(testPayment);
 
         RentDTO testRentDTO = rentMapper.RentToRentDto(testRent);
         RentDTO resultRentDTO = rentService.create(testRentDTO);
@@ -127,7 +127,7 @@ public class RentServiceImplTest extends TestCase {
 
         Mockito.verify(paymentDao).getFreePayment(any(Users.class), any(BigDecimal.class));
         Mockito.verify(rentDAO).create(any(Rent.class));
-        Mockito.verify(paymentDao).updateRentId(any(Payment.class));
+        Mockito.verify(paymentDao).updateRentId(any(Payment.class),any(Rent.class));
 
         assertNotNull(resultRentDTO);
         assertEquals(resultRentDTO.getId(), testRentDTO.getId());

@@ -26,11 +26,6 @@ public class TermOfRentDAO extends GenericDaoImpl<TermOfRent> implements ITermOf
     }
 
     @Override
-    public List<TermOfRent> readAll() {
-        return null;
-    }
-
-    @Override
     public TermOfRent read(Long id) {
         return entityManager.find(TermOfRent.class, id);
     }

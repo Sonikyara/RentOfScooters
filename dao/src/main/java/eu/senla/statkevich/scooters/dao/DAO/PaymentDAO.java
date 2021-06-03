@@ -2,6 +2,7 @@ package eu.senla.statkevich.scooters.dao.DAO;
 
 import eu.senla.statkevich.scooters.dao.IDao.IPaymentDao;
 import eu.senla.statkevich.scooters.entity.entities.Payment;
+import eu.senla.statkevich.scooters.entity.entities.Rent;
 import eu.senla.statkevich.scooters.entity.entities.Users;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
@@ -90,11 +91,12 @@ public class PaymentDAO extends GenericDaoImpl<Payment> implements IPaymentDao {
     }
 
     @Override
-    public Payment updateRentId(Payment payment) {
+    public Payment updateRentId(Payment payment, Rent rent) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaUpdate<Payment> criteriaUpdate = cb.createCriteriaUpdate(Payment.class);
         Root<Payment> root = criteriaUpdate.from(Payment.class);
 
+        payment.setRent(rent);
         criteriaUpdate.set("rent", payment.getRent());
         criteriaUpdate.where(cb.equal(root.get("id"), payment.getId()));
 

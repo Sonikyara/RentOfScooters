@@ -6,7 +6,6 @@ import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
@@ -62,7 +61,6 @@ public class RentDAOTest extends TestCase {
     }
 
     @Test
-    @Rollback(true)
     public void testUpdateDateEnd() {
         Rent testRent = rentDao.readAll().get(0);
 
@@ -90,7 +88,6 @@ public class RentDAOTest extends TestCase {
     }
 
     @Test
-    @Rollback(true)
     public void testCreate() {
 
         Users user = userDao.readAll().get(0);

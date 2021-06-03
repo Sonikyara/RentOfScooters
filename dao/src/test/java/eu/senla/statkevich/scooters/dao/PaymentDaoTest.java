@@ -1,24 +1,19 @@
 package eu.senla.statkevich.scooters.dao;
 
-import eu.senla.statkevich.scooters.dao.IDao.IPaymentDao;
-import eu.senla.statkevich.scooters.dao.IDao.IPriceListDao;
-import eu.senla.statkevich.scooters.dao.IDao.IRentDao;
-import eu.senla.statkevich.scooters.dao.IDao.IUserDao;
-import eu.senla.statkevich.scooters.entity.entities.Payment;
-import eu.senla.statkevich.scooters.entity.entities.PriceList;
-import eu.senla.statkevich.scooters.entity.entities.Rent;
-import eu.senla.statkevich.scooters.entity.entities.Users;
+import eu.senla.statkevich.scooters.dao.IDao.*;
+import eu.senla.statkevich.scooters.entity.entities.*;
 import junit.framework.TestCase;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 @ContextConfiguration(classes = {JPAConfig.class}, loader = AnnotationConfigContextLoader.class)
@@ -30,7 +25,12 @@ public class PaymentDaoTest extends TestCase {
     private IPaymentDao paymentDao;
 
     @Autowired
+    private IRoleDao roleDao;
+    @Autowired
     private IUserDao userDao;
+
+    @Autowired
+    private IScooterDao scooterDao;
 
     @Autowired
     private IRentDao rentDao;
@@ -38,76 +38,87 @@ public class PaymentDaoTest extends TestCase {
     @Autowired
     private IPriceListDao priceListDao;
 
-    public void testCreate() {
+    private static BigDecimal testSum;
+    private static String testScootersModel;
+    private static int testFirstResult;
+    private static int testSizeOfPage;
 
+    private Payment resultPayment;
+    private List<Payment> resultListPayment;
+
+    @BeforeClass
+    public static void prepareTestData() {
+        testSum = BigDecimal.valueOf(6);
+        testScootersModel = "Model1";
+        testSizeOfPage = 2;
+        testFirstResult = 1;
+    }
+
+    @Test
+    public void testCreate() {
+        Users testUser = userDao.create(new Users("Test", "123", "test", roleDao.readByTitle("USER")));
+        Payment testPayment = new Payment(testSum, testUser);
+
+        resultPayment = paymentDao.create(testPayment);
+
+        assertNotNull(resultPayment);
+        assertEquals(resultPayment, testPayment);
     }
 
     @Test
     public void testReadAll() {
-        List<Payment> listPayment = paymentDao.readAll();
+        resultListPayment = paymentDao.readAll();
 
-        if (listPayment.size() != 0) {
-            assertNotNull(listPayment.get(0));
+        if (resultListPayment.size() != 0) {
+            assertNotNull(resultListPayment.get(0));
         }
     }
 
     @Test
     public void testGetByUser() {
-        Users resultUser = userDao.readAll().get(0);
-        List<Payment> listPayment = paymentDao.getByUser(resultUser);
+        Users testUser = userDao.create(new Users("Test", "123", "test", roleDao.readByTitle("USER")));
 
-        if (listPayment.size() > 0) {
-            assertNotNull(listPayment.get(0));
-            assertEquals(listPayment.get(0).getUser().getId(), resultUser.getId());
-        }
+        resultPayment = paymentDao.create(new Payment(testSum, testUser));
+
+        resultListPayment = paymentDao.getByUser(testUser);
+
+        assertFalse(resultListPayment.isEmpty());
+        assertNotNull(resultListPayment.get(0));
+        assertEquals(resultListPayment.get(0), resultPayment);
     }
 
     @Test
-    @Rollback(true)
     public void testGetFreePayment() {
-        List<Users> listUser = userDao.readAll();
-        if (listUser.size() > 0) {
-            Users testUser = listUser.get(0);
-            PriceList testPriceList = priceListDao.readAll().get(0);
+        Users testUser = userDao.create(new Users("Test", "123", "test", roleDao.readByTitle("USER")));
+        Payment testPayment = paymentDao.create(new Payment(testSum, testUser));
 
-            List<Payment> resultListPayment = paymentDao.getFreePayment(testUser, testPriceList.getPrice());
-            if (resultListPayment.size() > 0) {
-                Payment testPayment = resultListPayment.get(0);
-                assertNotNull(testPayment);
-                assertEquals(testPayment.getUser(), testUser);
-                assertEquals(testPayment.getSum(), testPriceList.getPrice());
-            }
-        }
+        List<Payment> resultListPayment = paymentDao.getFreePayment(testUser, testSum);
+
+        assertFalse(resultListPayment.isEmpty());
+        assertNotNull(resultListPayment.get(0));
+        assertEquals(testPayment, resultListPayment.get(0));
     }
 
     @Test
-    @Rollback(true)
     public void testUpdateRentId() {
-        List<Rent> listRent = rentDao.readAll();
+        Users testUser = userDao.create(new Users("Test", "123", "test", roleDao.readByTitle("USER")));
+        PriceList testPrice = priceListDao.read(1L);
+        Payment testPayment = paymentDao.create(new Payment(testSum, testUser));
+        Rent testRent = rentDao.create(new Rent(testUser, testPrice.getScooter(), testPrice, new Date()));
 
-        if (listRent.size() > 0) {
-            Rent testRent = listRent.get(0);
+        resultPayment = paymentDao.updateRentId(testPayment, testRent);
 
-            List<Payment> listPayment = paymentDao.getFreePayment(testRent.getUser(), testRent.getPrice().getPrice());
-            if (listPayment.size() > 0) {
-                Payment testPayment = listPayment.get(0);
-                testPayment.setRent(testRent);
-
-                Payment resultPayment = paymentDao.updateRentId(testPayment);
-
-                assertNotNull(resultPayment);
-                assertEquals(resultPayment.getRent(), testPayment.getRent());
-            }
-        }
+        assertNotNull(resultPayment);
+        assertEquals(resultPayment.getRent(), testRent);
     }
 
     @Test
-    @Rollback(true)
     public void testReadPage() {
-        Users resultUser = userDao.readAll().get(0);
-        List<Payment> resultListPayment=paymentDao.readPage(1,1,resultUser, BigDecimal.valueOf(6));
-        if (!resultListPayment.isEmpty()){
-            assertEquals(resultListPayment.get(0).getUser().getName(),resultUser.getName());
+        Users testUser = userDao.create(new Users("Test", "123", "test", roleDao.readByTitle("USER")));
+
+        List<Payment> resultListPayment = paymentDao.readPage(testFirstResult, testSizeOfPage, testUser, testSum);
+        if (!resultListPayment.isEmpty()) {
+            assertEquals(resultListPayment.get(0).getUser().getName(), testUser.getName());
             assertEquals(resultListPayment.get(0).getSum(), BigDecimal.valueOf(6));
         }
     }

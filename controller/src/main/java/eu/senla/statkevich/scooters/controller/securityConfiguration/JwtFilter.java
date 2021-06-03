@@ -36,16 +36,17 @@ public class JwtFilter extends GenericFilterBean {
         logger.info("do filter...");
         String token = getTokenFromRequest((HttpServletRequest) servletRequest);
         if (token != null && jwtProvider.validateToken(token)) {
-            String userName = "";
+            String userPhone = "";
             try {
-                userName= jwtProvider.getNameFromToken(token);
+                userPhone= jwtProvider.getPhoneFromToken(token);
             } catch (IllegalArgumentException e) {
                 logger.error("Unable to get JWT Token");
             } catch (ExpiredJwtException e) {
                 logger.error("JWT Token has expired");
             }
 
-            UserDetails userDetails = detailsService.loadUserByUsername(userName);
+            UserDetails userDetails = detailsService.loadUserByUserPhone(userPhone);
+            //UserDetails userDetails = detailsService.loadUserByUsername(userPhone);
 
             UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(auth);

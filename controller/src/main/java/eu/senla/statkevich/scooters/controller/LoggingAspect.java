@@ -13,7 +13,7 @@ public class LoggingAspect {
     final static Logger logger=Logger.getLogger(LoggingAspect.class);
 
     @Pointcut("within(@org.springframework.web.bind.annotation.RestController *)")
-    public void controllerPointСut() { //,Exception e
+    public void controllerPointСut() {
     }
 
     @AfterThrowing(pointcut = "controllerPointСut()",throwing ="ex")

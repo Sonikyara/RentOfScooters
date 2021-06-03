@@ -7,12 +7,12 @@ import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring", uses = {IRoleMapper.class})
-//@Mapper(componentModel = "spring")
 public interface IUserMapper {
 
     IUserMapper INSTANCE = Mappers.getMapper(IUserMapper.class);
 
     @Mapping(target = "role", source = "role.title")
+    @Mapping(target = "pass", expression = "java(null)")
     UserDTO userToUserDto(final Users user);
 
     // defaultExpression = "java()")

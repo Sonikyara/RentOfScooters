@@ -1,5 +1,6 @@
 package eu.senla.statkevich.scooters.controller.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import eu.senla.statkevich.scooters.dto.PaymentDTO;
 import eu.senla.statkevich.scooters.dto.PriceListDTO;
 import eu.senla.statkevich.scooters.dto.RentDTO;
@@ -10,16 +11,15 @@ import eu.senla.statkevich.scooters.service.ServicesI.RentService;
 import eu.senla.statkevich.scooters.service.ServicesI.ScootersService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.support.PagedListHolder;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.security.Principal;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -41,7 +41,15 @@ public class RentController {
 
     //payment
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @RequestMapping(value = "/payment/allPages",
+    @RequestMapping(value = "/payments/all",
+            method = {RequestMethod.GET},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<PaymentDTO> allPayments() {
+        return paymentService.readAll();
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(value = "/payments/all/pages",
             method = {RequestMethod.GET},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<PaymentDTO> allPaymentsWithPagination(@RequestParam(name = "page", defaultValue = "1") int page,
@@ -60,23 +68,15 @@ public class RentController {
     }
 
     @Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
-    @RequestMapping(value = "/payment/pay",
+    @RequestMapping(value = "/payments/pay",
             method = {RequestMethod.POST, RequestMethod.GET},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public PaymentDTO addPayment(@RequestParam(name = "sum", required = true) BigDecimal sum, Principal principal) {
         return paymentService.create(sum, principal.getName());
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @RequestMapping(value = "/payment/all",
-            method = {RequestMethod.GET},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<PaymentDTO> allPayments() {
-        return paymentService.readAll();
-    }
-
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
-    @RequestMapping(value = "/payment/my",
+    @RequestMapping(value = "/payments/my",
             method = {RequestMethod.GET},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<PaymentDTO> allPaymentsForUser(Principal principal) {
@@ -84,29 +84,6 @@ public class RentController {
     }
 
     //rent a scooter
-    @RequestMapping(value = "/rent/scooter",
-            method = {RequestMethod.POST, RequestMethod.GET},
-            consumes = {MediaType.APPLICATION_JSON_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public String rentTheScooter(@RequestBody RentDTO rentDTO, Principal principal) {
-        rentDTO.setUser_name(principal.getName());
-        RentDTO resultRentDTO = rentService.create(rentDTO);
-        logger.info(resultRentDTO);
-        if (resultRentDTO == null) {
-            return "нет подходящей оплаты";
-        } else {
-            return resultRentDTO.toString();
-        }
-    }
-
-    @RequestMapping(value = "/rent/returnScooter",
-            method = RequestMethod.GET,
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public RentDTO returnTheScooter(@RequestParam(name = "scooter", required = true) String scooter, Principal principal) {
-
-        return rentService.returnTheScooter(scooter, principal.getName());
-    }
-
     @RequestMapping(value = "/rent/all",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -122,14 +99,14 @@ public class RentController {
     }
 
     //price
-    @RequestMapping(value = "/priceList",
+    @RequestMapping(value = "/price/all",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<PriceListDTO> getAllPrice() {
         return priceListService.readAll();
     }
 
-    @RequestMapping(value = "/price/scooterAndTerm",
+    @RequestMapping(value = "/price/scooter-term",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public PriceListDTO getPriceByTermAndScootersModel(@RequestParam(name = "term", required = true) String term,
@@ -138,14 +115,13 @@ public class RentController {
     }
 
     //about scooters
-    @RequestMapping(value = "/scooters/byNumber/{number}",
+    @RequestMapping(value = "/scooters/number/{number}",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
     protected ScooterDTO getScooter(@PathVariable("number") Long number) {
         return scooterService.read(number);
     }
 
-    //http://localhost:8081/controller-1.0-SNAPSHOT/scooters/free?dateStr=2020-07-01
     @RequestMapping(value = "/scooters/all",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -154,19 +130,45 @@ public class RentController {
     }
 
     //ожидается, что в эту дату будут свободны
-    @RequestMapping(value = "/scooters/free",
+    //http://localhost:8081/controller-1.0-SNAPSHOT/scooters/free/2020-07-01
+    @RequestMapping(value = "/scooters/free/{dateStr}",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<ScooterDTO> getFreeScooters(@RequestParam(name = "dateStr") String dateStr) {
+    public List<ScooterDTO> getFreeScooters(@PathVariable(name = "dateStr") String dateStr,
+                                            @RequestParam(name = "dateD", required = true) Date dateD) {
         logger.info(dateStr);
         return scooterService.readFreeScooters(dateStr);
     }
 
-    @RequestMapping(value = "/scooters/{model}",
+    @RequestMapping(value = "/scooters/model/{model}",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
     protected ScooterDTO getByModel(@PathVariable("model") String model) {
         return scooterService.readByModel(model);
+    }
+
+    @RequestMapping(value = "/scooters/rent",
+            method = {RequestMethod.POST, RequestMethod.GET},
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Object rentTheScooter(@RequestBody RentDTO rentDTO, Principal principal) {
+        rentDTO.setUser_name(principal.getName());
+        RentDTO resultRentDTO = rentService.create(rentDTO);
+        logger.info(resultRentDTO);
+        if (resultRentDTO == null) {
+            ObjectMapper mapper = new ObjectMapper();
+            return Collections.singletonMap("message", "no payment");
+        } else {
+            return resultRentDTO;
+        }
+    }
+
+    @RequestMapping(value = "/scooters/return",
+            method = RequestMethod.GET,
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public RentDTO returnTheScooter(@RequestParam(name = "scooter", required = true) String scooter, Principal principal) {
+
+        return rentService.returnTheScooter(scooter, principal.getName());
     }
 
     //TEST

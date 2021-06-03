@@ -53,6 +53,7 @@ public class UserServiceImplTest extends TestCase {
         testUser = new Users("Ann");
         testUser.setId(1L);
         testUser.setPass("pass");
+        testUser.setPhoneNumber("123ann");
 
         testRole = new Roles("User");
         testUser.setId(1L);
@@ -90,22 +91,10 @@ public class UserServiceImplTest extends TestCase {
         when(passwordEncoder.encode(any(String.class))).thenReturn("pass");
 
         UserDTO testUserDTO = userMapper.userToUserDto(testUser);
-        Users resultUser = userService.create(testUserDTO);
+        UserDTO resultUser = userService.create(testUserDTO);
 
         Mockito.verify(userDAO).create(any(Users.class));
         assertNotNull(resultUser);
     }
 
-    //@Test
-    public void testReadAll() {
-
-//        when(userDAO.readAll()).thenReturn(testUsersList);
-//
-//        List<UserDTO> resultListUserDTO = userService.readAll();
-//
-//        Mockito.verify(userDAO).readAll();
-//        assertFalse(resultListUserDTO.isEmpty());
-//        assertNotSame(0,resultListUserDTO.size());
-
-    }
 }

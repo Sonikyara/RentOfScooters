@@ -53,13 +53,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .csrf().disable()//отключено для браузера
-//                .addFilter(new JwtUsernameAndPasswordFilter(authenticationManager(), jwtConfig, secretKey))
-//                .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordFilter.class)
                 .authorizeRequests()
-                //.antMatchers("/roleSave").hasAnyRole( "ADMIN")
                 .mvcMatchers("/helloUser", "/user/registration", "/priceList").permitAll()
                 .mvcMatchers("/user/**", "/role/**", "/scooters/**", "/price/**", "/rent/**").hasAnyRole("USER", "ADMIN")
-
                 .and()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .formLogin()

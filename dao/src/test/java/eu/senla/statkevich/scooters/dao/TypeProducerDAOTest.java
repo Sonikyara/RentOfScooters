@@ -1,8 +1,10 @@
 package eu.senla.statkevich.scooters.dao;
 
 import eu.senla.statkevich.scooters.dao.IDao.ITypeProducerDao;
+import eu.senla.statkevich.scooters.entity.entities.TermOfRent;
 import eu.senla.statkevich.scooters.entity.entities.TypesProducers;
 import junit.framework.TestCase;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +21,18 @@ public class TypeProducerDAOTest extends TestCase {
     @Autowired
     private ITypeProducerDao typeProducerDao;
 
+    private static Long testTypeProducerId;
+
+    @BeforeClass
+    public static void prepareTestData() {
+        testTypeProducerId = Long.valueOf(1);
+    }
+
     @Test
     public void testRead() {
-        TypesProducers resultTypesProducers=typeProducerDao.read(1L);
+        TypesProducers resultTypesProducers = typeProducerDao.read(testTypeProducerId);
 
         assertNotNull(resultTypesProducers);
+        assertEquals(testTypeProducerId, resultTypesProducers.getId());
     }
 }

@@ -34,31 +34,16 @@ public class PriceListDAOTest extends TestCase {
     private ITermOfRentDao termOfRentDAO;
 
     private static PriceList testPrice;
+    private static String testScoootersModel;
+    private static String testTermTitle;
 
     @BeforeClass
     public static void prepareTestData() {
         testPrice = new PriceList();
         testPrice.setId(1L);
 
-    }
-
-    @Test
-    public void testReadByTermAndScooter() {
-        Scooters testScooter = scooterDao.readAll().get(0);
-        TermOfRent termOfRent = termOfRentDAO.readByTitle("Day");
-
-        PriceList resultPrice = priceListDao.readByTermAndScooter(termOfRent.getId(), testScooter.getNumber());
-
-        assertNotNull(resultPrice);
-        assertEquals(testScooter.getModel(), resultPrice.getScooter().getModel());
-    }
-
-    @Test
-    public void testRead() {
-        PriceList resultPrice = priceListDao.read(1L);
-
-        assertNotNull(resultPrice);
-        assertEquals(resultPrice.getId(), testPrice.getId());
+        testTermTitle = "Day";
+        testScoootersModel = "Model1";
     }
 
     @Test
@@ -66,6 +51,24 @@ public class PriceListDAOTest extends TestCase {
         List<PriceList> resultListPrice = priceListDao.readAll();
 
         assertFalse(resultListPrice.isEmpty());
-        assertEquals(6, resultListPrice.size());
+    }
+
+    @Test
+    public void testRead() {
+        PriceList resultPrice = priceListDao.read(testPrice.getId());
+
+        assertNotNull(resultPrice);
+        assertEquals(resultPrice.getId(), testPrice.getId());
+    }
+
+    @Test
+    public void testReadByTermAndScooter() {
+        Scooters testScooter = scooterDao.readByModel(testScoootersModel);
+        TermOfRent termOfRent = termOfRentDAO.readByTitle(testTermTitle);
+
+        PriceList resultPrice = priceListDao.readByTermAndScooter(termOfRent.getId(), testScooter.getNumber());
+
+        assertNotNull(resultPrice);
+        assertEquals(testScooter.getModel(), resultPrice.getScooter().getModel());
     }
 }

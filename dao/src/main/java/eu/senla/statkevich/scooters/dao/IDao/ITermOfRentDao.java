@@ -10,5 +10,5 @@ public interface ITermOfRentDao {
 
     TermOfRent readByTitle(final String title);
 
-    List<TermOfRent> readAll();
+    //List<TermOfRent> readAll();
 }

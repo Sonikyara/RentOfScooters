@@ -24,15 +24,10 @@ public class JwtProvider {
 
     private static final Logger logger = Logger.getLogger(JwtProvider.class);
 
-    public String generateToken(String name) {
+    public String generateToken(String phone) {
         Date date = Date.from(LocalDate.now().plusDays(15).atStartOfDay(ZoneId.systemDefault()).toInstant());
-
-//        .signWith(
-//                SignatureAlgorithm.HS256,
-//                TextCodec.BASE64.decode("Yn2kjibddFAWtnPJ2AFlL8WXmohJMCvigQggaEypa5E=")
-//
         return Jwts.builder()
-                .setSubject(name)
+                .setSubject(phone)
                 .setExpiration(date)
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
@@ -56,7 +51,7 @@ public class JwtProvider {
         return false;
     }
 
-    public String getNameFromToken(String token) {
+    public String getPhoneFromToken(String token) {
         Claims claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
         return claims.getSubject();
     }

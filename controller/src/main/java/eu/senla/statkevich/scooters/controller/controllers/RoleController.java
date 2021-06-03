@@ -12,14 +12,14 @@ public class RoleController {
     @Autowired
     public RolesService roleService;
 
-    @RequestMapping(value = "/role/{id}",
+    @RequestMapping(value = "/roles/id/{id}",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
     protected RoleDTO getRoleById(@PathVariable("id") Long id) {
         return roleService.read(id);
     }
 
-    @RequestMapping(value = "/role/ByTitle/{title}",
+    @RequestMapping(value = "/roles/title/{title}",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
     protected RoleDTO getRoleByTitle(@PathVariable("title") String title) {

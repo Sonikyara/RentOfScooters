@@ -8,6 +8,7 @@ public class UserDTO {
 
     @NotBlank
     private String name;
+    @NotBlank
     private String phoneNumber;
     @NotBlank
     private String pass;

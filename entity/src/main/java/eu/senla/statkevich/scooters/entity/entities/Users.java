@@ -40,6 +40,15 @@ public class Users extends EntityWithName {
         payment = new ArrayList<>();
     }
 
+    public Users(String name, String phoneNumber, String pass,Roles role) {
+        super(name);
+        this.phoneNumber = phoneNumber;
+        this.pass = pass;
+        this.role=role;
+        rent = new ArrayList<>();
+        payment = new ArrayList<>();
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }

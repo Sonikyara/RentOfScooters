@@ -5,11 +5,9 @@ import eu.senla.statkevich.scooters.dao.IDao.IUserDao;
 import eu.senla.statkevich.scooters.entity.entities.Roles;
 import eu.senla.statkevich.scooters.entity.entities.Users;
 import junit.framework.TestCase;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
@@ -17,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-//@TestInstance(Lifecycle.PER_CLASS)
 @ContextConfiguration(classes = {JPAConfig.class}, loader = AnnotationConfigContextLoader.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
@@ -28,61 +25,58 @@ public class UserDAOTest extends TestCase {
 
     @Autowired
     private IUserDao userDao;
+
     @Autowired
     private IRoleDao roleDao;
 
-    private Roles testRole;
     private Users testCreatedUser;
 
-    @BeforeClass
-    @Rollback(true)
-    public static void prepareTestData() {
-//        testRole = roleDao.readByTitle("USER");
-//        testCreatedUser = userDao.create(new Users("Test", "123", "test"));
-//        System.out.println(testCreatedUser);
-    }
-
     @Test
-    public void testRead() {
-        Users testUser = userDao.readAll().get(0);
-        resultUser = userDao.read(testUser.getId());
-        //resultUser = userDao.read(testCreatedUser.getId());
-
-        assertNotNull(resultUser);
-        assertEquals(resultUser.getId(), testUser.getId());
-        //assertEquals(resultUser, testCreatedUser);
-    }
-
-    @Test
-    public void testReadByName() {
-        Users testUser = userDao.readAll().get(0);
-        resultUser = userDao.readByName(testUser.getName());
-        //resultUser = userDao.readByName(testCreatedUser.getName());
-
-        assertNotNull(resultUser);
-        //assertEquals(resultUser, testCreatedUser);
-        assertEquals(resultUser.getId(), testUser.getId());
-    }
-
-    @Test
-    @Rollback(true)
     public void testCreate() {
-        Roles role = roleDao.readByTitle("USER");
-        Users testUser = new Users("Test", "123", "test");
-        testUser.setRole(role);
+        Roles testRole = roleDao.readByTitle("USER");
+        Users testUser = new Users("Test", "123", "test",testRole);
 
-        //Users testUser = new Users("TestCreate", "123", "test");
-        //testUser.setRole(testRole);
-
-        Users resultUser = userDao.create(testUser);
+        resultUser = userDao.create(testUser);
+        System.out.println(resultUser.toString());
 
         assertNotNull(resultUser);
         assertEquals(resultUser.getName(), testUser.getName());
     }
 
     @Test
-    public void testReadAll() {
+    public void testReadByPhone() {
+        Roles testRole = roleDao.readByTitle("USER");
+        Users testUser = userDao.create(new Users("Test", "123", "test", testRole));
 
+        resultUser = userDao.readByPhone(testUser.getPhoneNumber());
+        assertNotNull(resultUser);
+        assertEquals(resultUser, testUser);
+    }
+
+    @Test
+    public void testRead() {
+        Roles testRole = roleDao.readByTitle("USER");
+        Users testUser = userDao.create(new Users("Test", "123", "test", testRole));
+
+        resultUser = userDao.read(testUser.getId());
+
+        assertNotNull(resultUser);
+        assertEquals(resultUser, testUser);
+    }
+
+    @Test
+    public void testReadByName() {
+        Roles testRole = roleDao.readByTitle("USER");
+        Users testUser = userDao.create(new Users("Test", "123", "test", testRole));
+
+        resultUser = userDao.readByName(testUser.getName());
+
+        assertNotNull(resultUser);
+        assertEquals(resultUser, testUser);
+    }
+
+    @Test
+    public void testReadAll() {
         resultListUser = userDao.readAll();
 
         assertNotSame(resultListUser.size(), 0);

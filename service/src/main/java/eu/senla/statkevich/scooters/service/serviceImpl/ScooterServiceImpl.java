@@ -24,15 +24,9 @@ public class ScooterServiceImpl implements ScootersService {
     @Autowired
     private IScooterMapper scooterMapper;
 
-//    @Autowired
-//    private ISellerDao sellerDao;
-//    @Autowired
-//    private ITypeProducerDao typeProducerDao;
-
     @Override
     public ScooterDTO read(Long number) {
         return scooterMapper.scooterToScooterDto(scootersDAO.read(number));
-        //return  null;
     }
 
     @Override
@@ -43,7 +37,6 @@ public class ScooterServiceImpl implements ScootersService {
     @Override
     public List<ScooterDTO> readFreeScooters(String date) {
         //перевести дату
-
         List<Scooters> result = scootersDAO.readFree(date);
         return scooterMapper.listScooterToListScooterDto(result);
     }
@@ -51,7 +44,6 @@ public class ScooterServiceImpl implements ScootersService {
 
     @Override
     public ScooterDTO readByModel(String model) {
-        //Scooters scooter = scootersDAO.readByModel(model);
         return scooterMapper.scooterToScooterDto(scootersDAO.readByModel(model));
     }
 

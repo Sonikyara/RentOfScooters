@@ -39,6 +39,13 @@ public class Rent {
         this.price=priceList;
     }
 
+    public Rent(Users user,Scooters scooter,PriceList priceList, Date dateStart) {
+        this.user=user;
+        this.scooter=scooter;
+        this.price=priceList;
+        this.dateStart=dateStart;
+    }
+
     public Long getId() {
         return id;
     }

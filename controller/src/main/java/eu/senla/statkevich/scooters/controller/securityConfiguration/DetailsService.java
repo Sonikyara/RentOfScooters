@@ -15,12 +15,31 @@ public class DetailsService implements UserDetailsService {
     @Autowired
     private IUserDao userDAO;
 
+//    @Override
+//    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
+//        Users user = userDAO.readByName(name);
+//
+//        if (user == null) {
+//            throw new UsernameNotFoundException("Unknown user: " + name);
+//        }
+//        UserDetails userDetails = User.builder()
+//                .username(user.getName())
+//                .password(user.getPass())
+//                .roles(user.getRole().getTitle())
+//                .build();
+//        return userDetails;
+//    }
+
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        Users user = userDAO.readByName(name);
+        return null;
+    }
+
+    public UserDetails loadUserByUserPhone(String phone) throws UsernameNotFoundException {
+        Users user = userDAO.readByPhone(phone);
 
         if (user == null) {
-            throw new UsernameNotFoundException("Unknown user: " + name);
+            throw new UsernameNotFoundException("Unknown user with phone: " + phone);
         }
         UserDetails userDetails = User.builder()
                 .username(user.getName())
@@ -29,6 +48,5 @@ public class DetailsService implements UserDetailsService {
                 .build();
         return userDetails;
     }
-
 
 }

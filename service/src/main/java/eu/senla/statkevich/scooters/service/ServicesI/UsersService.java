@@ -7,7 +7,7 @@ public interface UsersService extends GenericService<UserDTO> {
 
     UserDTO readByName(final String name);
 
-    Users create(UserDTO userDTO);
+    UserDTO create(UserDTO userDTO);
 
     UserDTO readRepo(Long id);
 

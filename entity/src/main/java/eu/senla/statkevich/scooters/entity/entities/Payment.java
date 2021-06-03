@@ -67,7 +67,7 @@ public class Payment {
         return "Payment: " +
                 ", id= " + id +
                 ", sum= " + sum +
-                ", from user= " + user.getName() +
-                ", rent's id= " + rent.getId();
+                ", from user= " + user +
+                ", rent's id= " + rent;
     }
 }

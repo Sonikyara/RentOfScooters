@@ -1,8 +1,10 @@
 package eu.senla.statkevich.scooters.dao;
 
 import eu.senla.statkevich.scooters.dao.IDao.ITermOfRentDao;
+import eu.senla.statkevich.scooters.entity.entities.PriceList;
 import eu.senla.statkevich.scooters.entity.entities.TermOfRent;
 import junit.framework.TestCase;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +21,20 @@ public class TermOfRentDAOTest extends TestCase {
     @Autowired
     private ITermOfRentDao termOfRentDAO;
 
+    private static TermOfRent testTerm;
+
+    @BeforeClass
+    public static void prepareTestData() {
+        testTerm = new TermOfRent("Day", 1);
+        testTerm.setId(1L);
+    }
+
     @Test
     public void testReadByTitle() {
-        TermOfRent resultTermOfRent = termOfRentDAO.readByTitle("Day");
+        TermOfRent resultTermOfRent = termOfRentDAO.readByTitle(testTerm.getTitle());
 
         assertNotNull(resultTermOfRent);
+        assertEquals(testTerm.getTitle(), resultTermOfRent.getTitle());
     }
 
     @Test
@@ -31,5 +42,6 @@ public class TermOfRentDAOTest extends TestCase {
         TermOfRent resultTermOfRent = termOfRentDAO.read(1L);
 
         assertNotNull(resultTermOfRent);
+        assertEquals(testTerm.getId(), resultTermOfRent.getId());
     }
 }

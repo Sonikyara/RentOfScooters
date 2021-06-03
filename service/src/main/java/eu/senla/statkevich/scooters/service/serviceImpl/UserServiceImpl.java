@@ -48,7 +48,7 @@ public class UserServiceImpl implements UsersService {
     }
 
     @Override
-    public Users create(UserDTO userDTO) {
+    public UserDTO create(UserDTO userDTO) {
 
         Roles role = roleDAO.readByTitle("USER");
 
@@ -56,7 +56,7 @@ public class UserServiceImpl implements UsersService {
         user.setRole(role);
         user.setPass(passwordEncoder.encode(userDTO.getPass()));
 
-        return userDAO.create(user);
+        return userMapper.userToUserDto(userDAO.create(user));
     }
 
     @Override

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import eu.senla.statkevich.scooters.dto.UserDTO;
 
 import javax.validation.Valid;
+import java.util.Collections;
 
 @RestController
 public class UserController {
@@ -25,18 +26,26 @@ public class UserController {
     @Autowired
     public UsersService userService;
 
-    @RequestMapping(value = "/user/{id}",
+    @RequestMapping(value = "/loginn",
+            method = RequestMethod.GET,
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    protected Object login(@PathVariable("phone") String phone) {
+        String token = jwtProvider.generateToken(phone);
+        return Collections.singletonMap("token", token);
+    }
+
+    @RequestMapping(value = "/users/id/{id}",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
     protected UserDTO getUser(@PathVariable("id") Long id) {
         return userService.read(id);
     }
 
-    @RequestMapping(value = "/user/registration",
+    @RequestMapping(value = "/users/registration",
             method = {RequestMethod.POST, RequestMethod.GET},
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public String saveUser(@Valid @RequestBody UserDTO userDTO, BindingResult result) {
+    public UserDTO saveUser(@Valid @RequestBody UserDTO userDTO, BindingResult result) {
         if (result.hasErrors()) {
 
             String allErrors = "Wrong data in the fields:";
@@ -46,16 +55,12 @@ public class UserController {
             logger.info(allErrors);
             throw new ServiceException(allErrors);
         }
-        Users newUser = userService.create(userDTO);
-
-        String token = jwtProvider.generateToken(newUser.getName());
-        logger.info(newUser.toString());
-        logger.info("token :  " + token);
-
-        return newUser.toString() + " , token: " + token;
+        String token= login(userDTO.getPhoneNumber()).toString();
+        logger.info(token);
+        return userService.create(userDTO);
     }
 
-    @RequestMapping(value = "/user/ByName/{name}",
+    @RequestMapping(value = "/users/name/{name}",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
     protected UserDTO getUserByName(@PathVariable("name") String name) {
