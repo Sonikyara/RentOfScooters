@@ -9,6 +9,4 @@ public interface UsersService extends GenericService<UserDTO> {
 
     UserDTO create(UserDTO userDTO);
 
-    UserDTO readRepo(Long id);
-
 }

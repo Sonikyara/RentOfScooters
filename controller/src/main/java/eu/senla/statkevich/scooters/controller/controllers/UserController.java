@@ -1,7 +1,6 @@
 package eu.senla.statkevich.scooters.controller.controllers;
 
 import eu.senla.statkevich.scooters.controller.securityConfiguration.JwtProvider;
-import eu.senla.statkevich.scooters.entity.entities.Users;
 import eu.senla.statkevich.scooters.service.ServiceException;
 import eu.senla.statkevich.scooters.service.ServicesI.UsersService;
 import org.apache.log4j.Logger;
@@ -57,7 +56,8 @@ public class UserController {
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
     protected UserDTO getUser(@PathVariable("id") Long id) {
-        return userService.read(id);
+        //return userService.read(id);
+        return userService.readRepo(id);
     }
 
     @RequestMapping(value = "/users/name/{name}",

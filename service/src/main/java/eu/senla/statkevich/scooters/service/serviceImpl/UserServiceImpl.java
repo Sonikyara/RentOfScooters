@@ -39,12 +39,14 @@ public class UserServiceImpl implements UsersService {
 
     @Override
     public UserDTO read(Long id) {
-        return userMapper.userToUserDto(userDAO.read(id));
+        return userMapper.userToUserDto(usersRepository.findById(id).get());
+        //return userMapper.userToUserDto(userDAO.read(id));
     }
 
     @Override
     public UserDTO readByName(String name) {
-        return userMapper.userToUserDto(userDAO.readByName(name));
+        //return userMapper.userToUserDto(userDAO.readByName(name));
+        return userMapper.userToUserDto(usersRepository.findByName(name));
     }
 
     @Override
@@ -64,11 +66,6 @@ public class UserServiceImpl implements UsersService {
         //userDAO.readAll()
         //List<Users> usersList=usersRepository.findAll();
         return null;
-    }
-
-    @Override
-    public UserDTO readRepo(Long id) {
-        return userMapper.userToUserDto(usersRepository.findById(id).get());
     }
 
     //    @Override
