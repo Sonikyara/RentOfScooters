@@ -24,8 +24,6 @@ databaseChangeLog:
             name: sum
             type: numeric
         - column:
-            constraints:
-              nullable: false
             name: rent_id
             type: INTEGER
         tableName: payment
@@ -64,8 +62,6 @@ databaseChangeLog:
             name: date_start
             type: date
         - column:
-            constraints:
-              nullable: false
             name: date_end
             type: date
         tableName: rent

@@ -62,19 +62,21 @@ public class RentDAOTest extends TestCase {
 
     @Test
     public void testUpdateDateEnd() {
-        Rent testRent = rentDao.readAll().get(0);
+        List<Rent> testListRent = rentDao.readAll();
+        if (!testListRent.isEmpty()) {
+            Rent testRent=testListRent.get(0);
+            if (testRent != null) {
+                try {
+                    testRent.setDateEnd((new SimpleDateFormat("dd-MM-yy")).parse("01-01-2022"));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
-        if (testRent != null) {
-            try {
-                testRent.setDateEnd((new SimpleDateFormat("dd-MM-yy")).parse("01-01-2022"));
-            } catch (ParseException e) {
-                e.printStackTrace();
+                Rent resultRent = rentDao.updateDateEnd(testRent);
+
+                assertEquals(resultRent.getDateEnd(), testRent.getDateEnd());
+                assertEquals(resultRent.getId(), testRent.getId());
             }
-
-            Rent resultRent = rentDao.updateDateEnd(testRent);
-
-            assertEquals(resultRent.getDateEnd(), testRent.getDateEnd());
-            assertEquals(resultRent.getId(), testRent.getId());
         }
     }
 

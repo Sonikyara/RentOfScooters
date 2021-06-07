@@ -73,16 +73,19 @@ public class UserServiceImplTest extends TestCase {
         assertEquals(resultUserDTO.getName(), userMapper.userToUserDto(testUser).getName());
     }
 
-    //@Test
+    @Test
     public void testReadByName() {
-        when(userDAO.readByName(any(String.class))).thenReturn(testUser);
+        //when(userDAO.readByName(any(String.class))).thenReturn(testUser);
+        when(usersRepository.findByName(any(String.class))).thenReturn(testUser);
 
         UserDTO resultUserDTO = userService.readByName("Ann");
 
-        Mockito.verify(userDAO).readByName("Ann");
+        Mockito.verify(usersRepository).findByName("Ann");
         assertNotNull(resultUserDTO);
         assertEquals(resultUserDTO.getName(), userMapper.userToUserDto(testUser).getName());
     }
+
+
 
     @Test
     public void testCreate() {

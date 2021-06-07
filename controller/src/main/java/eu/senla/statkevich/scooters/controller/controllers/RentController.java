@@ -168,7 +168,7 @@ public class RentController {
 
     @Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
     @RequestMapping(value = "/scooters/return",
-            method = RequestMethod.GET,
+            method = {RequestMethod.POST, RequestMethod.GET},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public RentDTO returnTheScooter(@RequestParam(name = "scooter", required = true) String scooter, Principal principal) {
 

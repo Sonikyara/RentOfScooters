@@ -1,14 +1,16 @@
 package eu.senla.statkevich.scooters.dto;
 
 
+import javax.validation.constraints.NotBlank;
+
 public class RentDTO {
     private Long id;
     private String scooterModel;
     private String userName;
     private String price;
-    // @NotBlank
+    @NotBlank
     private String termOfRent;
-    // @NotBlank
+    @NotBlank
     private String dateStart;
     private String dateEnd;
 

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.rmi.ServerException;
+import java.rmi.server.ServerCloneException;
 import java.util.Date;
 import java.util.List;
 
@@ -50,32 +52,36 @@ public class RentServiceImpl implements RentService {
 
     @Override
     public RentDTO create(RentDTO rentDTO) {
-
+        logger.info("00");
         Rent rent = rentMapper.RentDTOToRent(rentDTO);
 
         Users user = userDAO.readByName(rentDTO.getUserName());
         rent.setUser(user);
-
+        logger.info("0");
         Scooters scooter = scooterDao.readByModel(rentDTO.getScooterModel());
         rent.setScooter(scooter);
-
+        logger.info("1");
         TermOfRent termOfRent = termOfRentDao.readByTitle(rentDTO.getTermOfRent());
         PriceList priceList = priceListDao.readByTermAndScooter(termOfRent.getId(), scooter.getNumber());
         rent.setPrice(priceList);
-
+        logger.info("2");
         //проверим, есть ли оплата
         List<Payment> paymentList = paymentDao.getFreePayment(user, priceList.getPrice());
-        if (paymentList.size()>0) {
+        if (paymentList.size() > 0) {
             //тут оплату привязать
-            Rent resultRent=rentDao.create(rent);
-            System.out.println("Rent---"+resultRent);
-            paymentDao.updateRentId(paymentList.get(0),rent);
+            Rent resultRent = rentDao.create(rent);
+            System.out.println("Rent---" + resultRent);
+            paymentDao.updateRentId(paymentList.get(0), rent);
 
             return rentMapper.RentToRentDto(resultRent);
-        }else{
-            return null;
+        } else {
+            try {
+                throw new ServerException("Подходящая оплата не найдена");
+            } catch (ServerException e) {
+                e.printStackTrace();
+            }
         }
-
+        return null;
     }
 
     @Override

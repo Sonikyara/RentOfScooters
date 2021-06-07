@@ -4,15 +4,11 @@ import eu.senla.statkevich.scooters.dto.ScooterDTO;
 import eu.senla.statkevich.scooters.entity.entities.Scooters;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface IScooterMapper {
-
-    //IScooterMapper INSTANCE = Mappers.getMapper(IScooterMapper.class);
-
     //пока запись из браузера не нужна
     //Scooters scooterDtoToScooter(final ScooterDTO scooterDTO);
 

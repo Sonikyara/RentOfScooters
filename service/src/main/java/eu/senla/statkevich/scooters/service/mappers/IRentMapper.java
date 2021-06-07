@@ -10,8 +10,6 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface IRentMapper {
 
-    //IRentMapper INSTANCE = Mappers.getMapper(IRentMapper.class);
-
     @Mapping(target = "scooterModel", source = "scooter.model")
     @Mapping(target = "userName", source = "user.name")
     @Mapping(target = "price", source = "price.price", numberFormat = "#.00")

@@ -13,6 +13,8 @@ import eu.senla.statkevich.scooters.dto.UserDTO;
 
 import javax.validation.Valid;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class UserController {
@@ -49,6 +51,11 @@ public class UserController {
         }
         String token= login(userDTO.getPhoneNumber()).toString();
         logger.info(token);
+
+//        Map<String,Object> resultMap=new HashMap();
+//        resultMap.put("user",userDTO);
+//        resultMap.put("token",token);
+
         return userService.create(userDTO);
     }
 
@@ -56,8 +63,7 @@ public class UserController {
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
     protected UserDTO getUser(@PathVariable("id") Long id) {
-        //return userService.read(id);
-        return userService.readRepo(id);
+        return userService.read(id);
     }
 
     @RequestMapping(value = "/users/name/{name}",
