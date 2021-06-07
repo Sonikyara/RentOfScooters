@@ -141,10 +141,10 @@ public class RentController {
 
     //ожидается, что в эту дату будут свободны
     //http://localhost:8081/controller-1.0-SNAPSHOT/scooters/free?date=2020-07-01
-    @RequestMapping(value = "/scooters/free",
+    @RequestMapping(value = "/scooters/free/{date}",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<ScooterDTO> getFreeScooters(@RequestParam(name = "date", required = false) @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate date) {
+    public List<ScooterDTO> getFreeScooters(@PathVariable(name = "date", required = false) @DateTimeFormat(pattern="dd-MM-yyyy") LocalDate date) {
         //logger.info(date);
         return scooterService.readFreeScooters(date);
     }

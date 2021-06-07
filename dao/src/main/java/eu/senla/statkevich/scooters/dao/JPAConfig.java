@@ -91,7 +91,7 @@ public class JPAConfig {
     Properties additionalProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "none");//create
-
+        //properties.setProperty("hibernate.show_sql","true");
         //properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL95Dialect");
 
         return properties;

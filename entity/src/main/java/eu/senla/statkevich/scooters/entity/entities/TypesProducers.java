@@ -20,9 +20,6 @@ public class TypesProducers {
     @JoinColumn(name = "type_of_scooter_id",nullable = false)
     private TypeOfScooter scootersType;
 
-    @OneToMany(mappedBy = "seller", fetch = FetchType.LAZY)
-    private List<Scooters> typeProducer;
-
     public TypesProducers() {
     }
 
@@ -44,14 +41,6 @@ public class TypesProducers {
 
     public void setScooter(TypeOfScooter scooter) {
         this.scootersType = scooter;
-    }
-
-    public List<Scooters> getTypeProducer() {
-        return typeProducer;
-    }
-
-    public void setTypeProducer(List<Scooters> typeProducer) {
-        this.typeProducer = typeProducer;
     }
 
     public TypeOfScooter getScootersType() {
