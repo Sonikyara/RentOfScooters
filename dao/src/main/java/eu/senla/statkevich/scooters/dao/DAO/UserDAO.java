@@ -2,16 +2,16 @@ package eu.senla.statkevich.scooters.dao.DAO;
 
 import eu.senla.statkevich.scooters.dao.IDao.IUserDao;
 import eu.senla.statkevich.scooters.entity.entities.Users;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.List;
 
 @Repository
 public class UserDAO extends GenericDaoImpl<Users> implements IUserDao {
+
+    private static final Logger logger = Logger.getLogger(UserDAO.class);
 
     @Override
     public Users read(final Long id) {
@@ -24,7 +24,9 @@ public class UserDAO extends GenericDaoImpl<Users> implements IUserDao {
         CriteriaQuery<Users> cq = cb.createQuery(Users.class);
         Root<Users> user = cq.from(Users.class);
 
-        Predicate userByPhone= cb.equal(user.get("phoneNumber"), phone);
+        user.fetch("role", JoinType.INNER);
+
+        Predicate userByPhone = cb.equal(user.get("phoneNumber"), phone);
         cq.where(userByPhone);
 
         return entityManager.createQuery(cq).getSingleResult();
@@ -36,8 +38,12 @@ public class UserDAO extends GenericDaoImpl<Users> implements IUserDao {
         CriteriaQuery<Users> cq = cb.createQuery(Users.class);
         Root<Users> user = cq.from(Users.class);
 
+        user.fetch("role", JoinType.INNER);
+
         Predicate userByName = cb.equal(user.get("name"), name);
         cq.where(userByName);
+
+        logger.info("dao");
 
         return entityManager.createQuery(cq).getSingleResult();
         //return (Users) entityManager.createQuery("Select r from Users r where r.name=?1").setParameter(1,name).getSingleResult();
@@ -45,7 +51,6 @@ public class UserDAO extends GenericDaoImpl<Users> implements IUserDao {
 
     @Override
     public Users create(Users user) {
-
         entityManager.persist(user);
         return user;
     }

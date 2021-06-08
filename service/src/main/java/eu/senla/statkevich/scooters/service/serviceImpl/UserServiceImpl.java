@@ -46,6 +46,7 @@ public class UserServiceImpl implements UsersService {
     @Override
     public UserDTO readByName(String name) {
         //return userMapper.userToUserDto(userDAO.readByName(name));
+        logger.info("service");
         return userMapper.userToUserDto(usersRepository.findByName(name));
     }
 

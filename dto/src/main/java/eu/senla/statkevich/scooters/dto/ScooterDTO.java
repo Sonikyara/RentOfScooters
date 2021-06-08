@@ -1,8 +1,6 @@
 package eu.senla.statkevich.scooters.dto;
 
-
 import java.math.BigDecimal;
-
 
 public class ScooterDTO {
 
@@ -10,7 +8,6 @@ public class ScooterDTO {
     private String model;
     private BigDecimal sum;
     private String seller;
-    //private Long typeProducer;
     private String producer;
     private String type;
 
@@ -45,9 +42,6 @@ public class ScooterDTO {
     public void setSeller(String seller) {
         this.seller = seller;
     }
-
-//    public Long getTypeProducer() {        return typeProducer;    }
-//    public void setTypeProducer(Long typeProducer) {        this.typeProducer = typeProducer;    }
 
     public String getProducer() {
         return producer;

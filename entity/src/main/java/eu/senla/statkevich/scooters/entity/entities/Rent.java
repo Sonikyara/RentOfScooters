@@ -15,20 +15,20 @@ public class Rent {
     @Column(name = "date_end")
     private Date dateEnd;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
     private Scooters scooter;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
     private Users user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
     private PriceList price;
 
-    @OneToOne(mappedBy = "rent", fetch = FetchType.LAZY)
-    private Payment payment;
+//    @OneToOne(mappedBy = "rent", fetch = FetchType.LAZY)
+//    private Payment payment;
 
     public Rent() {
     }
@@ -90,13 +90,13 @@ public class Rent {
         this.price = price;
     }
 
-    public Payment getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Payment payment) {
-        this.payment = payment;
-    }
+//    public Payment getPayment() {
+//        return payment;
+//    }
+//
+//    public void setPayment(Payment payment) {
+//        this.payment = payment;
+//    }
 
     @Override
     public String toString() {

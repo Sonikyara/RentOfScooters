@@ -1,7 +1,6 @@
 package eu.senla.statkevich.scooters.entity.entities;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "types_producers"
@@ -12,11 +11,11 @@ public class TypesProducers {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne//(fetch = FetchType.LAZY)
     @JoinColumn(name = "producer_id",nullable = false)
     private Producer producer;
 
-    @ManyToOne
+    @ManyToOne//(fetch = FetchType.LAZY)
     @JoinColumn(name = "type_of_scooter_id",nullable = false)
     private TypeOfScooter scootersType;
 

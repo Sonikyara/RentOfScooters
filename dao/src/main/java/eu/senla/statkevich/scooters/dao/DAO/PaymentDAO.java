@@ -28,6 +28,9 @@ public class PaymentDAO extends GenericDaoImpl<Payment> implements IPaymentDao {
         CriteriaQuery<Payment> cq = cb.createQuery(Payment.class);
         Root<Payment> paymentRoot = cq.from(Payment.class);
 
+        paymentRoot.fetch("user", JoinType.INNER);
+        paymentRoot.fetch("rent", JoinType.LEFT);
+
         CriteriaQuery<Payment> all = cq.select(paymentRoot);
 
         return entityManager.createQuery(all).getResultList();
@@ -38,6 +41,8 @@ public class PaymentDAO extends GenericDaoImpl<Payment> implements IPaymentDao {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Payment> cq = cb.createQuery(Payment.class);
         Root<Payment> paymentRoot = cq.from(Payment.class);
+
+        paymentRoot.fetch("user", JoinType.INNER);
 
         CriteriaQuery<Payment> all = cq.select(paymentRoot);
 
@@ -67,6 +72,9 @@ public class PaymentDAO extends GenericDaoImpl<Payment> implements IPaymentDao {
         CriteriaQuery<Payment> cq = cb.createQuery(Payment.class);
         Root<Payment> paymentRoot = cq.from(Payment.class);
 
+        paymentRoot.fetch("user", JoinType.INNER);
+        paymentRoot.fetch("rent", JoinType.LEFT);
+
         Predicate userById = cb.equal(paymentRoot.get("user"), user.getId());
         cq.where(userById);
 
@@ -79,6 +87,8 @@ public class PaymentDAO extends GenericDaoImpl<Payment> implements IPaymentDao {
         CriteriaQuery<Payment> cq = cb.createQuery(Payment.class);
         Root<Payment> paymentRoot = cq.from(Payment.class);
 
+        paymentRoot.fetch("user", JoinType.INNER);
+        paymentRoot.fetch("rent", JoinType.LEFT);
 
         Predicate[] predicates = new Predicate[3];
         predicates[0] = cb.equal(paymentRoot.get("user"), user.getId());

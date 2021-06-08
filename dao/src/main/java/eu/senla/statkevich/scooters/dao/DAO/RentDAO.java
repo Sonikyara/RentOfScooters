@@ -23,6 +23,10 @@ public class RentDAO extends GenericDaoImpl<Rent> implements IRentDao {
         Predicate userById = cb.equal(rentRoot.get("user"), id);
         cq.where(userById);
 
+        rentRoot.fetch("user", JoinType.INNER);
+        rentRoot.fetch("scooter", JoinType.INNER);
+        rentRoot.fetch("price", JoinType.INNER);
+
         cq.orderBy(cb.desc(rentRoot.get("dateEnd")));
 
         return entityManager.createQuery(cq).getResultList();
@@ -33,6 +37,10 @@ public class RentDAO extends GenericDaoImpl<Rent> implements IRentDao {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Rent> cq = cb.createQuery(Rent.class);
         Root<Rent> rentRoot = cq.from(Rent.class);
+
+        rentRoot.fetch("user", JoinType.INNER);
+        rentRoot.fetch("scooter", JoinType.INNER);
+        rentRoot.fetch("price", JoinType.INNER);
 
         Predicate[] predicates = new Predicate[3];
         predicates[0] = cb.equal(rentRoot.get("user"), id);
@@ -68,6 +76,10 @@ public class RentDAO extends GenericDaoImpl<Rent> implements IRentDao {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Rent> cq = cb.createQuery(Rent.class);
         Root<Rent> rentRoot = cq.from(Rent.class);
+
+        rentRoot.fetch("user", JoinType.INNER);
+        rentRoot.fetch("scooter", JoinType.INNER);
+        rentRoot.fetch("price", JoinType.INNER);
 
         CriteriaQuery<Rent> all = cq.select(rentRoot);
 

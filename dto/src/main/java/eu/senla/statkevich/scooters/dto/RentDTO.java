@@ -88,14 +88,4 @@ public class RentDTO {
                 ", termOfRent='" + termOfRent +
                 ", dateStart=" + dateStart;
     }
-
-    //    public BigDecimal getPrice() {
-//        return price;
-//    }
-//
-//    public void setPrice(BigDecimal price) {
-//        this.price = price;
-//    }
-
-
 }

@@ -3,8 +3,6 @@ package eu.senla.statkevich.scooters.entity.entities;
 import eu.senla.statkevich.scooters.entity.abstractEntities.EntityWithName;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -15,15 +13,9 @@ public class Users extends EntityWithName {
     @Column(nullable = false)
     private String pass;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
     private Roles role;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Rent> rent;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Payment> payment;
 
     public Users() {
     }
@@ -36,8 +28,6 @@ public class Users extends EntityWithName {
         super(name);
         this.phoneNumber = phoneNumber;
         this.pass = pass;
-        rent = new ArrayList<>();
-        payment = new ArrayList<>();
     }
 
     public Users(String name, String phoneNumber, String pass,Roles role) {
@@ -45,8 +35,6 @@ public class Users extends EntityWithName {
         this.phoneNumber = phoneNumber;
         this.pass = pass;
         this.role=role;
-        rent = new ArrayList<>();
-        payment = new ArrayList<>();
     }
 
     public String getPhoneNumber() {
@@ -73,21 +61,6 @@ public class Users extends EntityWithName {
         this.role = role;
     }
 
-    public List<Rent> getRent() {
-        return rent;
-    }
-
-    public void setRent(List<Rent> rent) {
-        this.rent = rent;
-    }
-
-    public List<Payment> getPayment() {
-        return payment;
-    }
-
-    public void setPayment(List<Payment> payment) {
-        this.payment = payment;
-    }
 
     @Override
     public String toString() {

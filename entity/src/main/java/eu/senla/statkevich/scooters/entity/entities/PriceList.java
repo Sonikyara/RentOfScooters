@@ -2,8 +2,6 @@ package eu.senla.statkevich.scooters.entity.entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "price_list")
@@ -14,16 +12,13 @@ public class PriceList {
     @Column(nullable = false)
     private BigDecimal price;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "scooter_number",nullable = false)
     private Scooters scooter;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "term_id",nullable = false)
     private TermOfRent termOfRent;
-
-    @OneToMany(mappedBy = "price", fetch = FetchType.LAZY)
-    private List<Rent> rent;
 
     public PriceList() {
     }
@@ -31,14 +26,12 @@ public class PriceList {
     public PriceList(Scooters scooter, TermOfRent termOfRent) {
         this.scooter = scooter;
         this.termOfRent = termOfRent;
-        rent = new ArrayList<>();
     }
 
     public PriceList(BigDecimal price, Scooters scooter, TermOfRent termOfRent) {
         this.price = price;
         this.scooter = scooter;
         this.termOfRent = termOfRent;
-        rent = new ArrayList<>();
     }
 
     public Long getId() {
@@ -71,14 +64,6 @@ public class PriceList {
 
     public void setTermOfRent(TermOfRent termOfRent) {
         this.termOfRent = termOfRent;
-    }
-
-    public List<Rent> getRent() {
-        return rent;
-    }
-
-    public void setRent(List<Rent> rent) {
-        this.rent = rent;
     }
 
     @Override

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class PriceListDAO extends GenericDaoImpl<PriceList> implements IPriceLis
 //        return entityManager.createQuery(cq).getSingleResult();
 
         //JPQL
-        Query query = entityManager.createQuery("SELECT p FROM PriceList p WHERE p.termOfRent.id=?1 and p.scooter.number=?2", PriceList.class);
+        Query query = entityManager.createQuery("SELECT p FROM PriceList p JOIN FETCH p.termOfRent JOIN FETCH p.scooter WHERE p.termOfRent.id=?1 and p.scooter.number=?2", PriceList.class);
         query.setParameter(1, term_id);
         query.setParameter(2, scootersNumber);
 
@@ -48,6 +49,9 @@ public class PriceListDAO extends GenericDaoImpl<PriceList> implements IPriceLis
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<PriceList> cq = cb.createQuery(PriceList.class);
         Root<PriceList> priceListRoot = cq.from(PriceList.class);
+
+        priceListRoot.fetch("scooter", JoinType.INNER);
+        priceListRoot.fetch("termOfRent", JoinType.INNER);
 
         CriteriaQuery<PriceList> all = cq.select(priceListRoot);
 

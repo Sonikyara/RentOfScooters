@@ -3,7 +3,6 @@ package eu.senla.statkevich.scooters.entity.entities;
 import eu.senla.statkevich.scooters.entity.abstractEntities.EntityWithTitle;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "term_of_rent"
@@ -13,9 +12,6 @@ public class TermOfRent extends EntityWithTitle {
 
     @Column(name = "count_of_days",nullable = false)
     private int countOfDays;
-
-    @OneToMany(mappedBy = "termOfRent", fetch = FetchType.LAZY)
-    private List<PriceList> priceList;
 
     public TermOfRent() {
     }
@@ -31,14 +27,6 @@ public class TermOfRent extends EntityWithTitle {
 
     public void setCountOfDays(int countOfDays) {
         this.countOfDays = countOfDays;
-    }
-
-    public List<PriceList> getPriceList() {
-        return priceList;
-    }
-
-    public void setPriceList(List<PriceList> priceLists) {
-        this.priceList = priceLists;
     }
 
     @Override

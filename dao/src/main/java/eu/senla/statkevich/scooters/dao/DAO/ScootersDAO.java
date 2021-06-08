@@ -2,6 +2,7 @@ package eu.senla.statkevich.scooters.dao.DAO;
 
 import eu.senla.statkevich.scooters.dao.IDao.IScooterDao;
 import eu.senla.statkevich.scooters.entity.entities.Scooters;
+import eu.senla.statkevich.scooters.entity.entities.TypesProducers;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +11,6 @@ import javax.persistence.criteria.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @Repository
 public class ScootersDAO extends GenericDaoImpl<Scooters> implements IScooterDao {
@@ -28,6 +28,11 @@ public class ScootersDAO extends GenericDaoImpl<Scooters> implements IScooterDao
         CriteriaQuery<Scooters> cq = cb.createQuery(Scooters.class);
         Root<Scooters> scooters = cq.from(Scooters.class);
 
+        scooters.fetch("seller", JoinType.INNER);
+        Fetch<Scooters, TypesProducers> typeProducer = scooters.fetch("typeProducer", JoinType.INNER);
+        scooters.fetch("typeProducer", JoinType.INNER).fetch("producer", JoinType.INNER);
+        scooters.fetch("typeProducer", JoinType.INNER).fetch("scootersType", JoinType.INNER);
+
         Predicate scooterByModel = cb.equal(scooters.get("model"), model);
         cq.where(scooterByModel);
 
@@ -39,9 +44,14 @@ public class ScootersDAO extends GenericDaoImpl<Scooters> implements IScooterDao
     public List<Scooters> readAll() {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Scooters> cq = cb.createQuery(Scooters.class);
-        Root<Scooters> root = cq.from(Scooters.class);
+        Root<Scooters> scooters = cq.from(Scooters.class);
 
-        CriteriaQuery<Scooters> all = cq.select(root);
+        scooters.fetch("seller", JoinType.INNER);
+        Fetch<Scooters, TypesProducers> typeProducer = scooters.fetch("typeProducer", JoinType.INNER);
+        scooters.fetch("typeProducer", JoinType.INNER).fetch("producer", JoinType.INNER);
+        scooters.fetch("typeProducer", JoinType.INNER).fetch("scootersType", JoinType.INNER);
+
+        CriteriaQuery<Scooters> all = cq.select(scooters);
 
         return entityManager.createQuery(all).getResultList();
         //return  entityManager.createQuery("Select s from Scooters s").getResultList();

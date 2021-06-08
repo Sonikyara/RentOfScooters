@@ -2,8 +2,6 @@ package eu.senla.statkevich.scooters.entity.entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "scooters")
@@ -16,19 +14,13 @@ public class Scooters {
     @Column(nullable = false)
     private BigDecimal sum;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)//(name = "seller_id")
     private Sellers seller;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "types_producers_id",nullable = false)
     private TypesProducers typeProducer;
-
-    @OneToMany(mappedBy = "scooter", fetch = FetchType.LAZY)
-    private List<PriceList> priceLists;
-
-    @OneToMany(mappedBy = "scooter", fetch = FetchType.LAZY)
-    private List<Rent> rent;
 
     public Scooters() {
     }
@@ -38,8 +30,6 @@ public class Scooters {
         this.sum = sum;
         this.seller = seller;
         this.typeProducer = typeProducer;
-        priceLists = new ArrayList<>();
-        rent = new ArrayList<>();
     }
 
     public Long getNumber() {
@@ -76,22 +66,6 @@ public class Scooters {
 
     public void setTypeProducer(TypesProducers typeProducer) {
         this.typeProducer = typeProducer;
-    }
-
-    public List<PriceList> getPriceLists() {
-        return priceLists;
-    }
-
-    public void setPriceLists(List<PriceList> priceLists) {
-        this.priceLists = priceLists;
-    }
-
-    public List<Rent> getRent() {
-        return rent;
-    }
-
-    public void setRent(List<Rent> rent) {
-        this.rent = rent;
     }
 
     @Override

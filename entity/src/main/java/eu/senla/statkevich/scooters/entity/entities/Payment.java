@@ -12,11 +12,11 @@ public class Payment {
     @Column(nullable = false)
     private BigDecimal sum;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
     private Users user;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rent_id", referencedColumnName = "id")
     private Rent rent;
 
