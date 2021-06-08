@@ -1,6 +1,6 @@
 package eu.senla.statkevich.scooters.dao;
 
-import eu.senla.statkevich.scooters.dao.IDao.IScooterDao;
+import eu.senla.statkevich.scooters.dao.dao.IScooterDao;
 import eu.senla.statkevich.scooters.entity.entities.Scooters;
 import junit.framework.TestCase;
 import org.junit.BeforeClass;
@@ -13,7 +13,6 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @ContextConfiguration(classes = {JPAConfig.class}, loader = AnnotationConfigContextLoader.class)

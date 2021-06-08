@@ -1,8 +1,8 @@
 package eu.senla.statkevich.scooters.controller.controllers;
 
-import eu.senla.statkevich.scooters.controller.securityConfiguration.JwtProvider;
+import eu.senla.statkevich.scooters.controller.security.JwtProvider;
 import eu.senla.statkevich.scooters.service.ServiceException;
-import eu.senla.statkevich.scooters.service.ServicesI.UsersService;
+import eu.senla.statkevich.scooters.service.services.UsersService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,8 +13,6 @@ import eu.senla.statkevich.scooters.dto.UserDTO;
 
 import javax.validation.Valid;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 public class UserController {

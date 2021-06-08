@@ -1,13 +1,13 @@
 package eu.senla.statkevich.scooters.service;
 
-import eu.senla.statkevich.scooters.dao.DAO.RoleDAO;
-import eu.senla.statkevich.scooters.dao.DAO.UserDAO;
+import eu.senla.statkevich.scooters.dao.implementations.RoleDAO;
+import eu.senla.statkevich.scooters.dao.implementations.UserDAO;
 import eu.senla.statkevich.scooters.dao.repository.UsersRepository;
 import eu.senla.statkevich.scooters.dto.UserDTO;
 import eu.senla.statkevich.scooters.entity.entities.Roles;
 import eu.senla.statkevich.scooters.entity.entities.Users;
 import eu.senla.statkevich.scooters.service.mappers.IUserMapper;
-import eu.senla.statkevich.scooters.service.serviceImpl.UserServiceImpl;
+import eu.senla.statkevich.scooters.service.implementations.UserServiceImpl;
 import junit.framework.TestCase;
 import org.junit.BeforeClass;
 import org.junit.Test;

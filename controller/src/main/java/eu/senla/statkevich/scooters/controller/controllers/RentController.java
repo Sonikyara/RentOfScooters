@@ -5,10 +5,10 @@ import eu.senla.statkevich.scooters.dto.PaymentDTO;
 import eu.senla.statkevich.scooters.dto.PriceListDTO;
 import eu.senla.statkevich.scooters.dto.RentDTO;
 import eu.senla.statkevich.scooters.dto.ScooterDTO;
-import eu.senla.statkevich.scooters.service.ServicesI.PaymentService;
-import eu.senla.statkevich.scooters.service.ServicesI.PriceListService;
-import eu.senla.statkevich.scooters.service.ServicesI.RentService;
-import eu.senla.statkevich.scooters.service.ServicesI.ScootersService;
+import eu.senla.statkevich.scooters.service.services.PaymentService;
+import eu.senla.statkevich.scooters.service.services.PriceListService;
+import eu.senla.statkevich.scooters.service.services.RentService;
+import eu.senla.statkevich.scooters.service.services.ScootersService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -63,8 +63,7 @@ public class RentController {
         if (page < 1) {
             page = 1;
         }
-        logger.info(user);
-        logger.info(sum);
+
         return paymentService.readPage(page, sizeOfPage, user, sum);
     }
 

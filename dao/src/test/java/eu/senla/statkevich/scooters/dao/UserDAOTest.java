@@ -1,7 +1,7 @@
 package eu.senla.statkevich.scooters.dao;
 
-import eu.senla.statkevich.scooters.dao.IDao.IRoleDao;
-import eu.senla.statkevich.scooters.dao.IDao.IUserDao;
+import eu.senla.statkevich.scooters.dao.dao.IRoleDao;
+import eu.senla.statkevich.scooters.dao.dao.IUserDao;
 import eu.senla.statkevich.scooters.entity.entities.Roles;
 import eu.senla.statkevich.scooters.entity.entities.Users;
 import junit.framework.TestCase;

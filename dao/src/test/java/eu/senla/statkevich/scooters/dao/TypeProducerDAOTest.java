@@ -1,7 +1,6 @@
 package eu.senla.statkevich.scooters.dao;
 
-import eu.senla.statkevich.scooters.dao.IDao.ITypeProducerDao;
-import eu.senla.statkevich.scooters.entity.entities.TermOfRent;
+import eu.senla.statkevich.scooters.dao.dao.ITypeProducerDao;
 import eu.senla.statkevich.scooters.entity.entities.TypesProducers;
 import junit.framework.TestCase;
 import org.junit.BeforeClass;

@@ -1,10 +1,8 @@
 package eu.senla.statkevich.scooters.dao;
 
-import eu.senla.statkevich.scooters.dao.DAO.PaymentDAO;
-import eu.senla.statkevich.scooters.dao.IDao.*;
+import eu.senla.statkevich.scooters.dao.dao.*;
 import eu.senla.statkevich.scooters.entity.entities.*;
 import junit.framework.TestCase;
-import org.apache.log4j.Logger;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;

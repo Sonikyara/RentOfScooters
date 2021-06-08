@@ -1,6 +1,6 @@
 package eu.senla.statkevich.scooters.entity.entities;
 
-import eu.senla.statkevich.scooters.entity.abstractEntities.EntityWithTitle;
+import eu.senla.statkevich.scooters.entity.abstractions.EntityWithTitle;
 
 import javax.persistence.*;
 
