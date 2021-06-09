@@ -1,14 +1,14 @@
 package eu.senla.statkevich.scooters.entity.entities;
 
+import eu.senla.statkevich.scooters.entity.abstractions.EntityMain;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "price_list")
-public class PriceList {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class PriceList extends EntityMain {
+
     @Column(nullable = false)
     private BigDecimal price;
 
@@ -32,14 +32,6 @@ public class PriceList {
         this.price = price;
         this.scooter = scooter;
         this.termOfRent = termOfRent;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Scooters getScooter() {
@@ -69,7 +61,7 @@ public class PriceList {
     @Override
     public String toString() {
         return "Price: " +
-                "id= " + id +
+                super.toString()+
                 ", scooter= " + scooter.getModel() +
                 ", term of rent= " + termOfRent.getTitle() +
                 " price= " + price;

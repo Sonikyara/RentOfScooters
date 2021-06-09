@@ -21,11 +21,12 @@ public class TermOfRentDAOTest extends TestCase {
     private ITermOfRentDao termOfRentDAO;
 
     private static TermOfRent testTerm;
+    private static Long testId;
 
     @BeforeClass
     public static void prepareTestData() {
         testTerm = new TermOfRent("Day", 1);
-        testTerm.setId(1L);
+        testId= Long.valueOf(1);
     }
 
     @Test
@@ -41,6 +42,6 @@ public class TermOfRentDAOTest extends TestCase {
         TermOfRent resultTermOfRent = termOfRentDAO.read(1L);
 
         assertNotNull(resultTermOfRent);
-        assertEquals(testTerm.getId(), resultTermOfRent.getId());
+        assertEquals(testId, resultTermOfRent.getId());
     }
 }

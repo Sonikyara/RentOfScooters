@@ -42,6 +42,7 @@ public class PaymentServiceImplTest extends TestCase {
     private PaymentServiceImpl paymentService;
 
     private static Users testUser;
+    private static Long testUsersId;
     private static Payment testPayment;
     private static List<Payment> testListPayment;
 
@@ -50,7 +51,7 @@ public class PaymentServiceImplTest extends TestCase {
     @BeforeClass
     public static void prepareTestData() {
         testUser = new Users("Ann");
-        testUser.setId(1L);
+        testUsersId= Long.valueOf(1);
 
         testPayment = new Payment(new BigDecimal(7), testUser);
 

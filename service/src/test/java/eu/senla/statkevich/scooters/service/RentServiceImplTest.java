@@ -49,6 +49,7 @@ public class RentServiceImplTest extends TestCase {
 
     private static Rent testRent;
     private static Users testUser;
+    private static Long testUsersId;
     private static Scooters testScooter;
     private static PriceList testPrice;
     private static TermOfRent testTerm;
@@ -60,7 +61,7 @@ public class RentServiceImplTest extends TestCase {
     @BeforeClass
     public static void prepareTestData() {
         testUser = new Users("Ann");
-        testUser.setId(1L);
+        testUsersId= Long.valueOf(1);
 
         testScooter = new Scooters();
         testScooter.setModel("Model1");
@@ -100,7 +101,7 @@ public class RentServiceImplTest extends TestCase {
 
         List<RentDTO> resultRentDTO = rentService.getByUserName(testUser.getName());
 
-        Mockito.verify(rentDAO).readByUserId(testUser.getId());
+        Mockito.verify(rentDAO).readByUserId(null);
         Mockito.verify(userDAO).readByName(testUser.getName());
         assertFalse(resultRentDTO.isEmpty());
         assertEquals(1, resultRentDTO.size());

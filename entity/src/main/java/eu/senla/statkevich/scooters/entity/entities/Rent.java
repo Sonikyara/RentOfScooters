@@ -1,14 +1,13 @@
 package eu.senla.statkevich.scooters.entity.entities;
 
+import eu.senla.statkevich.scooters.entity.abstractions.EntityMain;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "rent")
-public class Rent {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Rent extends EntityMain {
 
     @Column(name = "date_start",nullable = false)
     private Date dateStart;
@@ -27,9 +26,6 @@ public class Rent {
     @JoinColumn(nullable = false)
     private PriceList price;
 
-//    @OneToOne(mappedBy = "rent", fetch = FetchType.LAZY)
-//    private Payment payment;
-
     public Rent() {
     }
 
@@ -44,10 +40,6 @@ public class Rent {
         this.scooter=scooter;
         this.price=priceList;
         this.dateStart=dateStart;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public Date getDateStart() {
@@ -90,17 +82,9 @@ public class Rent {
         this.price = price;
     }
 
-//    public Payment getPayment() {
-//        return payment;
-//    }
-//
-//    public void setPayment(Payment payment) {
-//        this.payment = payment;
-//    }
-
     @Override
     public String toString() {
-        return "id: " + id +
+        return super.toString()+
                 ",scooters- " + ((scooter != null)?scooter.getModel():"") +
                 ",user " + ((user!=null)?user.getName():"") +
                 ",price №" + ((price!=null)?price.getId():"") +

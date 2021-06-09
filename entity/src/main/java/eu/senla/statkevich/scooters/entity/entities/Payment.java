@@ -1,14 +1,14 @@
 package eu.senla.statkevich.scooters.entity.entities;
 
+import eu.senla.statkevich.scooters.entity.abstractions.EntityMain;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "payment")
-public class Payment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Payment extends EntityMain {
+
     @Column(nullable = false)
     private BigDecimal sum;
 
@@ -32,10 +32,6 @@ public class Payment {
         this.sum = sum;
         this.user = user;
         this.rent = rent;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public BigDecimal getSum() {
@@ -65,7 +61,7 @@ public class Payment {
     @Override
     public String toString() {
         return "Payment: " +
-                ", id= " + id +
+                super.toString()+
                 ", sum= " + sum +
                 ", from user= " + user +
                 ", rent's id= " + rent;

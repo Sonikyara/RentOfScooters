@@ -1,29 +1,24 @@
 package eu.senla.statkevich.scooters.entity.entities;
 
+import eu.senla.statkevich.scooters.entity.abstractions.EntityMain;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "types_producers"
         ,uniqueConstraints = {@UniqueConstraint(columnNames = {"producer_id","type_of_scooter_id"},name = "types_producers_uniq")}
 )
-public class TypesProducers {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class TypesProducers extends EntityMain {
 
-    @ManyToOne//(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "producer_id",nullable = false)
     private Producer producer;
 
-    @ManyToOne//(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "type_of_scooter_id",nullable = false)
     private TypeOfScooter scootersType;
 
     public TypesProducers() {
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public Producer getProducer() {
@@ -53,6 +48,6 @@ public class TypesProducers {
     @Override
     public String toString() {
         return "Type-producer: " +
-                "id= " + id;
+                super.toString();
     }
 }

@@ -51,12 +51,10 @@ public class UserServiceImplTest extends TestCase {
     @BeforeClass
     public static void prepareTestData() {
         testUser = new Users("Ann");
-        testUser.setId(1L);
         testUser.setPass("pass");
         testUser.setPhoneNumber("123ann");
 
         testRole = new Roles("User");
-        testUser.setId(1L);
 
         testUsersList = new ArrayList<>();
         testUsersList.add(testUser);
@@ -75,7 +73,6 @@ public class UserServiceImplTest extends TestCase {
 
     @Test
     public void testReadByName() {
-        //when(userDAO.readByName(any(String.class))).thenReturn(testUser);
         when(usersRepository.findByName(any(String.class))).thenReturn(testUser);
 
         UserDTO resultUserDTO = userService.readByName("Ann");

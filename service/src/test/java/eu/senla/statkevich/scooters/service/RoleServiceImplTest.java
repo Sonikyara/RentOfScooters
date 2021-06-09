@@ -38,7 +38,6 @@ public class RoleServiceImplTest extends TestCase {
     public static void prepareTestData() {
         testRole = new Roles();
         testRole.setTitle("TestUser");
-        testRole.setId(10L);
     }
 
     @Test

@@ -36,12 +36,13 @@ public class PriceListDAOTest extends TestCase {
     private static PriceList testPrice;
     private static String testScoootersModel;
     private static String testTermTitle;
+    private static Long testId;
 
     @BeforeClass
     public static void prepareTestData() {
         testPrice = new PriceList();
-        testPrice.setId(1L);
 
+        testId= Long.valueOf(1);
         testTermTitle = "Day";
         testScoootersModel = "Model1";
     }
@@ -55,10 +56,10 @@ public class PriceListDAOTest extends TestCase {
 
     @Test
     public void testRead() {
-        PriceList resultPrice = priceListDao.read(testPrice.getId());
+        PriceList resultPrice = priceListDao.read(testId);
 
         assertNotNull(resultPrice);
-        assertEquals(resultPrice.getId(), testPrice.getId());
+        assertEquals(resultPrice.getId(), testId);
     }
 
     @Test
