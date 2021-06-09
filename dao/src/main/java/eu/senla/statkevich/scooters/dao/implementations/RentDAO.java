@@ -91,30 +91,4 @@ public class RentDAO extends GenericDaoImpl<Rent> implements IRentDao {
         entityManager.persist(rent);
         return rent;
     }
-
-    //    @Override
-//    public Users read(final Long id) {
-//        return entityManager.find(Users.class, id);
-//    }
-//
-//    //@Override
-//    public Users readByName(final String name) {
-//        CriteriaBuilder cb=entityManager.getCriteriaBuilder();
-//        CriteriaQuery<Users> cq=cb.createQuery(Users.class);
-//        Root<Users> user = cq.from(Users.class);
-//
-//        Predicate userByName = cb.equal(user.get("name"), name);
-//        cq.where(userByName);
-//
-//        return entityManager.createQuery(cq).getSingleResult();
-//        //return (Users) entityManager.createQuery("Select r from Users r where r.name=?1").setParameter(1,name).getSingleResult();
-//    }
-//
-//    @Override
-//    public Users create(Users user) {
-//        entityManager.persist(user);
-//        return user;
-//    }
-
-
 }

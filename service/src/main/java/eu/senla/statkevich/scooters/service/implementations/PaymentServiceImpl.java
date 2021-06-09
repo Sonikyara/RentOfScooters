@@ -5,7 +5,6 @@ import eu.senla.statkevich.scooters.dao.dao.IUserDao;
 import eu.senla.statkevich.scooters.dto.PaymentDTO;
 import eu.senla.statkevich.scooters.entity.entities.Payment;
 import eu.senla.statkevich.scooters.entity.entities.Users;
-import eu.senla.statkevich.scooters.service.ServiceException;
 import eu.senla.statkevich.scooters.service.services.PaymentService;
 import eu.senla.statkevich.scooters.service.mappers.IPaymentMapper;
 import org.apache.log4j.Logger;

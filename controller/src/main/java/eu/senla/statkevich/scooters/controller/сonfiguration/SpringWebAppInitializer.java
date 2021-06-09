@@ -21,7 +21,6 @@ public class SpringWebAppInitializer implements WebApplicationInitializer {
 
         appContext.register(ControllerConfig.class);
         appContext.register(ServiceConfig.class);
-        //appContext.register(DAOConfig.class);
         appContext.register(JPAConfig.class);
         appContext.register(SecurityConfig.class);
 

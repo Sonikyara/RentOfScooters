@@ -46,7 +46,6 @@ public class PaymentDAO extends GenericDaoImpl<Payment> implements IPaymentDao {
 
         CriteriaQuery<Payment> all = cq.select(paymentRoot);
 
-        //если есть фильтры, то добавить
         Predicate[] predicates;
         if ((user != null) && (sum != null)) {
             predicates = new Predicate[2];

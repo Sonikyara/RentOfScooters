@@ -50,10 +50,6 @@ public class UserController {
         String token= login(userDTO.getPhoneNumber()).toString();
         logger.info(token);
 
-//        Map<String,Object> resultMap=new HashMap();
-//        resultMap.put("user",userDTO);
-//        resultMap.put("token",token);
-
         return userService.create(userDTO);
     }
 

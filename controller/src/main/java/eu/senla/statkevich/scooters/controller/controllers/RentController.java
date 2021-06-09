@@ -144,7 +144,6 @@ public class RentController {
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<ScooterDTO> getFreeScooters(@PathVariable(name = "date", required = false) @DateTimeFormat(pattern="dd-MM-yyyy") LocalDate date) {
-        //logger.info(date);
         return scooterService.readFreeScooters(date);
     }
 

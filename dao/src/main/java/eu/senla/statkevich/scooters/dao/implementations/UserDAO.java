@@ -46,7 +46,6 @@ public class UserDAO extends GenericDaoImpl<Users> implements IUserDao {
         logger.info("dao");
 
         return entityManager.createQuery(cq).getSingleResult();
-        //return (Users) entityManager.createQuery("Select r from Users r where r.name=?1").setParameter(1,name).getSingleResult();
     }
 
     @Override

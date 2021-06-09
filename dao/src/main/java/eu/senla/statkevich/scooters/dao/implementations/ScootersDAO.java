@@ -37,7 +37,6 @@ public class ScootersDAO extends GenericDaoImpl<Scooters> implements IScooterDao
         cq.where(scooterByModel);
 
         return entityManager.createQuery(cq).getSingleResult();
-        //return entityManager.createQuery("Select r from Scooters r where r.model=?1",Scooters.class).setParameter(1,model).getSingleResult();
     }
 
     @Override
@@ -54,48 +53,10 @@ public class ScootersDAO extends GenericDaoImpl<Scooters> implements IScooterDao
         CriteriaQuery<Scooters> all = cq.select(scooters);
 
         return entityManager.createQuery(all).getResultList();
-        //return  entityManager.createQuery("Select s from Scooters s").getResultList();
     }
 
     @Override
     public List<Scooters> readFree(LocalDate date) {
-
-//        CriteriaBuilder cb=entityManager.getCriteriaBuilder();
-//        CriteriaQuery<Scooters> cq=cb.createQuery(Scooters.class);
-//        Root<Scooters> root = cq.from(Scooters.class);
-//
-//        Join<Scooters, Rent> rent = root.join("scooter_number");
-//
-//        CriteriaQuery<Scooters> all = cq.select(root);
-//        cq.where(cb.isNull(rentRoot.get("dateEnd")));
-//
-//        return Optional.ofNullable(getSingleResult(criteriaQuery));
-
-
-//SQL - скутеры в аренде и дата ожидаемого возврата их
-//        /**/
-//        /*select scooters.model,alldoRent.* from scooters left join - сводная таблица, удобная для сравнения*/
-//        select scooters.* from scooters left join
-//        (
-//                /*вся аренда, что еще не вернули с ожидаемым сроком*/
-//                select rentWithTermId.scooter_number,rentWithTermId.date_start,rentWithTermId.date_end,
-//                term_of_rent.count_of_days,rentWithTermId.date_start +term_of_rent.count_of_days*interval'1 day' as date_must_end from
-//                (
-//                        /*вся аренда, что еще не вернули с ид term*/
-//                        select inRent.*,price_list.term_id from
-//                                /*вся аренда, что еще не вернули*/
-//                                        (
-//                                                select * from rent where rent.date_end isnull
-//                                        ) as inRent
-//                        /**/
-//                        left join price_list on inRent.price_id=price_list.id
-//                        /**/
-//                )as rentWithTermId
-//        left join term_of_rent on rentWithTermId.term_id=term_of_rent.id
-//        /**/
-//		) as alldoRent on scooters.number=alldoRent.scooter_number
-//        where ((alldoRent.date_start isnull)or(alldoRent.date_must_end<='2020-01-04')or(alldoRent.date_start>'2020-01-04'))
-
         logger.info(date);
 
         String myQuery =
@@ -126,8 +87,6 @@ public class ScootersDAO extends GenericDaoImpl<Scooters> implements IScooterDao
         }
 
         return result;
-
-        //return entityManager.createQuery(all).getResultList();
 
     }
 

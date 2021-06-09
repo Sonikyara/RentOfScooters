@@ -25,7 +25,7 @@ import java.util.Properties;
 @ComponentScan
 @PropertySource("classpath:application.properties")
 @Import(EntityConfig.class)
-@EnableJpaRepositories("eu.senla.statkevich.scooters.dao") //dao.repository
+@EnableJpaRepositories("eu.senla.statkevich.scooters.dao")
 public class JPAConfig {
 
     @Value("${db.driverClassName}")
@@ -42,6 +42,13 @@ public class JPAConfig {
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
         return new PropertySourcesPlaceholderConfigurer();
+    }
+
+    Properties additionalProperties() {
+        Properties properties = new Properties();
+        properties.setProperty("hibernate.hbm2ddl.auto", "none");
+
+        return properties;
     }
 
     @Bean
@@ -86,15 +93,6 @@ public class JPAConfig {
     @Bean
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
-    }
-
-    Properties additionalProperties() {
-        Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "none");//create
-        //properties.setProperty("hibernate.show_sql","true");
-        //properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL95Dialect");
-
-        return properties;
     }
 
 }
