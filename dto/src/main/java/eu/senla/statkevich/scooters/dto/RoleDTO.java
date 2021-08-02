@@ -22,4 +22,12 @@ public class RoleDTO {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "RoleDTO{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                '}';
+    }
 }
