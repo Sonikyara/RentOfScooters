@@ -24,6 +24,7 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
+@RequestMapping("/1")
 public class RentController {
 
     private static final Logger logger = Logger.getLogger(RentController.class);

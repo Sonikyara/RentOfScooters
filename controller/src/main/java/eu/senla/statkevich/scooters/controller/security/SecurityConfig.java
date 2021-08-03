@@ -15,10 +15,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-@Configuration
-@ComponentScan(basePackages = {"eu.senla.statkevich.scooters.service"})
-@EnableWebSecurity(debug = true)
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
+//@Configuration
+//@ComponentScan(basePackages = {"eu.senla.statkevich.scooters.service"})
+//@EnableWebSecurity(debug = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired

@@ -12,6 +12,11 @@ public class RoleController {
     @Autowired
     public RolesService roleService;
 
+    @RequestMapping(value = "/greeting")
+    public String helloWorldController() {
+        return "hello";
+    }
+
     @RequestMapping(value = "/roles/id/{id}",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})
