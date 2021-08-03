@@ -1,6 +1,6 @@
 package eu.senla.statkevich.scooters.service.implementations;
 
-import eu.senla.statkevich.scooters.dao.dao.IRoleDao;
+import eu.senla.statkevich.dao.dao.IRoleDao;
 import eu.senla.statkevich.scooters.dto.RoleDTO;
 import eu.senla.statkevich.scooters.service.services.RolesService;
 import eu.senla.statkevich.scooters.service.mappers.IRoleMapper;

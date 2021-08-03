@@ -1,11 +1,11 @@
 package eu.senla.statkevich.scooters.service.implementations;
 
-import eu.senla.statkevich.scooters.dao.dao.IPriceListDao;
-import eu.senla.statkevich.scooters.dao.dao.IScooterDao;
-import eu.senla.statkevich.scooters.dao.dao.ITermOfRentDao;
+import eu.senla.statkevich.dao.dao.IPriceListDao;
+import eu.senla.statkevich.dao.dao.IScooterDao;
+import eu.senla.statkevich.dao.dao.ITermOfRentDao;
 import eu.senla.statkevich.scooters.dto.PriceListDTO;
-import eu.senla.statkevich.scooters.entity.entities.Scooters;
-import eu.senla.statkevich.scooters.entity.entities.TermOfRent;
+import eu.senla.statkevich.scooters.entities.Scooters;
+import eu.senla.statkevich.scooters.entities.TermOfRent;
 import eu.senla.statkevich.scooters.service.services.PriceListService;
 import eu.senla.statkevich.scooters.service.mappers.IPriceListMapper;
 import org.springframework.beans.factory.annotation.Autowired;

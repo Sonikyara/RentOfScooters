@@ -1,7 +1,7 @@
 package eu.senla.statkevich.scooters.controller.security;
 
-import eu.senla.statkevich.scooters.dao.dao.IUserDao;
-import eu.senla.statkevich.scooters.entity.entities.Users;
+import eu.senla.statkevich.dao.dao.IUserDao;
+import eu.senla.statkevich.scooters.entities.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

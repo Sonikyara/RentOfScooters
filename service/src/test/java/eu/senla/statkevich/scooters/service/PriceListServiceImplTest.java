@@ -1,12 +1,12 @@
 package eu.senla.statkevich.scooters.service;
 
-import eu.senla.statkevich.scooters.dao.implementations.PriceListDAO;
-import eu.senla.statkevich.scooters.dao.implementations.ScootersDAO;
-import eu.senla.statkevich.scooters.dao.implementations.TermOfRentDAO;
+import eu.senla.statkevich.dao.implementations.PriceListDAO;
+import eu.senla.statkevich.dao.implementations.ScootersDAO;
+import eu.senla.statkevich.dao.implementations.TermOfRentDAO;
 import eu.senla.statkevich.scooters.dto.PriceListDTO;
-import eu.senla.statkevich.scooters.entity.entities.PriceList;
-import eu.senla.statkevich.scooters.entity.entities.Scooters;
-import eu.senla.statkevich.scooters.entity.entities.TermOfRent;
+import eu.senla.statkevich.scooters.entities.PriceList;
+import eu.senla.statkevich.scooters.entities.Scooters;
+import eu.senla.statkevich.scooters.entities.TermOfRent;
 import eu.senla.statkevich.scooters.service.mappers.IPriceListMapper;
 import eu.senla.statkevich.scooters.service.implementations.PriceListServiceImpl;
 import junit.framework.TestCase;

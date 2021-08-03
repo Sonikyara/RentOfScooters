@@ -1,17 +1,17 @@
 package eu.senla.statkevich.scooters.service.implementations;
 
-import eu.senla.statkevich.scooters.dao.dao.IRoleDao;
-import eu.senla.statkevich.scooters.dao.dao.IUserDao;
-import eu.senla.statkevich.scooters.dao.repository.UsersRepository;
-import eu.senla.statkevich.scooters.entity.entities.Roles;
+import eu.senla.statkevich.dao.dao.IRoleDao;
+import eu.senla.statkevich.dao.dao.IUserDao;
+import eu.senla.statkevich.dao.repository.UsersRepository;
+import eu.senla.statkevich.scooters.entities.Roles;
 import eu.senla.statkevich.scooters.service.services.UsersService;
 import eu.senla.statkevich.scooters.service.mappers.IUserMapper;
+import eu.senla.statkevich.scooters.dto.UserDTO;
+import eu.senla.statkevich.scooters.entities.Users;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import eu.senla.statkevich.scooters.dto.UserDTO;
-import eu.senla.statkevich.scooters.entity.entities.Users;
 
 import javax.transaction.Transactional;
 import java.util.List;

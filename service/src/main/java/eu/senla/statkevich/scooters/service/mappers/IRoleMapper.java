@@ -2,7 +2,7 @@ package eu.senla.statkevich.scooters.service.mappers;
 
 
 import eu.senla.statkevich.scooters.dto.RoleDTO;
-import eu.senla.statkevich.scooters.entity.entities.Roles;
+import eu.senla.statkevich.scooters.entities.Roles;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

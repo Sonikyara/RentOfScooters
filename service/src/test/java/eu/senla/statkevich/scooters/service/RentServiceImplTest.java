@@ -1,11 +1,12 @@
 package eu.senla.statkevich.scooters.service;
 
-import eu.senla.statkevich.scooters.dao.implementations.*;
-import eu.senla.statkevich.scooters.dao.dao.IPaymentDao;
+import eu.senla.statkevich.dao.implementations.*;
+import eu.senla.statkevich.dao.dao.IPaymentDao;
 import eu.senla.statkevich.scooters.dto.RentDTO;
-import eu.senla.statkevich.scooters.entity.entities.*;
+import eu.senla.statkevich.entity.scooters.entities.*;
 import eu.senla.statkevich.scooters.service.mappers.IRentMapper;
 import eu.senla.statkevich.scooters.service.implementations.RentServiceImpl;
+import eu.senla.statkevich.scooters.entities.*;
 import junit.framework.TestCase;
 import org.junit.BeforeClass;
 import org.junit.Test;

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface PaymentService {
 
-    PaymentDTO create(final BigDecimal sum,String userName);
+    PaymentDTO create(final BigDecimal sum, String userName);
 
     List<PaymentDTO> readAll();
 

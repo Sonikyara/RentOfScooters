@@ -117,7 +117,7 @@ public class RentController {
         return priceListService.readByTermAndScooter(term, scooter);
     }
 
-    //about scooters
+    //about eu.senla.statkevich.entity.scooters
     @RequestMapping(value = "/scooters/number/{number}",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE})

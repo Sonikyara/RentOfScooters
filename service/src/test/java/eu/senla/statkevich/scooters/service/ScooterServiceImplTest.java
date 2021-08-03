@@ -1,8 +1,8 @@
 package eu.senla.statkevich.scooters.service;
 
-import eu.senla.statkevich.scooters.dao.implementations.ScootersDAO;
+import eu.senla.statkevich.dao.implementations.ScootersDAO;
 import eu.senla.statkevich.scooters.dto.ScooterDTO;
-import eu.senla.statkevich.scooters.entity.entities.Scooters;
+import eu.senla.statkevich.scooters.entities.Scooters;
 import eu.senla.statkevich.scooters.service.mappers.IScooterMapper;
 
 import eu.senla.statkevich.scooters.service.implementations.ScooterServiceImpl;

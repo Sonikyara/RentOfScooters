@@ -1,10 +1,11 @@
 package eu.senla.statkevich.scooters.service.implementations;
 
-import eu.senla.statkevich.scooters.dao.dao.*;
+import eu.senla.statkevich.dao.dao.*;
 import eu.senla.statkevich.scooters.dto.RentDTO;
-import eu.senla.statkevich.scooters.entity.entities.*;
+import eu.senla.statkevich.entity.scooters.entities.*;
 import eu.senla.statkevich.scooters.service.services.RentService;
 import eu.senla.statkevich.scooters.service.mappers.IRentMapper;
+import eu.senla.statkevich.scooters.entities.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

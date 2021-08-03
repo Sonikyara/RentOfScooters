@@ -1,10 +1,10 @@
 package eu.senla.statkevich.scooters.service.implementations;
 
-import eu.senla.statkevich.scooters.dao.dao.IPaymentDao;
-import eu.senla.statkevich.scooters.dao.dao.IUserDao;
+import eu.senla.statkevich.dao.dao.IPaymentDao;
+import eu.senla.statkevich.dao.dao.IUserDao;
 import eu.senla.statkevich.scooters.dto.PaymentDTO;
-import eu.senla.statkevich.scooters.entity.entities.Payment;
-import eu.senla.statkevich.scooters.entity.entities.Users;
+import eu.senla.statkevich.scooters.entities.Payment;
+import eu.senla.statkevich.scooters.entities.Users;
 import eu.senla.statkevich.scooters.service.services.PaymentService;
 import eu.senla.statkevich.scooters.service.mappers.IPaymentMapper;
 import org.apache.log4j.Logger;
