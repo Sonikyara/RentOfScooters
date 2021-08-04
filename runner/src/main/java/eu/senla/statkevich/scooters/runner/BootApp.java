@@ -4,6 +4,8 @@ import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication(scanBasePackages = {
         "eu.senla.statkevich.scooters.controller",
@@ -13,6 +15,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
         ,"eu.senla.statkevich.scooters.entity"})
 //exclude = {SecurityAutoConfiguration.class},
 @EntityScan("eu.senla.statkevich.scooters.entity")
+@EnableJpaRepositories("eu.senla.statkevich.scooters.dao")
+@EnableAspectJAutoProxy
 public class BootApp {
     //тут можно и бины,как в конфиге
 
