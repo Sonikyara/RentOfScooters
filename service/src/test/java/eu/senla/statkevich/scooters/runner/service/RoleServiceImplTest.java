@@ -1,0 +1,66 @@
+package eu.senla.statkevich.scooters.runner.service;
+
+import eu.senla.statkevich.scooters.dao.implementations.RoleDAO;
+import eu.senla.statkevich.scooters.dto.RoleDTO;
+import eu.senla.statkevich.scooters.entity.entities.Roles;
+import eu.senla.statkevich.scooters.service.implementations.RoleServiceImpl;
+import eu.senla.statkevich.scooters.service.mappers.IRoleMapper;
+
+import junit.framework.TestCase;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import org.mapstruct.factory.Mappers;
+
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.Spy;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.when;
+
+@RunWith(MockitoJUnitRunner.class)
+//@SpringBootTest
+public class RoleServiceImplTest extends TestCase {
+
+    @Mock
+    private RoleDAO roleDAO;
+    @Spy
+    IRoleMapper roleMapper = Mappers.getMapper(IRoleMapper.class);
+    @InjectMocks
+    private RoleServiceImpl roleService;
+
+    private static Roles testRole;
+
+    @BeforeClass
+    public static void prepareTestData() {
+        testRole = new Roles();
+        testRole.setTitle("TestUser");
+    }
+
+    @Test
+    public void testRead() {
+        when(roleDAO.read(any(Long.class))).thenReturn(testRole);
+
+        RoleDTO resultRoleDTO = roleService.read(10L);
+
+        Mockito.verify(roleDAO).read(10L);
+        assertNotNull(resultRoleDTO);
+        assertEquals(resultRoleDTO.getTitle(), roleMapper.roleToRoleDto(testRole).getTitle());
+
+    }
+
+    @Test
+    public void testReadByTitle() {
+        when(roleDAO.readByTitle(any(String.class))).thenReturn(testRole);
+
+        RoleDTO resultRoleDTO = roleService.readByTitle("TestUser");
+
+        Mockito.verify(roleDAO).readByTitle("TestUser");
+        assertNotNull(resultRoleDTO);
+        assertEquals(resultRoleDTO.getTitle(), roleMapper.roleToRoleDto(testRole).getTitle());
+    }
+}
