@@ -1,4 +1,4 @@
-package eu.senla.statkevich.scooters.runner.service;
+package eu.senla.statkevich.scooters.service;
 
 import eu.senla.statkevich.scooters.dao.implementations.RoleDAO;
 import eu.senla.statkevich.scooters.dao.implementations.UserDAO;
@@ -18,6 +18,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 
@@ -28,7 +29,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-//@SpringBootTest
+@SpringBootTest
 public class UserServiceImplTest extends TestCase {
 
     @Mock

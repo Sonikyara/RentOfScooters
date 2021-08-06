@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>eu.senla.statkevich.entity.scooters</artifactId>
+        <artifactId>eu.senla.statkevich.scooters</artifactId>
         <groupId>eu.senla.statkevich</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
@@ -15,6 +15,11 @@
     <name>dao</name>
 
     <dependencies>
+<!--        <dependency>-->
+<!--            <groupId>eu.senla.statkevich</groupId>-->
+<!--            <artifactId>runner</artifactId>-->
+<!--            <version>1.0-SNAPSHOT</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>eu.senla.statkevich</groupId>
             <artifactId>entity</artifactId>
@@ -50,11 +55,11 @@
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <scope>test</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.mockito</groupId>-->
+<!--            <artifactId>mockito-all</artifactId>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
@@ -63,8 +68,11 @@
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
         </dependency>
-
-<!--        <dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test</artifactId>
+        </dependency>
+        <!--        <dependency>-->
 <!--            <groupId>org.hibernate</groupId>-->
 <!--            <artifactId>hibernate-core</artifactId>-->
 <!--            <version>${hibernat-core.version}</version>-->

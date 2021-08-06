@@ -1,4 +1,4 @@
-package eu.senla.statkevich.scooters.runner.service;
+package eu.senla.statkevich.scooters.service;
 
 import eu.senla.statkevich.scooters.dao.implementations.RoleDAO;
 import eu.senla.statkevich.scooters.dto.RoleDTO;
@@ -6,6 +6,8 @@ import eu.senla.statkevich.scooters.entity.entities.Roles;
 import eu.senla.statkevich.scooters.service.implementations.RoleServiceImpl;
 import eu.senla.statkevich.scooters.service.mappers.IRoleMapper;
 
+import eu.senla.statkevich.scooters.service.mappers.IRoleMapperImpl;
+import eu.senla.statkevich.scooters.service.services.RolesService;
 import junit.framework.TestCase;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -13,24 +15,55 @@ import org.junit.runner.RunWith;
 
 import org.mapstruct.factory.Mappers;
 
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.Spy;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.mock.mockito.SpyBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
-//@SpringBootTest
+@RunWith(SpringRunner.class)
+//@Import(ServiceImplTestConfig.class)
+@SpringBootTest(classes = ServiceImplTestConfig111.class)
 public class RoleServiceImplTest extends TestCase {
 
-    @Mock
+//    @TestConfiguration
+//    //@SpringBootConfiguration
+//    public static class ServiceImplTestConfig {
+//        @Bean
+//        public RolesService roleService() {
+//            return new RoleServiceImpl() {
+//            };
+//        }
+//        @Bean
+//        public IRoleMapper roleMapper() {
+//            return new IRoleMapperImpl() {
+//            };
+//        }
+//    }
+    @MockBean
+    //@Mock
     private RoleDAO roleDAO;
-    @Spy
-    IRoleMapper roleMapper = Mappers.getMapper(IRoleMapper.class);
-    @InjectMocks
+
+    //@Spy
+//    @SpyBean
+//    IRoleMapper roleMapper = Mappers.getMapper(IRoleMapper.class);
+
+    //@InjectMocks
+
+    @Autowired
+    private IRoleMapper roleMapper;
+
+    @Autowired
     private RoleServiceImpl roleService;
 
     private static Roles testRole;

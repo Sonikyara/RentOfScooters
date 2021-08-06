@@ -1,4 +1,4 @@
-package eu.senla.statkevich.scooters.runner.service;
+package eu.senla.statkevich.scooters.service;
 
 import eu.senla.statkevich.scooters.dao.implementations.PriceListDAO;
 import eu.senla.statkevich.scooters.dao.implementations.ScootersDAO;
@@ -19,6 +19,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-//@SpringBootTest
+@SpringBootTest//(classes = AppTest.ServiceImplTestConfig.class)
 public class PriceListServiceImplTest extends TestCase {
 
     @Mock

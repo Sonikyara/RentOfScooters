@@ -1,4 +1,4 @@
-package eu.senla.statkevich.scooters.runner.service;
+package eu.senla.statkevich.scooters.service;
 
 import eu.senla.statkevich.scooters.dao.dao.IPaymentDao;
 import eu.senla.statkevich.scooters.dao.implementations.*;
@@ -12,10 +12,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mapstruct.factory.Mappers;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -24,22 +26,24 @@ import java.util.List;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
-//@SpringBootTest
+//@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringRunner.class)
+//@Import(AppTest.ServiceImplTestConfig.class)
+@SpringBootTest//(classes = ServiceImplTestConfig.class)
 public class RentServiceImplTest extends TestCase {
 
 
-    @Mock
+    @MockBean
     private RentDAO rentDAO;
-    @Mock
+    @MockBean
     private PriceListDAO priceListDAO;
-    @Mock
+    @MockBean
     private UserDAO userDAO;
-    @Mock
+    @MockBean
     private ScootersDAO scootersDAO;
-    @Mock
+    @MockBean
     private TermOfRentDAO termOfRentDAO;
-    @Mock
+    @MockBean
     private IPaymentDao paymentDao;
 
     @Spy

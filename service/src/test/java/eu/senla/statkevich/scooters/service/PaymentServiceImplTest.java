@@ -1,4 +1,4 @@
-package eu.senla.statkevich.scooters.runner.service;
+package eu.senla.statkevich.scooters.service;
 
 import eu.senla.statkevich.scooters.dao.implementations.PaymentDAO;
 import eu.senla.statkevich.scooters.dao.implementations.UserDAO;
@@ -17,6 +17,10 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -32,12 +36,28 @@ import static org.mockito.Mockito.when;
 //@RestClientTest
 
 @RunWith(MockitoJUnitRunner.class)
-//@SpringBootTest
+
+//@ContextConfiguration(classes = PaymentServiceImplTestConfig.class)
+@SpringBootTest
 //@AutoConfigureMockMvc
 
 //@WebMvcTest  --- Для тестирования контроллеров без использования полноценного сервера
 //@WebFluxTest --- втоматически настраивает инфраструктуру модуля Spring WebFlux и ищет только Controller, ControllerAdvice, @JsonComponent, Converter, GenericConverter и WebFluxConfigurer.
 public class PaymentServiceImplTest extends TestCase {
+
+    @TestConfiguration
+    //@ComponentScan(basePackages = "eu.senla.statkevich.scooters.service")
+    //@ComponentScan(basePackages = {
+    //        "eu.senla.statkevich.scooters.controller",
+    //        "eu.senla.statkevich.scooters.dao",
+    //        "eu.senla.statkevich.scooters.service"
+    //        ,
+    //        "eu.senla.statkevich.scooters.dao"
+    //        ,"eu.senla.statkevich.scooters.entity"
+    //})
+    public static class ServiceImplTestConfig {
+
+    }
 
     @Mock
     //@MockBean
