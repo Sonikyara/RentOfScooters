@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import java.lang.annotation.RetentionPolicy;
+
 @SpringBootApplication(scanBasePackages = {
         "eu.senla.statkevich.scooters.controller",
         "eu.senla.statkevich.scooters.dao",
@@ -23,6 +25,7 @@ public class BootApp {
     static Logger log = Logger.getLogger(BootApp.class);
 
     public static void main(String[] args) {
+
         SpringApplication.run(BootApp.class, args);
 
         log.info("Started");
