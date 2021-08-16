@@ -5,6 +5,7 @@ import eu.senla.statkevich.scooters.service.ServiceException;
 import eu.senla.statkevich.scooters.service.services.UsersService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -24,6 +25,9 @@ public class UserController {
 
     @Autowired
     public UsersService userService;
+
+    @Value("${my.mess}")
+    private String myMess;
 
     @RequestMapping(value = "/login/{phone}",
             method = RequestMethod.GET,
@@ -66,6 +70,7 @@ public class UserController {
     protected UserDTO getUserByName(@PathVariable("name") String name) {
 
         logger.info("Get user: " + name);
+        logger.info(myMess);
         return userService.readByName(name);
     }
 }

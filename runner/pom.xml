@@ -27,6 +27,11 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.my.sterter</groupId>
+            <artifactId>my-starter</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>eu.senla.statkevich</groupId>-->
 <!--            <artifactId>dao</artifactId>-->

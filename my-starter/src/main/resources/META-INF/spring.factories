@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.my.starter.StartersConfig
+
+org.springframework.boot.env.EnvironmentPostProcessor=eu.senla.statkevich.scooters.runner.ProfileDetectorEPP
